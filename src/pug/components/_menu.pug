@@ -1,0 +1,34 @@
+mixin menu()
+    -
+        const menu = [
+            {
+                title: 'Начало',
+                link: '#link',
+                is_active: true
+            },
+            {
+                title: '2011 – 2012',
+                link: '#link'
+            },
+            {
+                title: '2013 – 2014',
+                link: '#link'
+            },
+            {
+                title: '2015 – 2016',
+                link: '#link'
+            },
+            {
+                title: '2017 – 2018',
+                link: '#link'
+            },
+            {
+                title: 'Наши дни',
+                link: '#link'
+            },
+        ]
+    ul.menu&attributes(attributes)
+        each item in menu
+            li(class=item.is_active ? 'active' : false)
+                a(href=item.link)
+                    =item.title

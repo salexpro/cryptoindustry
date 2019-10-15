@@ -1,0 +1,84 @@
+button {
+    outline: none;
+    cursor: pointer;
+    color: $white;
+}
+
+.button{
+    padding: 0;
+    border: 0 !important;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.42px;
+    position: relative;
+    span{
+        display: block;
+        padding: $button-padding;
+        border: $button-hollow-border-width solid $primary-color;
+        clip-path: 
+            polygon(
+                0 0,                    /* top left */
+                calc(100% - 8px) 0%,    /* top right */
+                100% 8px,               /* top right */
+                100% 100%,              /* bottom right */
+                8px 100%,               /* bottom left */
+                0 calc(100% - 8px)      /* bottom left */
+            );
+    }
+    &.hollow{
+        filter: drop-shadow(0 0 6px currentColor);
+        span{
+            position: relative;
+            background: #002b49;
+            transition: background 250ms, color 250ms;
+            &::before, &::after{
+                content: '';
+                position: absolute;
+                width: 10px;
+                border-bottom: 3px solid $primary-color;
+                transform: rotate(45deg);
+            }
+            &::before{
+                left: -3px;
+                bottom: 1px;
+            }
+            &::after{
+                right: -3px;
+                top: 1px;
+            }
+        }
+        &.secondary, &.active{
+            span{
+                border-color: $secondary-color;
+                &::before, &::after{
+                    border-color: $secondary-color;
+                }
+            }
+        }
+        &.small{
+            font-weight: 300;
+            span{
+                color: $white;
+                padding: 9.5px 13px;
+                background: #002b49;
+            }
+            &.active{
+                // border-color: $secondary-color;
+                filter: drop-shadow(0 0 10px $secondary-color);
+                span{
+                    background-color: $secondary-color;
+                    color: #004577;
+                }
+            }
+        }
+        &:hover, &:focus{
+            span{
+                background-color: $primary-color;
+                color: #004577;
+            }
+            &.secondary span{
+                background-color: $secondary-color;
+            }
+        }
+    }
+}

@@ -1,0 +1,176 @@
+.main{
+    position: absolute;
+    width: 100%;
+    top: 58px;
+    display: none;
+    overflow: hidden;
+    
+    // user-select: none;
+    // &::after{
+    //     position: absolute;
+    //     top: 0;
+    //     content: '';
+    //     width: 1280px;
+    //     height: 100%;
+    //     left: 50%;
+    //     transform: translateX(-50%);
+    //     background: red;
+    //     z-index: -1;
+    // }
+    &_inner{
+        padding-top: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        // height: 100%;
+        min-height: calc(100vh - 58px);
+        padding-bottom: 120px;
+        h1{
+            flex: 1 1 100%
+        }
+    }
+}
+
+.block{
+    position: relative;
+    filter: drop-shadow(0 0 10px $primary-color);
+    letter-spacing: 0.49px;
+    flex: 0 1 340px;
+    margin-bottom: 40px;
+    &::before, &::after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        border-bottom: 1px solid $primary-color;
+        box-shadow: 0px 0px 12px rgba(105, 214, 255, 0.5);
+    }
+    &::after{
+        width: calc((100vw - 920px) / 2);
+        right: 100%;
+    }
+    &--wide{
+        flex: 0 1 540px;
+        margin-left: 36px;
+        &::before{
+            width: calc(920px - 100% - 340px);
+            right: 100%;
+        }
+        &::after{
+            left: 100%;
+        }
+    }
+    &_inner{
+        position: relative;
+        display: block;
+        padding: 20px 15px;
+        border: $button-hollow-border-width solid $primary-color;
+        clip-path: 
+            polygon(
+                0 8px,
+                8px 0,
+                100% 0%,  
+                100% calc(100% - 8px),
+                calc(100% - 8px) 100%,
+                0 100%
+            );
+        background-color: #032845;
+        &::before, &::after{
+            content: '';
+            position: absolute;
+            width: 10px;
+            border-bottom: 3px solid $primary-color;
+            transform: rotate(-45deg);
+        }
+        &::before{
+            left: -3px;
+            top: 1px;
+        }
+        &::after{
+            right: -3px;
+            bottom: 1px;
+        }
+    }
+}
+
+.hint{
+    position: relative;
+    padding: 7px 15px;
+    letter-spacing: 0.49px;
+    font-weight: 300;
+    border-left: 1px solid;
+    flex: 0 1 440px;
+    margin-bottom: 30px;
+    &--graph{
+        .hint_line{
+            width: 150px;
+            height: 190px;
+        }
+    }
+    &--event{
+        margin-top: -40px;
+        flex: 0 1 427px;
+        .hint_line{
+            right: auto;
+            left: 0;
+            width: 305px;
+            height: auto;
+            transform: translateX(-10.2%);
+        }
+    }
+    &_line{
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        min-height: 100px;
+        path{
+            fill: none;
+            // stroke-width: 1.3px;
+            stroke-width: 1px;
+            stroke: $white;
+            stroke-dasharray: 4, 2;
+        }
+    }
+}
+
+.lead{
+    position: relative;
+    color: $secondary-color;
+    padding: 18px 15px;
+    border-left: 1px solid $secondary-color;
+    margin: 0 auto 60px;
+    &_line{
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        width: 280px;
+        border-top: 1px solid $secondary-color;
+        border-left: 1px solid $secondary-color;
+        min-height: 52px;
+        &::before, &:after{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            border-right: 1px solid $secondary-color;
+            height: 6px;
+            border-radius: 25%;
+            transform: rotate(0deg);
+            transform-origin: bottom;
+            transition: transform 300ms;
+        }
+        &::before{
+            right: 100%;
+        }
+        &::after{
+            left: -1px;
+        }
+        &.expanded{
+            &::before{
+                transform: rotate(-43deg);
+            }
+            &::after{
+                transform: rotate(43deg);
+            }
+        }
+    }
+}

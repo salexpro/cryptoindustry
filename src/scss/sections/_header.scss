@@ -1,0 +1,56 @@
+.header{
+    background: #002a48;
+    overflow: hidden;
+    &_inner{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 58px;
+    }
+    &_logo{
+        margin-right: auto;
+        align-self: baseline;
+    }
+    &_buttons{
+        margin-left: 30px;
+        .button + .button{
+            margin-left: 12px;
+        }
+    }
+    &_hamb{
+        width: 24px;
+        height: 16px;
+        margin-left: 25px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-between;
+        filter: drop-shadow(0 0 10px $primary-color);
+        transition: 300ms;
+        &::before, &::after{
+            content: '';
+            width: 100%;
+            border-top: 2px solid $primary-color;
+            transition: 300ms;
+        }
+        &::before{
+            box-shadow: -3px 7px 0 $primary-color;
+        }
+        &::after{
+            width: calc(100% - 6px);
+        }
+        &:hover, &:focus, &[aria-expanded="true"]{
+            filter: drop-shadow(0 0 10px $secondary-color);
+            &::before, &::after{
+                border-color: $secondary-color;
+            }
+            &::before{
+                box-shadow: 0 7px 0 $secondary-color;
+            }
+            &::after{
+                width: 100%;
+            }
+        }
+    }
+}

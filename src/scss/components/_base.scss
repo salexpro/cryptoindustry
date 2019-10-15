@@ -1,0 +1,62 @@
+html, body{
+    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
+}
+
+// Styled scrollbar
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: $primary-color;
+    border-radius: 5px;
+    &:hover{
+        background: darken($primary-color, 15);
+    }
+}
+
+// Drop autofill
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus,
+:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px $white inset;
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: $black;
+}
+
+.wrap {
+    overflow: hidden;
+    min-width: 320px;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: stretch;
+    // justify-content: flex-start;
+    min-height: 100vh;
+    background-image: url(../assets/img/bg@2x.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+a{
+    transition: 200ms;
+}
+
+.js-off-canvas-overlay{
+    -webkit-tap-highlight-color: transparent;
+}
+
+svg{
+    display: block;
+}
+
+h1{
+    text-transform: uppercase;
+    span{
+        display: block;
+        color: $primary-color;
+        font-weight: 300;
+        font-size: 18px;
+    }
+}

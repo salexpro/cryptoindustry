@@ -1,0 +1,23 @@
+block const
+-
+    const title  = `${name ?  `${name} - ` : ''}Хроника криптоиндустрии`;
+    const descr  = 'Хроника криптоиндустрии: специальный проект ForkLog к пятилетию журнала';
+    const domain = 'chronicle.salex.pro'
+
+//- Components
+include components/_icons
+include components/_social
+include components/_menu
+
+doctype html
+html(lang="ru")
+    include components/_head
+    body
+        main.off-canvas-content.wrap(data-off-canvas-content)
+            include sections/_header
+            block content
+                include sections/_footer
+            //- include components/_popup
+        include components/_offcanvas
+        block js
+            script(src="./js/app.min.js")
