@@ -1,6 +1,7 @@
 html, body{
     -webkit-overflow-scrolling: touch;
     overflow: hidden;
+    overscroll-behavior-x: none;
 }
 
 // Styled scrollbar

@@ -8,7 +8,7 @@
 		},
 	{
 		"name": "New \"Run Script\" Step",
-		"scriptSourceString": "rm -rf docs/\ncp -rf build/ docs/\nrm -f build/CNAME\necho \"\\n\" >> docs/js/app.min.js\ncat docs/js/components/fastnav.min.js >> docs/js/app.min.js\nrm -f build.zip\nzip -r build.zip build/",
+		"scriptSourceString": "rm -rf docs/\ncp -rf build/ docs/\nrm -f build/CNAME\necho \"\\n\" >> docs/js/app.min.js\ncat docs/js/lib/fastnav.min.js >> docs/js/app.min.js\nrm -f build.zip\nzip -r build.zip build/",
 		"scriptType": 1,
 		"scriptUUIDString": "6366FA1E-B734-4D93-BE1B-0AE5E5857F91",
 		"stepType": 2,
@@ -51,6 +51,20 @@
 		"oF": 1,
 		"sC": 3,
 		"tS": 1
+		},
+	"/build": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "/build/build",
+		"oF": 0
+		},
+	"/build.zip": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/build/build.zip",
+		"oF": 0
 		},
 	"/docs": {
 		"ft": 65536,
@@ -2264,6 +2278,14 @@
 		"plM": 1103252938751,
 		"prP": 0
 		},
+	"/src/assets/img/Thumbs.db": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/build/assets/img/Thumbs.db",
+		"oF": 0
+		},
 	"/src/assets/img/yellow_line.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -2500,6 +2522,17 @@
 		"mi": 1,
 		"oA": 1,
 		"oAP": "/build/js/plugins/_KonvaPlugin.min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 1
+		},
+	"/src/js/plugins/ColorPlugin.js": {
+		"bF": 4,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/build/js/plugins/ColorPlugin.min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 1
@@ -2814,7 +2847,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "/src/assets/favicon/android-chrome-256x256.png",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 583538925.98218703
+	"lastBuiltDate": 593095247.14137304
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,

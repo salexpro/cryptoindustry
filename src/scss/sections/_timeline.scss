@@ -33,6 +33,7 @@
         width: 100%;
         height: 100%;
 // overflow: hidden;
+overflow: auto;
 
     }
     &_scroll{
@@ -76,7 +77,7 @@
         // will-change: transform;
         // transition: 1000ms transform ;
         // display: none;
-        opacity: 0.2;
+        // opacity: 0.2;
         &::after{
             content: '';
             position: absolute;
@@ -166,7 +167,7 @@
             top: 0;
             left: 0;
             z-index: 3;
-            // filter: drop-shadow(0 0 10px $primary-color);
+            filter: drop-shadow(0 0 10px $primary-color);
             // box-shadow: 0 0 25px $primary-color;
             cursor: pointer;
             transition: filter $timing;

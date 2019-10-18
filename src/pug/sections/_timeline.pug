@@ -662,7 +662,7 @@
         },
         {
             left: 7194,
-            prvBottom: 1034,
+            prvBottom: 707,
             dotBottom: 388,
             content: '21&nbsp;июня 2019&nbsp;&mdash; Группа разработки финансовых мер для борьбы с&nbsp;отмыванием денег (FATF) опубликовала финальную версию рекомендаций для регулирования регулирование криптовалютной индустрии. Рекомендации требуют обязать провайдеров криптовалютных услуг соблюдать процедуры AML и&nbsp;CFT (противодействие финансированию терроризма) наравне с&nbsp;традиционными финансовыми компаниями.',
             button: 'Читать',
@@ -737,14 +737,13 @@
     ]
     
 section.timeline
-    .timeline_scroll
+    //- .timeline_scroll
         .timeline_large
             #timeline.timeline_canvas
 
-    //- .timeline_overflow
+    .timeline_overflow
         .timeline_inner
-            #timeline.timeline_canvas
-            //- .timeline_graph
+            .timeline_graph
                 .timeline_events
                     each event, i in events
                         - const num = i+1;  

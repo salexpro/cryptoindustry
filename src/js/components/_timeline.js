@@ -191,7 +191,7 @@ const konvaEvents = [];
 
 
 events.events.forEach((event, i) => {
-    if (i < 15) {
+    // if (i < 15) {
 
     const previewCenterX = ((parent.clientWidth - 1280) / 2) + event.left + 57;
     const previewCenterY = lineBottom - event.prvBottom - 2;
@@ -444,7 +444,7 @@ events.events.forEach((event, i) => {
                 })
             })
         })
-    }
+    // }
 })
 
 // eslint-disable-next-line no-undef

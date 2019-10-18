@@ -1,0 +1,19 @@
+//- Components
+include ../components/_icons
+include ../components/_social
+include ../components/_menu
+
+doctype html
+html(lang="ru")
+    include ../components/_head
+    body
+        main.off-canvas-content.wrap(data-off-canvas-content)
+            include ../sections/_header
+            canvas(id="canvas")
+            //- include components/_popup
+        include ../components/_offcanvas
+        block js
+            script(src="https://code.createjs.com/1.0.0/easeljs.min.js")
+            script(src="https://code.createjs.com/1.0.0/tweenjs.min.js")
+            script(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1524180/ColorPlugin.js")
+            script(src="/js/createjs.min.js")
