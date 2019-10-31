@@ -146,6 +146,7 @@ const dotParams = [
     }
 ]
 
+const main = document.querySelector('.main');
 const canvas = document.getElementById('canvas');
 const stage = new createjs.Stage('canvas');
 stage.movable = false;
@@ -168,7 +169,6 @@ const mouse = {
         }
     },
     wheelFunction: function ({ deltaY, deltaX }) {
-        const main = document.querySelector('.main');
         if (stage.movable) {
             if (deltaY != 0) {
                 this.dest -= deltaY * 1.5;
@@ -240,4 +240,4 @@ const controls = [
     ]
 ]
 
-export { events, palette, accRate, graphParams, canvas, stage, dx, dy, mouse, gEvents, rndInt, dotParams, ranges, controls};
+export { events, palette, accRate, graphParams, canvas, stage, dx, dy, mouse, gEvents, rndInt, dotParams, ranges, controls, main};

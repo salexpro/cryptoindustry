@@ -2,13 +2,13 @@ import TweenLite from 'gsap/TweenMax';
 import { Power0 } from 'gsap/EasePack';
 // import 'gsap/ColorPropsPlugin';
 import '../../plugins/_ColorPropsPlugin'; // quite
-import { palette, events, canvas, stage, mouse, rndInt, gEvents } from './_config';
+import { palette, events, canvas, stage, mouse, rndInt, gEvents, ranges } from './_config';
 
 const opacity = [0.05, 0.1, 0.2];
 
 const anim = {
     hideMain: () => {
-        TweenLite.to('.block_inner', 0.3, {
+        TweenLite.to('.main .block_inner', 0.3, {
             css: {
                 x: '-=20'
             }
@@ -23,6 +23,30 @@ const anim = {
         setTimeout(() => {
             anim.revealEvents()
         }, 300);
+    },
+    showEnd: () => {
+        TweenLite.to('.block--regards', 0.3, {
+            css: {
+                autoAlpha: 1,
+            }
+        });
+        TweenLite.to('.block--regards .block_inner', 0.3, {
+            css: {
+                x: 0
+            }
+        });
+    },
+    hideEnd: () => {
+        TweenLite.to('.block--regards', 0.3, {
+            css: {
+                autoAlpha: 0,
+            }
+        });
+        TweenLite.to('.block--regards .block_inner', 0.3, {
+            css: {
+                x: -20
+            }
+        });
     },
     revealEvents: () => {
         events.some(({shape}, i) => {
@@ -294,6 +318,9 @@ const anim = {
         canvas.style.cursor = 'default';
     },
     openEvent: i => {
+        if (mouse.fin == ranges[5].x){
+            anim.hideEnd()
+        }
 
         const coords = {
             pX: events[i].shape.pX,
@@ -494,6 +521,11 @@ const anim = {
         TweenLite.to(events[i].content.mask, 0.3, { regY: 50 });
         TweenLite.to(events[i].content.mask.graphics._activeInstructions[0], 0.3, { w: 0, h: 100 });
 
+        if (mouse.fin == ranges[5].x) {
+            setTimeout(() => {
+                anim.showEnd()
+            }, 300);
+        }
 
         stage.movable = true;
         events[i].shape.opened = false;

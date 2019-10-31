@@ -2,7 +2,7 @@
 import $ from 'jquery';
 import { TimelineLite } from 'gsap/TimelineLite';
 
-import { dx, dy, events, accRate, canvas, stage, mouse, gEvents, ranges, controls } from './_config';
+import { dx, dy, events, accRate, canvas, stage, mouse, gEvents, main, ranges, controls } from './_config';
 import { anim } from './_anim';
 import * as eventsData from '../../data/events';
 
@@ -141,6 +141,13 @@ const onTick = () => {
                     </button>` : '<i></i>')
             }, '')
         )
+
+        if (ind == 5){
+            anim.showEnd()
+        } else {
+            anim.hideEnd()
+        }
+
         prevInd = ind;
     }
 
@@ -209,11 +216,19 @@ $('#video').on('closed.zf.reveal', () => {
 
 $('#menu a').click(function (e) {
     e.preventDefault();
-    const el = ranges[$(this).parent().index()];    
+    if (main.dataset.visible == 'true') {
+        anim.hideMain();
+        main.dataset.visible = false;
+    }
+    const el = ranges[$(this).parent().index()];
     mouse.dest = el.x;
 })
 
 $('.timeline_controls_inner').on('click', 'button', function () {
+    if (main.dataset.visible == 'true') {
+        anim.hideMain();
+        main.dataset.visible = false;
+    }
     mouse.dest = $(this).data('x');
 })
 
