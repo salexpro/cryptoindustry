@@ -175,9 +175,16 @@ const mouse = {
             } else if (deltaX != 0) {
                 this.dest -= deltaX * 1.5;
             }
-        } else if (main.dataset.visible == 'true') {
+        }
+        if ((deltaY > 0 || deltaX > 0) && main.dataset.visible == 'true') {
+            // console.log('hide main')
             anim.hideMain();
             main.dataset.visible = false;
+        }
+        if (stage.movable && main.dataset.visible == 'false' && mouse.fin == 0 && (deltaY < 0 || deltaX < 0)) {
+            // console.log('show main')
+            anim.showMain();
+            main.dataset.visible = true;
         }
     },
     moveFunction: function ({ clientX, clientY }) {

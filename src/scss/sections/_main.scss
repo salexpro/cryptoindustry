@@ -37,7 +37,7 @@
     // filter: drop-shadow(0 0 10px $primary-color);
     letter-spacing: 0.49px;
     flex: 0 1 340px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     z-index: 2;
     &::before, &::after{
         content: '';
@@ -192,4 +192,15 @@
             }
         }
     }
+}
+
+
+.hardworkers{
+    position: absolute;
+    right: 30px;
+    bottom: 130px;
+    text-align: right;
+    transform: translateX(-20px);
+    opacity: 0;
+    visibility: hidden;
 }

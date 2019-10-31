@@ -75,6 +75,9 @@ const onTick = () => {
             }
         }
     });
+
+    
+
     if (mouse.fin > -950) {
         stage.y = 0;
     }

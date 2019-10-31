@@ -1,12 +1,31 @@
 import TweenLite from 'gsap/TweenMax';
 import { Power0 } from 'gsap/EasePack';
 // import 'gsap/ColorPropsPlugin';
-import '../../plugins/_ColorPropsPlugin'; // quite
-import { palette, events, canvas, stage, mouse, rndInt, gEvents, ranges } from './_config';
+import '../../plugins/_ColorPropsPlugin'; // quiet
+import { palette, events, canvas, stage, mouse, rndInt, gEvents, ranges, main } from './_config';
 
 const opacity = [0.05, 0.1, 0.2];
 
 const anim = {
+    showMain: () => {
+        TweenLite.to('.main .block_inner', 0.3, {
+            css: {
+                x: 0
+            }
+        });
+        TweenLite.to('.main', 0.3, {
+            css: {
+                autoAlpha: 1,
+            }
+        });
+        stage.movable = false;
+
+        events.forEach((e) => {
+            e.shape.hoverable = false;
+            TweenLite.to([e.group, e.lines.ld, e.shape], 0.3, { alpha: 0 });
+            e.shape.fadedOut = true;
+        })
+    },
     hideMain: () => {
         TweenLite.to('.main .block_inner', 0.3, {
             css: {
@@ -16,8 +35,6 @@ const anim = {
         TweenLite.to('.main', 0.3, {
             css: {
                 autoAlpha: 0,
-                // zIndex: -1,
-                // visibility: 'hidden'
             }
         });
         setTimeout(() => {
@@ -35,38 +52,68 @@ const anim = {
                 x: 0
             }
         });
+
+        TweenLite.to('.hardworkers', 0.3, {
+            css: {
+                x: 0,
+                autoAlpha: 1,
+            },
+            delay: 0.2
+        });
     },
     hideEnd: () => {
+        TweenLite.to('.hardworkers', 0.3, {
+            css: {
+                x: -20,
+                autoAlpha: 0,
+            },
+        });
+
         TweenLite.to('.block--regards', 0.3, {
             css: {
                 autoAlpha: 0,
-            }
+            },
+            delay: 0.2
         });
         TweenLite.to('.block--regards .block_inner', 0.3, {
             css: {
                 x: -20
-            }
+            },
+            delay: 0.2
         });
     },
     revealEvents: () => {
-        events.some(({shape}, i) => {
-            const pX = shape.pX;
-            if ((pX - 60) < canvas.offsetWidth) {
-                setTimeout(() => {
-                    if (!shape.revealed && !shape.revealing) {
-                        const gid = gEvents.findIndex(({ group }) => group.includes(i));
-                        if (gid != -1) {
-                            // console.log(i)
-                            anim.changeEvent(gid)
-                        } else {
-                            anim.revealEvent(i)
+        if (main.dataset.revealed == 'false'){
+            events.some(({shape}, i) => {
+                const pX = shape.pX;
+                if ((pX - 60) < canvas.offsetWidth) {
+                    setTimeout(() => {
+                        if (!shape.revealed && !shape.revealing) {
+                            const gid = gEvents.findIndex(({ group }) => group.includes(i));
+                            if (gid != -1) {
+                                // console.log(i)
+                                anim.changeEvent(gid)
+                            } else {
+                                anim.revealEvent(i)
+                            }
                         }
-                    }
-                }, 0 + (i * 1000) / 2);
-            } else {
-                return true;
-            }
-        })
+                    }, 0 + (i * 1000) / 2);
+                } else {
+                    return true;
+                }
+            })
+            main.dataset.revealed = true;
+        } else {
+            events.forEach(({ shape, group, lines }) => {
+                shape.fadedOut = false;
+                TweenLite.to([group, lines.ld], 0.3, { alpha: 1 });
+                if (shape.revealed && shape.showed) {
+                    TweenLite.to(shape, 0.3, { alpha: 1 });
+                    shape.hoverable = true;
+                }
+            })
+        }
+
         stage.movable = true;
     },
     dots: dot => {

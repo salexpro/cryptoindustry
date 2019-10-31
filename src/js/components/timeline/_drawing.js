@@ -1,5 +1,5 @@
 /* global createjs */
-import Ticker from '../../lib/ticker';
+import Ticker from '../../lib/ticker'; // quiet
 import { graphParams, palette, events, canvas, stage, mouse, gEvents, dotParams } from './_config';
 import { anim } from './_anim';
 import { onTick } from './_actions';
