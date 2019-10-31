@@ -1,3 +1,5 @@
+import { anim } from './_anim';
+
 /* global createjs */
 const events = [];
 
@@ -147,6 +149,7 @@ const dotParams = [
 
 const canvas = document.getElementById('canvas');
 const stage = new createjs.Stage('canvas');
+stage.movable = false;
 
 const mouse = {
     init: function () {
@@ -166,12 +169,16 @@ const mouse = {
         }
     },
     wheelFunction: function ({ deltaY, deltaX }) {
+        const main = document.querySelector('.main');
         if (stage.movable) {
             if (deltaY != 0) {
                 this.dest -= deltaY * 1.5;
             } else if (deltaX != 0) {
                 this.dest -= deltaX * 1.5;
             }
+        } else if (main.dataset.visible == 'true') {
+            anim.hideMain();
+            main.dataset.visible = false;
         }
     },
     moveFunction: function ({ clientX, clientY }) {

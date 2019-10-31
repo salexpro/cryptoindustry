@@ -1,4 +1,4 @@
-import TweenLite from 'gsap/TweenLite';
+import TweenLite from 'gsap/TweenMax';
 import { Power0 } from 'gsap/EasePack';
 // import 'gsap/ColorPropsPlugin';
 import '../../plugins/_ColorPropsPlugin'; // quite
@@ -7,6 +7,44 @@ import { palette, events, canvas, stage, mouse, rndInt, gEvents } from './_confi
 const opacity = [0.05, 0.1, 0.2];
 
 const anim = {
+    hideMain: () => {
+        TweenLite.to('.block_inner', 0.3, {
+            css: {
+                x: '-=20'
+            }
+        });
+        TweenLite.to('.main', 0.3, {
+            css: {
+                autoAlpha: 0,
+                // zIndex: -1,
+                // visibility: 'hidden'
+            }
+        });
+        setTimeout(() => {
+            anim.revealEvents()
+        }, 300);
+    },
+    revealEvents: () => {
+        events.some(({shape}, i) => {
+            const pX = shape.pX;
+            if ((pX - 60) < canvas.offsetWidth) {
+                setTimeout(() => {
+                    if (!shape.revealed && !shape.revealing) {
+                        const gid = gEvents.findIndex(({ group }) => group.includes(i));
+                        if (gid != -1) {
+                            // console.log(i)
+                            anim.changeEvent(gid)
+                        } else {
+                            anim.revealEvent(i)
+                        }
+                    }
+                }, 0 + (i * 1000) / 2);
+            } else {
+                return true;
+            }
+        })
+        stage.movable = true;
+    },
     dots: dot => {
         const alpha = opacity[Math.floor(Math.random() * opacity.length)];
         TweenLite.to(dot, 1, {

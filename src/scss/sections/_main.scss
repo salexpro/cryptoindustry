@@ -2,7 +2,7 @@
     position: absolute;
     width: 100%;
     top: 58px;
-    display: none;
+    // display: none;
     overflow: hidden;
     
     // user-select: none;
@@ -34,10 +34,11 @@
 
 .block{
     position: relative;
-    filter: drop-shadow(0 0 10px $primary-color);
+    // filter: drop-shadow(0 0 10px $primary-color);
     letter-spacing: 0.49px;
     flex: 0 1 340px;
     margin-bottom: 40px;
+    z-index: 2;
     &::before, &::after{
         content: '';
         position: absolute;
@@ -52,8 +53,9 @@
     &--wide{
         flex: 0 1 540px;
         margin-left: 36px;
+        z-index: 1;
         &::before{
-            width: calc(920px - 100% - 340px);
+            width: calc(920px - 100% - 340px + 20px);
             right: 100%;
         }
         &::after{
@@ -113,7 +115,7 @@
         .hint_line{
             right: auto;
             left: 0;
-            width: 305px;
+            width: 304px;
             height: auto;
             transform: translateX(-10.2%);
         }
@@ -143,7 +145,7 @@
         position: absolute;
         right: 100%;
         top: 50%;
-        width: 280px;
+        width: 281px;
         border-top: 1px solid $secondary-color;
         border-left: 1px solid $secondary-color;
         min-height: 52px;

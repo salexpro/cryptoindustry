@@ -341,22 +341,22 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
     cLines.addChild(line);
     graph.addChild(bg, eventGroup, lineRate, rBg, lineLeftRate, lineRightRate, rText);
 
-    if ((coords.pX - 60) < w) {
-        setTimeout(() => {
-            if (!events[i].shape.revealed && !events[i].shape.revealing) {
-                const gid = gEvents.findIndex(({ group }) => group.includes(i));
-                if (gid != -1) {
-                    // console.log(i)
-                    anim.changeEvent(gid)
-                } else {
-                    anim.revealEvent(i)
-                }
-            }
-        }, 0 + (i * 1000) / 2);
-    }
+    // if ((coords.pX - 60) < w) {
+    //     setTimeout(() => {
+    //         if (!events[i].shape.revealed && !events[i].shape.revealing) {
+    //             const gid = gEvents.findIndex(({ group }) => group.includes(i));
+    //             if (gid != -1) {
+    //                 // console.log(i)
+    //                 anim.changeEvent(gid)
+    //             } else {
+    //                 anim.revealEvent(i)
+    //             }
+    //         }
+    //     }, 0 + (i * 1000) / 2);
+    // }
 });
 
 stage.addChild(cLines, graph);
-stage.movable = true;
+// stage.movable = true;
 
 Ticker.addListener((event) => onTick(event));
