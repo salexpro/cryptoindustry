@@ -52,6 +52,12 @@
 		"sC": 3,
 		"tS": 1
 		},
+	"/build": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "/build/build",
+		"oF": 0
+		},
 	"/build.zip": {
 		"cB": 0,
 		"ft": 8192,
@@ -2896,7 +2902,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "/src/assets/favicon/android-chrome-256x256.png",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 594211217.13441598
+	"lastBuiltDate": 594217461.03721702
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,

@@ -71,14 +71,19 @@ button {
                 }
             }
         }
-        &:hover, &:focus{
-            span{
-                background-color: $primary-color;
-                color: #004577;
-            }
-            &.secondary span{
-                background-color: $secondary-color;
+        &:not(.still){
+            &:hover, &:focus{
+                span{
+                    background-color: $primary-color;
+                    color: #004577;
+                }
+                &.secondary span{
+                    background-color: $secondary-color;
+                }
             }
         }
+    }
+    &.still{
+        cursor: default;
     }
 }

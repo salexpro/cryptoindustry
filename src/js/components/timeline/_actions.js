@@ -2,10 +2,11 @@
 import $ from 'jquery';
 import { TimelineLite } from 'gsap/TimelineLite';
 
-import { dx, dy, events, accRate, canvas, stage, mouse, gEvents } from './_config';
+import { dx, dy, events, accRate, canvas, stage, mouse, gEvents, ranges, controls } from './_config';
 import { anim } from './_anim';
 import * as eventsData from '../../data/events';
 
+let prevInd = 0;
 
 const onTick = () => {
     const w = document.body.offsetWidth;
@@ -74,7 +75,9 @@ const onTick = () => {
             }
         }
     });
-
+    if (mouse.fin > -950) {
+        stage.y = 0;
+    }
     if (mouse.fin < -950 && mouse.fin > -2300) {
         // stage.y = mouse.fin ;
         tl.progress(Math.abs(mouse.fin + 950) / 1350)
@@ -90,6 +93,55 @@ const onTick = () => {
 
     if (mouse.fin < -6300 && mouse.fin > -6860) {
         tl4.progress(Math.abs(mouse.fin + 6300) / 560)
+    }
+
+    let rLabel = ranges[0].label;
+    let activeControls = controls[0];
+    let ind = 0;
+    if (mouse.fin > ranges[1].x){
+        rLabel = ranges[0].label;
+        activeControls = controls[0];
+        ind = 0;
+    }
+    if (mouse.fin <= ranges[1].x && mouse.fin > ranges[2].x){
+        rLabel = ranges[1].label;
+        activeControls = controls[1];
+        ind = 1;
+    }
+    if (mouse.fin <= ranges[2].x && mouse.fin > ranges[3].x){
+        rLabel = ranges[2].label;
+        activeControls = controls[1];
+        ind = 2;
+    }
+    if (mouse.fin <= ranges[3].x && mouse.fin > ranges[4].x){
+        rLabel = ranges[3].label;
+        activeControls = controls[1];
+        ind = 3;
+    }
+    if (mouse.fin <= ranges[4].x && mouse.fin > ranges[5].x){
+        rLabel = ranges[4].label;
+        activeControls = controls[1];
+        ind = 4;
+    }
+    if (mouse.fin == ranges[5].x){
+        rLabel = ranges[5].label;
+        activeControls = controls[2];
+        ind = 5;
+    }
+    if(prevInd !== ind){
+        $('#menu li').removeClass('active');
+        $(`#menu li:eq(${ind})`).addClass('active')
+        $('.timeline_years_button span').text(rLabel);
+        $('.timeline_controls_inner').html(
+            activeControls.reduce((acc, el, j) => {
+                return acc + (el.length ? `<button class="timeline_control timeline_control--${(j == 0) ? 'back' : 'forward'}" data-x="${el[0]}">
+                    ${(j == 0) ? '<svg xmlns="http://www.w3.org/2000/svg" width="17" height="8" viewBox="0 0 17 8"><use fill="currentColor" xlink:href="./assets/img/icons.svg#arrow_left"></use></svg> ' : ''}
+                    ${el[1]}
+                    ${(j == 1) ? ' <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8"><use fill="currentColor" xlink:href="./assets/img/icons.svg#arrow_right"></use></svg>' : ''}
+                    </button>` : '<i></i>')
+            }, '')
+        )
+        prevInd = ind;
     }
 
     stage.update();
@@ -153,6 +205,16 @@ canvas.addEventListener('click', () => {
 
 $('#video').on('closed.zf.reveal', () => {
     player.stopVideo();
+});
+
+$('#menu a').click(function (e) {
+    e.preventDefault();
+    const el = ranges[$(this).parent().index()];    
+    mouse.dest = el.x;
+})
+
+$('.timeline_controls_inner').on('click', 'button', function () {
+    mouse.dest = $(this).data('x');
 })
 
 // const repositionElems = (w, h) => {

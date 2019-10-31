@@ -3,7 +3,6 @@ import { anim } from './_anim';
 /* global createjs */
 const events = [];
 
-
 const gEvents = [
     {
         counter: 0,
@@ -196,4 +195,49 @@ const rndInt = (min, range) => {
     return Math.floor((Math.random() * (range + 1)) + min)
 }
 
-export { events, palette, accRate, graphParams, canvas, stage, dx, dy, mouse, gEvents, rndInt, dotParams};
+const ranges = [
+    {
+        label: 'Начало',
+        x: 0
+    },
+    {
+        label: '2011 – 2012',
+        x: -(((canvas.offsetWidth - 1280) / 2) + 1093 - 20)
+    },
+    {
+        label: '2013 – 2014',
+        x: -(((canvas.offsetWidth - 1280) / 2) + 1621 - 20)
+    },
+    {
+        label: '2015 – 2016',
+        x: -(((canvas.offsetWidth - 1280) / 2) + 3967 - 20)
+    },
+    {
+        label: '2017 – 2018',
+        x: -(((canvas.offsetWidth - 1280) / 2) + 5430 - 20)
+    },
+    {
+        label: 'Наши дни',
+        x: -7580 + (canvas.offsetWidth / 2)
+    }
+]
+const controls = [
+    [
+        [],
+        [(-7580 + (canvas.offsetWidth / 2)) / 2, 'Cередина']
+    ],
+    [
+        [0, 'Начало'],
+        [-7580 + (canvas.offsetWidth / 2), 'Наши дни']
+    ],
+    // [
+    //     [(-7580 + (canvas.offsetWidth / 2)) / 2, 'Cередина'],
+    //     [-7580 + (canvas.offsetWidth / 2), 'Наши дни']
+    // ],
+    [
+        [(-7580 + (canvas.offsetWidth / 2)) / 2, 'Cередина'],
+        []
+    ]
+]
+
+export { events, palette, accRate, graphParams, canvas, stage, dx, dy, mouse, gEvents, rndInt, dotParams, ranges, controls};
