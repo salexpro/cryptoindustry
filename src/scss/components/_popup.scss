@@ -1,3 +1,68 @@
 .reveal{
-    
+    outline: none;
+    background-size: cover;
+    background-position: center;
+    overflow-y: initial;
+    padding: 30px;
+    @include breakpoint(small down) {
+        height: auto;
+        min-height: auto;
+        padding: 20px;
+        margin: 20px;
+        width: calc(100% - 40px);
+        border-radius: $global-radius;
+    }
+    &.fade-in.mui-enter {
+        transform: translate3d(0, -18px, 0) perspective(435px) rotateX(8deg);
+        @include breakpoint(small down) {
+            transform: translate3d(0, -100%, 0);
+        }
+        &.mui-enter-active {
+            transform: translate3d(0, 0, 0) perspective(435px) rotateX(0);
+            @include breakpoint(small down) {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    }
+
+    &.fade-out.mui-leave {
+        transform: translate3d(0, 0, 0) perspective(435px) rotateX(0);
+        @include breakpoint(small down) {
+            transform: translate3d(0, 0, 0);
+        }
+        &.mui-leave-active {
+            transform: translate3d(0, -18px, 0) perspective(435px) rotateX(8deg);
+            @include breakpoint(small down) {
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+    }
+}
+
+.fade-in.mui-enter {
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+    opacity: 0;
+    transition-property: all;
+    @include breakpoint(small down) {
+        transition-duration: 300ms;
+    }
+}
+
+.fade-in.mui-enter.mui-enter-active {
+    opacity: 1;
+}
+
+.fade-out.mui-leave {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in;
+    opacity: 1;
+    transition-property: all;
+    @include breakpoint(small down) {
+        transition-duration: 300ms;
+    }
+}
+
+.fade-out.mui-leave.mui-leave-active {
+    opacity: 0;
 }

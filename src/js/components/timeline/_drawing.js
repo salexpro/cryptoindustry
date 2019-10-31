@@ -39,11 +39,11 @@ bottomLine.graphics
     .mt(0, h - 120)
     .lt(canvas.offsetWidth / 2, h - 120)
     .es()
-// bottomLine.shadow = new createjs.Shadow(palette.blue, 0, 0, 25);
+bottomLine.shadow = new createjs.Shadow(palette.blue, 0, 0, 25);
 
 graph.addChild(blueLine, yellowLine, bottomLine);
 
-eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate }, i) => {
+eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }, i) => {
 
     const coords = {
         pX: ((w - 1280) / 2) + left + 57,
@@ -55,9 +55,9 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate }, i) => 
     eventGroup.x = coords.pX;
 
     const line = new createjs.Shape();
-    line.cmd = line.graphics.beginStroke(palette.blue).command;
     line.x = coords.pX;
     line.graphics
+        .s(palette.blue)
         .ss(1)
         .sd([4, 2])
         .mt(0, coords.dY);
@@ -65,16 +65,16 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate }, i) => 
     // const llPath = [[0, 0], [-48, 0], [-56, -8], [-56, -112], [0, -112]];
     const lineLeft = new createjs.Shape();
     lineLeft.y = coords.pY;
-    lineLeft.cmd = lineLeft.graphics.beginStroke(palette.blue).command;
     lineLeft.graphics
+        .s(palette.blue)
         .ss(2)
         .mt(0, 0)
 
 
     const lineRight = new createjs.Shape();
     lineRight.y = coords.pY;
-    lineRight.cmd = lineRight.graphics.beginStroke(palette.blue).command;
     lineRight.graphics
+        .s(palette.blue)
         .ss(2)
         .mt(0, 0)
 
@@ -148,18 +148,42 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate }, i) => 
 
     const text = new createjs.Text();
     text.set({
-        x: 72,
-        y: coords.pY - 56,
+        x: 0,
         font: '300 16px Ubuntu',
         letterSpacing: 0.56,
         lineHeight: 19.2,
-        lineWidth: 395,
+        lineWidth: 393,
         text: content,
         color: 'white',
-        alpha: 0,
+        // alpha: 0,
     })
-    text.regY = text.getBounds().height / 2;
 
+    const textHeight = text.getBounds().height;
+    text.regY = textHeight / 2;
+    
+    const buttonHeight = button ? 35 + 22 : 0;
+    const totalHeight = textHeight + buttonHeight;
+    const eventHeight = (totalHeight > 140) ? totalHeight : 140;
+    
+    const posText = (eventHeight == 140 && buttonHeight) ? eventHeight - 35 : buttonHeight ? textHeight : eventHeight;
+    text.y = posText / 2;
+
+    const cContainerMask = new createjs.Shape();
+    cContainerMask.x = 72;
+    cContainerMask.y = coords.pY - 56;
+    cContainerMask.regY = 50;
+    cContainerMask.graphics
+        .dr(0, 0, 0, 100)
+    
+    const cContainer = new createjs.Container();
+    cContainer.x = 72;
+    cContainer.y = coords.pY - 56;
+    cContainer.regY = eventHeight / 2;
+    cContainer.mask = cContainerMask;
+    cContainer.alpha = 0;
+    cContainer.eventHeight = eventHeight;
+
+    cContainer.addChild(text);
 
     const rdY = coords.dY - 127;
 
@@ -246,6 +270,7 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate }, i) => 
         text: text,
         rText: rText,
         rBg: rBg,
+        content: cContainer,
         lines: {
             ll: lineLeft,
             lr: lineRight,
@@ -254,15 +279,16 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate }, i) => 
             rLl: lineLeftRate,
             rLr: lineRightRate
         },
-        dots: []
+        dots: [],
     });
 
     dotParams.forEach((dot, j) => {
         const dotShape = new createjs.Shape();
         dotShape.x = coords.pX;
         dotShape.y = coords.dY;
-        dotShape.cmd = dotShape.graphics.f(palette.blue).command;
-        dotShape.graphics.dp(dot.x, dot.y, 4, 4, 0, -90)
+        dotShape.graphics
+            .f(palette.blue)
+            .dp(dot.x, dot.y, 4, 4, 0, -90)
         dotShape.alpha = dot.opacity;
 
         if (j != 4) anim.dots(dotShape)
@@ -271,9 +297,49 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate }, i) => 
         cLines.addChild(dotShape);
     });
 
-    eventGroup.addChild(cCorners, cornersMask, lineLeft, lineRight, image, text);
-    cLines.addChild(line, lineRate, rBg, lineLeftRate, lineRightRate, rText);
-    graph.addChild(cLines, bg, eventGroup);
+    if (button) {
+        const buttonText = new createjs.Text();
+        buttonText.set({
+            y: eventHeight - 17,
+            font: '500 12px Ubuntu',
+            letterSpacing: 0.56,
+            // lineHeight: 14,
+            text: button.toUpperCase(),
+            color: palette.yellow,
+        })
+        const buttonTextWidth = buttonText.getBounds().width + 25;
+        const buttonTextHeight = buttonText.getBounds().height;
+        const buttonWidth = (buttonTextWidth > 104) ? buttonTextWidth : 104;
+
+        buttonText.x = 393 - (buttonWidth / 2);
+        buttonText.regX = buttonText.getBounds().width / 2;
+        buttonText.regY = buttonTextHeight / 2;
+
+        const buttonShape = new createjs.Shape();
+        buttonShape.x = 393 - buttonWidth;
+        buttonShape.y = eventHeight;
+        buttonShape.buttonWidth = buttonWidth;
+        buttonShape.graphics
+            .f('transparent')
+            .s(palette.yellow)
+            .ss(2)
+            .mt(8, 0)
+            .lt(buttonWidth, 0)
+            .lt(buttonWidth, -27)
+            .lt(buttonWidth - 8, -35)
+            .lt(0, -35)
+            .lt(0, -8)
+            .cp();
+
+        events[i].button = buttonShape;
+        events[i].buttonText = buttonText;
+
+        cContainer.addChild(buttonShape, buttonText);
+    }
+
+    eventGroup.addChild(cCorners, cornersMask, lineLeft, lineRight, image, cContainer);
+    cLines.addChild(line);
+    graph.addChild(bg, eventGroup, lineRate, rBg, lineLeftRate, lineRightRate, rText);
 
     if ((coords.pX - 60) < w) {
         setTimeout(() => {
@@ -290,9 +356,7 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate }, i) => 
     }
 });
 
-stage.addChild(graph);
+stage.addChild(cLines, graph);
 stage.movable = true;
 
 Ticker.addListener((event) => onTick(event));
-
-createjs.ColorPlugin.install();

@@ -13,6 +13,7 @@
             "dotBottom": 5,
             "content": "31 октября 2008 года — Сатоши Накамото опубликовал whitepaper биткоина с описанием протокола и принципа работы платежной системы в виде одноранговой сети",
             "button": "Смотреть видеокомментарий",
+            "comment": "a_2t3QLTamE",
             "rate": "$0"
         },
         {
@@ -34,7 +35,6 @@
             "prvBottom": 76,
             "dotBottom": 5,
             "content": "Сентябрь 2009 года — Первый обмен биткоина на фиат. Марти Малми отправил пользователю с псевдонимом NewLibertyStandard 5050 BTC, за которые получил на свой счет в PayPal 5, 02 доллара; NewLibertyStandart предложил использовать для оценки биткоина стоимость электроэнергии, затрачиваемой на его добычу.",
-            "button": "Смотреть видеокомментарий",
             "rate": "$0.0009940594"
         },
         {
@@ -42,6 +42,8 @@
             "prvBottom": 207,
             "dotBottom": 5,
             "content": "22 мая 2010 года — Первый обмен биткоина на физический товар: Ласло Хейниц за 10 000 BTC приобрел две пиццы. С тех пор криптосообщество каждый год отмечает Bitcoin Pizza Day.",
+            "button": "Смотреть видеокомментарий",
+            "comment": "grSEHFW21Gw",
             "rate": "0.0002 пиццы\n(менее $0.01 за BTC)"
         },
         {
@@ -77,9 +79,7 @@
             "left": 990,
             "prvBottom": 342,
             "dotBottom": 5,
-            "content": "12 декабря 2010 года — Последнее сообщение Сатоши Накамото на форуме Bitcointalk",
-            "button": "Читать",
-            "link": "https: //forklog.com/istoriya-silk-road-kak-bitkoin-vyvel-darknet-ekonomiku-na-novyj-uroven/"
+            "content": "12 декабря 2010 года — Последнее сообщение Сатоши Накамото на форуме Bitcointalk"
         },
         {
             "rate": "$1.00",
@@ -88,14 +88,16 @@
             "dotBottom": 5,
             "content": "Начало 2011 года — Запуск даркнет-маркетплейса Silk Road. Торговля незаконными товарами на нем стала первым юзкейсом биткоина и положила начало целому сектору даркнет-экономики",
             "button": "Читать",
-            "link": "https: //forklog.com/bratya-uinklvossy-protiv-shrema-borba-za-5000-btc/"
+            "link": "https://forklog.com/istoriya-silk-road-kak-bitkoin-vyvel-darknet-ekonomiku-na-novyj-uroven/"
         },
         {
             "rate": "$3",
             "left": 1200,
             "prvBottom": 376,
             "dotBottom": 5,
-            "content": "2011 — Запуск биткоин-биржи BitInstant, через которую в индустрию пришли Эрик Ворхес (ShapeShift) и братья Уинклвоссы (Gemini)"
+            "content": "2011 — Запуск биткоин-биржи BitInstant, через которую в индустрию пришли Эрик Ворхес (ShapeShift) и братья Уинклвоссы (Gemini)",
+            "button": "Читать",
+            "link": "https://forklog.com/bratya-uinklvossy-protiv-shrema-borba-za-5000-btc/"
         },
         {
             "rate": "$31.00",
@@ -165,8 +167,7 @@
             "left": 1695,
             "prvBottom": 390,
             "dotBottom": 171,
-            "content": "Апрель 2013 года — Цена биткоина начала месяц с отметки $100, а через неделю превысила $200.",
-            "button": "Смотреть видеокомментарий"
+            "content": "Апрель 2013 года — Цена биткоина начала месяц с отметки $100, а через неделю превысила $200."
         },
         {
             "rate": "~ $100",
@@ -174,15 +175,17 @@
             "prvBottom": 228,
             "dotBottom": 109,
             "content": "Лето 2013 года — Первое в истории первичное предложение монет (ICO): проекту Mastercoin удалось привлечь около 5 000 BTC. Впоследствии сфера ICO переживет стремительный взлет и не менее впечатляющий спад.",
-            "button": "Читать",
-            "link": "https: //forklog.com/istoriya-silk-road-kak-bitkoin-vyvel-darknet-ekonomiku-na-novyj-uroven/"
+            "button": "Смотреть видеокомментарий",
+            "comment": "m05oy3k37uo"
         },
         {
             "rate": "$66",
             "left": 2001,
             "prvBottom": 370,
             "dotBottom": 131,
-            "content": "Октябрь 2013 года — ФБР закрыло крупнейший даркнет-маркетплейс Silk Road, арестовав его создателя Росса Ульбрихта. Цена биткоина отреагировала 66% падением — со $124 до $82."
+            "content": "Октябрь 2013 года — ФБР закрыло крупнейший даркнет-маркетплейс Silk Road, арестовав его создателя Росса Ульбрихта. Цена биткоина отреагировала 66% падением — со $124 до $82.",
+            "button": "Читать",
+            "link": "https://forklog.com/istoriya-silk-road-kak-bitkoin-vyvel-darknet-ekonomiku-na-novyj-uroven/"
         },
         {
             "rate": "~ $168",
@@ -203,9 +206,7 @@
             "left": 2533,
             "prvBottom": 575,
             "dotBottom": 290,
-            "content": "Ноябрь 2013 — Виталик Бутерин опубликовал whitepaper Ethereum. Инфраструктура Ethereum стала популярной среди блокчейн-проектов.",
-            "button": "Читать",
-            "link": "https: //forklog.com/beskonechnaya-istoriya-obrushat-li-tsenu-bitkoina-vyplaty-investoram-mt-gox/"
+            "content": "Ноябрь 2013 — Виталик Бутерин опубликовал whitepaper Ethereum. Инфраструктура Ethereum стала популярной среди блокчейн-проектов."
         },
         {
             "rate": "~ $663",
@@ -219,7 +220,9 @@
             "left": 2916,
             "prvBottom": 351,
             "dotBottom": 251,
-            "content": "Февраль 2014 года — Биржа Mt.Gox полностью остановила торги. Биржа потеряла принадлежавшие клиентам 744 408 BTC, а также около 100 000 собственных биткоинов (суммарные потери по нынешнему курсу — почти $9 млрд)."
+            "content": "Февраль 2014 года — Биржа Mt.Gox полностью остановила торги. Биржа потеряла принадлежавшие клиентам 744 408 BTC, а также около 100 000 собственных биткоинов (суммарные потери по нынешнему курсу — почти $9 млрд).",
+            "button": "Читать",
+            "link": "https://forklog.com/beskonechnaya-istoriya-obrushat-li-tsenu-bitkoina-vyplaty-investoram-mt-gox/"
         },
         {
             "rate": "$618.76",
@@ -233,8 +236,7 @@
             "left": 3415,
             "prvBottom": 351,
             "dotBottom": 251,
-            "content": "Июль-август 2014 года — ICO Ethereum. Один из первых токенсейлов, где инвесторы получили солидную прибыль. Успешность ICO Ethereum повлияла на рост популярности этой модели краудсорсинга.",
-            "button": "Смотреть видеокомментарий"
+            "content": "Июль-август 2014 года — ICO Ethereum. Один из первых токенсейлов, где инвесторы получили солидную прибыль. Успешность ICO Ethereum повлияла на рост популярности этой модели краудсорсинга."
         },
         {
             "rate": "$504.00",
@@ -242,8 +244,8 @@
             "prvBottom": 563,
             "dotBottom": 251,
             "content": "25 августа 2014 — Основание журнала ForkLog",
-            "button": "Читать",
-            "link": "https: //forklog.com/microsoft-nachinaet-prinimat-bitkojn-k-oplate/"
+            "button": "Смотреть видеокомментарий",
+            "comment": "OU8FkNOrglo"
         },
         {
             "rate": "$352",
@@ -252,7 +254,7 @@
             "dotBottom": 210,
             "content": "11 декабря 2014 — Корпорация Microsoft начала принимать биткоин для оплаты покупок в своем магазине. Это стало первым случаем, когда транснациональная корпорация стала работать с криптовалютой.",
             "button": "Читать",
-            "link": "https: //forklog.com/bitstamp-obeshhaet-vosstanovit-rabotu-v-blizhajshie-sutki-ukradeno-bitkoinov-bolee-chem-na-5-mln/"
+            "link": "https://forklog.com/microsoft-nachinaet-prinimat-bitkojn-k-oplate/"
         },
         {
             "rate": "$275",
@@ -261,14 +263,16 @@
             "dotBottom": 175,
             "content": "4 января 2015 — взлом биржи Bitstamp. Тогда биржа базировалась в Словении и была одной из наиболее популярных торговых платформ во всем мире. Хакеры украли 18,866 BTC (около $5,2 млн на момент взлома).",
             "button": "Читать",
-            "link": "https: //forklog.com/tsena-bitkoina-prodolzhaet-rasti-na-fone-novostej-ob-otkrytii-novoj-birzhi/"
+            "link": "https://forklog.com/bitstamp-obeshhaet-vosstanovit-rabotu-v-blizhajshie-sutki-ukradeno-bitkoinov-bolee-chem-na-5-mln/"
         },
         {
             "rate": "$260",
             "left": 3992,
             "prvBottom": 457,
             "dotBottom": 197,
-            "content": "26 января 2015 — Запуск Coinbase, первой в США лицензированной биткоин-биржи. Платформа стала крупнейшей в Северной Америке и обслуживает миллионы пользователей. Незадолго до запуска Coinbase получила рекордные для криптовалютной индустрии $75 млн инвестиций, в том числе от Нью-Йоркской фондовой биржи (NYSE)."
+            "content": "26 января 2015 — Запуск Coinbase, первой в США лицензированной биткоин-биржи. Платформа стала крупнейшей в Северной Америке и обслуживает миллионы пользователей. Незадолго до запуска Coinbase получила рекордные для криптовалютной индустрии $75 млн инвестиций, в том числе от Нью-Йоркской фондовой биржи (NYSE).",
+            "button": "Читать",
+            "link": "https://forklog.com/tsena-bitkoina-prodolzhaet-rasti-na-fone-novostej-ob-otkrytii-novoj-birzhi/"
         },
         {
             "rate": "$236.32",
@@ -296,9 +300,7 @@
             "left": 4390,
             "prvBottom": 485,
             "dotBottom": 200,
-            "content": "30 июля 2015 года — Запущена сеть криптовалюты Ethereum, которая сегодня занимает второе место по рыночной капитализации.",
-            "button": "Читать",
-            "link": "https: //forklog.com/yaponskie-vlasti-obvinili-ceo-mtgox-v-prisvoenii-sredstv/"
+            "content": "30 июля 2015 года — Запущена сеть криптовалюты Ethereum, которая сегодня занимает второе место по рыночной капитализации."
         },
         {
             "rate": "$283",
@@ -307,7 +309,7 @@
             "dotBottom": 222,
             "content": "15 августа 2015 — Хардфорк Bitcoin XT. Его разработчиками были члены Bitcoin Core Гэвин Андресен и Майк Херн.",
             "button": "Читать",
-            "link": "https: //forklog.com/bitkoin-ofitsialno-priznan-tovarom-v-ssha/"
+            "link": "https://forklog.com/yaponskie-vlasti-obvinili-ceo-mtgox-v-prisvoenii-sredstv/"
         },
         {
             "rate": "$270.81",
@@ -316,7 +318,7 @@
             "dotBottom": 200,
             "content": "1 августа 2015 — в Японии арестован владелец Mt. Gox Марк Карпелес. Спустя некоторое время ему были предъявлены обвинения в растрате принадлежавших клиентам биткоинов на сотни миллионов долларов.",
             "button": "Читать",
-            "link": "https: //forklog.com/glavnyj-razrabotchik-yadra-bitkoina-pereklyuchitsya-na-fork-esli-razmer-bloka-ne-budet-uvelichen/"
+            "link": "https://forklog.com/glavnyj-razrabotchik-yadra-bitkoina-pereklyuchitsya-na-fork-esli-razmer-bloka-ne-budet-uvelichen/"
         },
         {
             "rate": "$267",
@@ -325,7 +327,7 @@
             "dotBottom": 200,
             "content": "17 октября 2015 — Американская Комиссия по срочной биржевой торговле (CTFC) признала биткоин и другие криптовалюты «товарами». Юридически криптовалюта оказалась в одной категории с нефтью и золотом.",
             "button": "Читать",
-            "link": "https: //forklog.com/bitkoin-ofitsialno-priznan-tovarom-v-ssha/"
+            "link": "https://forklog.com/bitkoin-ofitsialno-priznan-tovarom-v-ssha/"
         },
         {
             "rate": "$318",
@@ -334,30 +336,32 @@
             "dotBottom": 200,
             "content": "22 октября 2015 — Спустя несколько дней после решения CTFC Европейский суд признал биткоин валютой и освободил его от НДС. С этого момента операции по покупке и продаже биткоина за традиционные фиатные валюты не облагаются налогами на добавленную стоимость в ЕС.",
             "button": "Читать",
-            "link": "https: //www.economist.com/news/leaders/21677198-technology-behind-bitcoin-could-transform-how-economy-works-trust-machine"
+            "link": "https://forklog.com/bitkoin-ofitsialno-priznan-tovarom-v-ssha/"
         },
         {
             "rate": "$366",
             "left": 4594,
             "prvBottom": 566,
             "dotBottom": 200,
-            "content": "31 октября 2015 — биткоин впервые оказался на обложке авторитетного финансового издания The Economist. В статье под названием «Машина доверия» (The Trust Machine) говорилось, что банки и правительственные организации могут имплементировать собственные блокчейны."
+            "content": "31 октября 2015 — биткоин впервые оказался на обложке авторитетного финансового издания The Economist. В статье под названием «Машина доверия» (The Trust Machine) говорилось, что банки и правительственные организации могут имплементировать собственные блокчейны.",
+            "button": "Читать",
+            "link": "https://www.economist.com/news/leaders/21677198-technology-behind-bitcoin-could-transform-how-economy-works-trust-machine"
         },
         {
             "rate": "$397",
             "left": 4669,
             "prvBottom": 362,
             "dotBottom": 210,
-            "content": "8 декабря 2015 — Wired и Gizmodo сообщили, что создателем биткоина может быть австралийский ученый и предприниматель Крейг Райт.",
-            "button": "Читать",
-            "link": "https: //forklog.com/majk-hirn-zayavil-o-krahe-bitkoina-tsena-kriptovalyuty-padaet/"
+            "content": "8 декабря 2015 — Wired и Gizmodo сообщили, что создателем биткоина может быть австралийский ученый и предприниматель Крейг Райт."
         },
         {
             "rate": "$431",
             "left": 4759,
             "prvBottom": 319,
             "dotBottom": 230,
-            "content": "14 января 2016 — Один из первых пропагандистов криптовалюты Майк Херн объявил об уходе из криптоиндустрии. Херн объявил о «смерти биткоина» и стал объектом жесткой критики в сообществе."
+            "content": "14 января 2016 — Один из первых пропагандистов криптовалюты Майк Херн объявил об уходе из криптоиндустрии. Херн объявил о «смерти биткоина» и стал объектом жесткой критики в сообществе.",
+            "button": "Читать",
+            "link": "https://forklog.com/majk-hirn-zayavil-o-krahe-bitkoina-tsena-kriptovalyuty-padaet/"
         },
         {
             "rate": "$439",
@@ -371,9 +375,7 @@
             "left": 4982,
             "prvBottom": 335,
             "dotBottom": 230,
-            "content": "2 мая 2016 — Крейг Райт заявил, что именно он и есть Сатоши Накамото, анонимный создателем биткоина и предъявил косвенные доказательства. Спустя несколько недель Райт взял свои слова обратно.",
-            "button": "Читать",
-            "link": "https: //forklog.com/zahvatyvayushhaya-istoriya-the-dao-rabota-nad-oshibkami/"
+            "content": "2 мая 2016 — Крейг Райт заявил, что именно он и есть Сатоши Накамото, анонимный создателем биткоина и предъявил косвенные доказательства. Спустя несколько недель Райт взял свои слова обратно."
         },
         {
             "rate": "$756.63",
@@ -382,7 +384,8 @@
             "dotBottom": 262,
             "content": "17 июня 2016 года — Крах проекта The DAO: из-за ошибки в коде инвесторы лишились более $60 млн.",
             "button": "Читать",
-            "link": "https: //forklog.com/vtoroj-v-istorii-bitkoina-halving-sostoyalsya-nagrada-majneram-snizhena-vdvoe/"
+            "link": "https://forklog.com/zahvatyvayushhaya-istoriya-the-dao-rabota-nad-oshibkami/",
+            "comment": "bgCCFHqkZLs"
         },
         {
             "rate": "$660",
@@ -391,7 +394,7 @@
             "dotBottom": 284,
             "content": "20 июля 2016 года — Хардфорк Ethereum и появление Ethereum Classic. Разработчики впервые нарушили принцип «код есть закон», чтобы вернуть инвесторам похищенные в результате взлома The DAO средства.",
             "button": "Читать",
-            "link": "https: //forklog.com/birzha-bitfinex-priostanovila-svoyu-rabotu-iz-za-problem-s-bezopasnostyu/"
+            "link": "https://forklog.com/sostoyalsya-uspeshnyj-hardfork-ethereum/"
         },
         {
             "rate": "$603",
@@ -400,7 +403,7 @@
             "dotBottom": 262,
             "content": "9 июля 2016 года — Второй в истории биткоина халвинг. Награда майнерам за найденный блок была снижена до 12.5 BTC.",
             "button": "Читать",
-            "link": "https: //forklog.com/sostoyalsya-uspeshnyj-hardfork-ethereum/"
+            "link": "https://forklog.com/vtoroj-v-istorii-bitkoina-halving-sostoyalsya-nagrada-majneram-snizhena-vdvoe/"
         },
         {
             "rate": "$663.55",
@@ -409,7 +412,7 @@
             "dotBottom": 262,
             "content": "2 августа 2016 года — Взлом биржи Bitfinex. В результате хакерской атаки гонконгская биржа лишилась около $72 млн в биткоинах. Это породило новый виток дискуссий о стандартах безопасности в криптоиндустрии.",
             "button": "Читать",
-            "link": "https: //forklog.com/zapusk-zcash-pervaya-reaktsiya-rynkov-i-sotssetej/"
+            "link": "https://forklog.com/birzha-bitfinex-priostanovila-svoyu-rabotu-iz-za-problem-s-bezopasnostyu/"
         },
         {
             "rate": "$710",
@@ -417,7 +420,8 @@
             "prvBottom": 518,
             "dotBottom": 262,
             "content": "28 октября 2016 года — Официальный запуск криптовалюты Zcash. Она стала первой криптовалютой с алгоритмом консенсуса на основе доказательства с нулевым разглашением (zero-knowledge proof). Сейчас Zcash остается одной из популярнейших анонимных криптовалют.",
-            "link": "https: //forklog.com/v-pervyj-den-2017-goda-tsena-bitkoina-prevysila-1000/"
+            "button": "Читать",
+            "link": "https://forklog.com/zapusk-zcash-pervaya-reaktsiya-rynkov-i-sotssetej/"
         },
         {
             "rate": "$1,000",
@@ -426,7 +430,7 @@
             "dotBottom": 284,
             "content": "1 января 2017 года — Впервые с декабря 2013 цена биткоина преодолела рубеж в $1000. Начало первого «туземуна» первой криптовалюты. К концу года ее цена достигнет $20,000.",
             "button": "Читать",
-            "link": "https: //forklog.com/double-trouble-sec-otkazala-bratyam-uinklvossam-v-zapuske-bitkoin-etf/"
+            "link": "https://forklog.com/v-pervyj-den-2017-goda-tsena-bitkoina-prevysila-1000/"
         },
         {
             "rate": "$1,300",
@@ -435,7 +439,7 @@
             "dotBottom": 296,
             "content": "10 марта 2017 — SEC отказала братьям Уинклвоссам в запуске привязанного к биткоину биржевого инвестиционного фонда (ETF). Новость вызвала резкий обвал цены биткоина, который ранее днем торговался на рекордном уровне около $1350, однако затем упал ниже $1000.",
             "button": "Читать",
-            "link": "https: //forklog.com/v-yaponii-vstupil-v-silu-zakon-priznayushhij-kriptovalyuty-zakonnym-sposobom-oplaty/"
+            "link": "https://forklog.com/double-trouble-sec-otkazala-bratyam-uinklvossam-v-zapuske-bitkoin-etf/"
         },
         {
             "rate": "$1,085",
@@ -444,32 +448,32 @@
             "dotBottom": 296,
             "content": "1 апреля 2017 — Биткоин и другие криптовлюты признаны законным платежным средством в Японии. Новый закон сделал возможным использование криптовалют для осуществления расчетов и перемещения цифровых активов между компаниями и физическими лицами. Также он позволил банковским структурам запускать новые системы расчетов и упростил процедуру покупки IT-предприятий.",
             "button": "Читать",
-            "link": "https: //forklog.com/klyuchevye-igroki-bitkoin-industrii-podpisali-soglashenie-ob-aktivatsii-segregated-witness-i-hardforke/"
+            "link": "https://forklog.com/v-yaponii-vstupil-v-silu-zakon-priznayushhij-kriptovalyuty-zakonnym-sposobom-oplaty/"
         },
         {
             "rate": "$2,286.75",
             "left": 5689,
             "prvBottom": 641,
             "dotBottom": 296,
-            "content": "23 мая 2017 года — Подписание Нью-Йоркского соглашения. Оно презентовалось как намерение запустить имплементацию протокола Segregated Witness (SegWit) с увеличением размера блока до 2 Мб, но не учитывало мнение разработчиков биткоина. План получил название «SegWit2x» и стал причиной раскола в криптосообществе."
+            "content": "23 мая 2017 года — Подписание Нью-Йоркского соглашения. Оно презентовалось как намерение запустить имплементацию протокола Segregated Witness (SegWit) с увеличением размера блока до 2 Мб, но не учитывало мнение разработчиков биткоина. План получил название «SegWit2x» и стал причиной раскола в криптосообществе.",
+            "button": "Читать",
+            "link": "https://forklog.com/klyuchevye-igroki-bitkoin-industrii-podpisali-soglashenie-ob-aktivatsii-segregated-witness-i-hardforke/"
         },
         {
             "rate": "$2,873",
             "content": "1 июля 2017 — Запуск криптовалютной биржи Binance. Вскоре она вошла в число самых популярных торговых площадок в криптоиндустрии: через год на бирже было 7,9 млн пользователей.",
-            "button": "Читать",
-            "link": "https: //forklog.com/vlasti-ssha-konfiskovali-domen-btc-e/",
             "left": 5787,
             "prvBottom": 435,
             "dotBottom": 344
         },
         {
             "content": "25 июля 2017 — Популярная среди русскоязычных пользователей биржа BTC-e ушла в офлайн. Вскоре Управление по борьбе с финансовыми преступлениями США (FinCEN) наложило на BTC-e штраф в размере $110 млн за нарушение законов США о борьбе с отмыванием денег, а власти США конфисковали домен биржи. Позднее в Греции по обвинению в причастности к отмыванию более $4 млрд был арестован предполагаемый совладелец BTC-e Александр Винник.",
-            "button": "Читать",
-            "link": "https: //forklog.com/tsena-bitkoina-podnyalas-vyshe-2900-na-fone-aktivatsii-uasf/",
             "left": 5837,
             "prvBottom": 445,
             "dotBottom": 344,
-            "rate": "$2,562.88"
+            "rate": "$2,562.88",
+            "button": "Читать",
+            "link": "https://forklog.com/vlasti-ssha-konfiskovali-domen-btc-e/"
         },
         {
             "left": 5862,
@@ -477,16 +481,16 @@
             "dotBottom": 366,
             "content": "1 августа 2017 года — Хардфорк Bitcoin Cash. Его поддержали «Биткоин-Иисус» Роджер Вер и Крейг Райт.",
             "button": "Читать",
-            "link": "https: //forklog.com/kompaniya-coinbase-stala-pervym-edinorogom-v-bitkoin-industrii/",
-            "rate": "$3,416.10"
+            "link": "https://forklog.com/tsena-bitkoina-podnyalas-vyshe-2900-na-fone-aktivatsii-uasf/",
+            "rate": "$2753.44"
         },
         {
             "content": "1 августа 2017 — в сети биткоина активирован софтфорк UASF (активируемый пользователями софтфорк — BIP 148). Благодаря этому стала возможной активация протокола SegWit.",
-            "button": "Читать",
-            "link": "https: //forklog.com/v-seti-bitkoina-sostoyalsya-hardfork-bitcoin-cash/",
             "left": 5862,
             "prvBottom": 613,
             "dotBottom": 344,
+            "button": "Читать",
+            "link": "https://forklog.com/v-seti-bitkoina-sostoyalsya-hardfork-bitcoin-cash/",
             "rate": "$2,900"
         },
         {
@@ -494,38 +498,39 @@
             "prvBottom": 624,
             "dotBottom": 366,
             "content": "24 августа 2017 года — Активация протокола Segregated Witness в основной сети биткоина. Протокол менял способ хранения информации в блоках. Это позволило повысить пропускную способность сети, устранило проблему с пластичностью транзакций и способствовало развитию протокола Lightning Network.",
-            "button": "Читать",
-            "link": "https: //forklog.com/v-kitae-zapretili-provedenie-ico-novost-dopolnyaetsya/",
-            "rate": "$2753.44"
+            "button": "Смотреть видеокомментарий",
+            "rate": "$4,245.79"
         },
         {
             "left": 5887,
             "prvBottom": 630,
             "dotBottom": 344,
             "content": "10 августа 2017 — Coinbase стала первой компанией-единорогом в криптоиндустрии. После закрытия очередного раунда финансирования рыночная стоимость Coinbase превысила $1 млрд.",
-            "button": "Смотреть видеокомментарий",
-            "rate": "$4,229.92"
+            "button": "Читать",
+            "link": "https://forklog.com/kompaniya-coinbase-stala-pervym-edinorogom-v-bitkoin-industrii/",
+            "rate": "$3,416.10"
         },
         {
             "content": "3 сентября 2017 года — Запрет на проведение ICO в Китае. С него началось массовое закрытие местных бирж, либо их переезд в другие юрисдикции.",
-            "button": "Читать",
-            "link": "https: //forklog.com/finansovyj-regulyator-yuzhnoj-korei-zapretil-ico-novost-dopolnyaetsya/",
             "left": 5912,
             "prvBottom": 556,
             "dotBottom": 344,
-            "rate": "$4,245.79"
+            "button": "Читать",
+            "link": "https://forklog.com/v-kitae-zapretili-provedenie-ico-novost-dopolnyaetsya/",
+            "comment": "ecWzzp7PDcY",
+            "rate": "$4,229.92"
         },
         {
             "content": "29 сентября 2017 года — Запрет на проведение ICO в Южной Корее. Решение ускорило схлопывание пузыря ICO и обозначило глобальный тренд на ужесточение регулирования криптовалют.",
             "left": 5962,
             "prvBottom": 457,
             "dotBottom": 344,
-            "rate": "~ $4,250"
+            "rate": "~ $4,250",
+            "button": "Читать",
+            "link": "https://forklog.com/finansovyj-regulyator-yuzhnoj-korei-zapretil-ico-novost-dopolnyaetsya/"
         },
         {
             "content": "Октябрь 2017 года — Капитализация биткоина превысила $100 млрд.",
-            "button": "Читать",
-            "link": "https: //forklog.com/ofitsialno-hardfork-segwit2x-otmenyaetsya/",
             "left": 5987,
             "prvBottom": 472,
             "dotBottom": 366,
@@ -533,41 +538,42 @@
         },
         {
             "content": "8 ноября 2017 года — Отмена хардфорка SegWit2x, направленного на увеличение блока до 2 Мб. Решение положило конец острым разногласиям в сообществе.",
-            "button": "Читать",
-            "link": "https: //forklog.com/tsena-bitkoina-ustremilas-vverh-na-fone-zapuska-fyuchersov-na-cboe/",
             "left": 6012,
             "prvBottom": 467,
             "dotBottom": 366,
-            "rate": "$7,207.41"
+            "rate": "$7,207.41",
+            "button": "Читать",
+            "link": "https://forklog.com/ofitsialno-hardfork-segwit2x-otmenyaetsya/"
         },
         {
             "content": "11 декабря 2017 года — Запуск биткоин-фьючерсов на бирже CBOE. Она стала первой регулируемой биржей, которая запустила срочные финансовые инструменты на основе биткоина.",
-            "button": "Смотреть видеокомментарий",
             "rate": "$19,276.10",
             "left": 6093,
             "prvBottom": 667,
-            "dotBottom": 410
+            "dotBottom": 410,
+            "button": "Читать",
+            "link": "https://forklog.com/tsena-bitkoina-ustremilas-vverh-na-fone-zapuska-fyuchersov-na-cboe/"
         },
         {
             "left": 6118,
             "prvBottom": 648,
             "dotBottom": 432,
             "content": "18 декабря 2017 года — Запуск биткоин-фьючерсов на CME. После него началась резкая коррекция цены первой криптовалюты, предвосхитившая так называмую криптозиму.",
-            "rate": "$17,361.30"
+            "rate": "$17,361.30",
+            "button": "Читать",
+            "link": "https://forklog.com/na-chikagskoj-tovarnoj-birzhe-startovali-fyuchersami-na-bitkoin/"
         },
         {
             "left": 6118,
             "prvBottom": 690,
             "dotBottom": 410,
-            "content": "17 декабря 2017 года — Цена биткоина обновила абсолютный максимум на отметке  $20 000",
-            "button": "Читать",
-            "link": "https: //forklog.com/na-chikagskoj-tovarnoj-birzhe-startovali-fyuchersami-na-bitkoin/",
+            "content": "17 декабря 2017 года — Цена биткоина обновила абсолютный максимум на отметке $20 000",
+            "button": "Смотреть видеокомментарий",
+            "comment": "hG05tLUVVRg",
             "rate": "$13,830"
         },
         {
             "content": "13 января 2018 — Добыто 80% от общего количества всех биткоинов (16,800,000 BTC).",
-            "button": "Читать",
-            "link": "https: //forklog.com/bitkoin-birzha-coincheck-podtverdila-hishhenie-bolee-polumilliona-dollarov-v-kripovalyute-nem/",
             "left": 6168,
             "prvBottom": 509,
             "dotBottom": 410,
@@ -575,37 +581,39 @@
         },
         {
             "content": "26 января 2018 года — Взлом японской биржи Coincheck, по масштабам сопоставимый с крахом Mt. Gox. Представители торговой площадки сообщили о краже &yen;58 млрд ($533 млн) в криптовалюте NEM.",
-            "button": "Читать",
-            "link": "https: //forklog.com/lightning-labs-predstavili-pervuyu-beta-versiyu-klienta-lnd-dlya-osnovnoj-seti-bitkoina/",
             "left": 6193,
             "prvBottom": 506,
             "dotBottom": 388,
-            "rate": "$11,068.60"
+            "rate": "$11,068.60",
+            "button": "Читать",
+            "link": "https://forklog.com/bitkoin-birzha-coincheck-podtverdila-hishhenie-bolee-polumilliona-dollarov-v-kripovalyute-nem/"
         },
         {
             "content": "15 марта 2018 — Lightning Labs объявили о релизе lnd 0.4, первой бета-версии клиента Lightning Network. Этот день считается официальным запуском LN в основной сети биткоина.",
-            "button": "Читать",
-            "link": "https: //forklog.com/telegram-sobral-850-mln-vo-vtorom-raunde-zakrytogo-ico/",
             "left": 6291,
             "prvBottom": 491,
             "dotBottom": 400,
-            "rate": "$8,307.16"
+            "rate": "$8,307.16",
+            "button": "Читать",
+            "link": "https://forklog.com/lightning-labs-predstavili-pervuyu-beta-versiyu-klienta-lnd-dlya-osnovnoj-seti-bitkoina/"
         },
         {
             "content": "Конец марта 2018 года — Telegram завершил одно из крупнейших в истории регулируемых ICO: всего собрали $1,7 млрд.",
-            "button": "Читать",
-            "link": "https: //forklog.com/shvejtsarskij-analog-bitkoin-etf-stal-liderom-po-obemu-torgov-na-birzhe-six/",
             "left": 6316,
             "prvBottom": 645,
             "dotBottom": 356,
-            "rate": "~ $7,100"
+            "rate": "~ $7,100",
+            "button": "Читать",
+            "link": "https://forklog.com/telegram-sobral-850-mln-vo-vtorom-raunde-zakrytogo-ico/"
         },
         {
             "content": "Октябрь 2018 года — запуск швейцарского аналога биткоин-ETF на бирже SIX Swiss Exchange. Это сделало Швейцарию более привлекательной юрисдикцией для криптовалютных бирж, чем США.",
             "left": 6686,
             "prvBottom": 643,
             "dotBottom": 356,
-            "rate": "~ $6,573"
+            "rate": "~ $6,573",
+            "button": "Читать",
+            "link": "https://forklog.com/shvejtsarskij-analog-bitkoin-etf-stal-liderom-po-obemu-torgov-na-birzhe-six/"
         },
         {
             "content": "Ноябрь 2018 — Хардфорк Bitcoin Cash, появление Bitcoin SV и начало «войн хешрейтов». Появление форков форков биткоина вызывает критику у части криптосообщества.",
@@ -616,8 +624,6 @@
         },
         {
             "content": "Январь 2019 — Проект BitTorrent провел первое в истории IEO на платформе Binance Launchpad. За 15 минут собрали $7,2 млн.",
-            "button": "Читать",
-            "link": "https: //forklog.com/sostoyalsya-reliz-bitcoin-core-0-18-0/",
             "left": 6893,
             "prvBottom": 693,
             "dotBottom": 315,
@@ -628,49 +634,53 @@
             "prvBottom": 526,
             "dotBottom": 356,
             "content": "8 мая 2019 — Взлом биржи Binance. Похищено 7,000 BTC.",
-            "button": "Смотреть видеокомментарий",
-            "rate": "$5,492.02"
+            "rate": "$5,492.02",
+            "button": "Читать",
+            "link": "https://forklog.com/bitkoin-birzha-binance-podverglas-hakerskoj-atake-pohishheno-7000-btc/"
         },
         {
             "content": "2 мая 2019 — Релиз Bitcoin Core 0.18.0. Главной особенностью нового релиза стала нативная поддержка аппаратных кошельков.",
-            "button": "Читать",
-            "link": "https: //forklog.com/bitkoin-birzha-binance-podverglas-hakerskoj-atake-pohishheno-7000-btc/",
             "left": 7093,
             "prvBottom": 498,
             "dotBottom": 334,
-            "rate": "$9,081.76"
+            "rate": "$9,081.76",
+            "button": "Читать",
+            "link": "https://forklog.com/sostoyalsya-reliz-bitcoin-core-0-18-0/"
         },
         {
             "left": 7194,
             "prvBottom": 707,
             "dotBottom": 388,
             "content": "21 июня 2019 — Группа разработки финансовых мер для борьбы с отмыванием денег (FATF) опубликовала финальную версию рекомендаций для регулирования регулирование криптовалютной индустрии. Рекомендации требуют обязать провайдеров криптовалютных услуг соблюдать процедуры AML и CFT (противодействие финансированию терроризма) наравне с традиционными финансовыми компаниями.",
+            "rate": "$5,928.99",
             "button": "Читать",
-            "link": "https: //forklog.com/sec-odobrila-provedenie-tokensejla-blockstack-na-28-mln-eto-pervyj-podobnyj-sluchaj-v-istorii/",
-            "rate": "$5,928.99"
+            "link": "https://forklog.com/fatf-reshila-uzhestochit-kontrol-nad-bitkoin-industriej-nesmotrya-na-predosterezheniya-ekspertov-o-neblagopriyatnyh-posledstviyah/"
         },
         {
             "left": 7194,
             "prvBottom": 707,
             "dotBottom": 366,
             "content": "18 июня 2019 года — Facebook анонсировал запуск цифровой валюты Libra. Благодаря двухмиллиардной аудитории Facebook часть криптосообщества связывает с Libra надежду на массовое принятие криптовалют.",
-            "button": "Читать",
-            "link": "https: //forklog.com/fatf-reshila-uzhestochit-kontrol-nad-bitkoin-industriej-nesmotrya-na-predosterezheniya-ekspertov-o-neblagopriyatnyh-posledstviyah/",
+            "button": "Смотреть видеокомментарий",
+            "comment": "33zUDfdlz5Y",
             "rate": "$11,837.06"
         },
         {
             "content": "11 июля 2019 — Комиссия по ценным бумагам и биржам США (SEC) впервые одобрила проведение регулируемого токенсейла. В частности, была одобрена заявка нью-йоркской компании Blockstack.",
-            "button": "Смотреть видеокомментарий",
             "left": 7244,
             "prvBottom": 699,
             "dotBottom": 388,
-            "rate": "$9,932.57"
+            "rate": "$9,932.57",
+            "button": "Читать",
+            "link": "https://forklog.com/sec-odobrila-provedenie-tokensejla-blockstack-na-28-mln-eto-pervyj-podobnyj-sluchaj-v-istorii/"
         },
         {
             "content": "25 августа 2019 года — изданию ForkLog исполнилось пять лет.",
             "left": 7319,
             "prvBottom": 526,
             "dotBottom": 386,
+            "button": "Смотреть видеокомментарий",
+            "comment": "O-3rxgZbh88",
             "rate": "$10,300"
         },
         {

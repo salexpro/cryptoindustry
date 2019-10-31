@@ -28,13 +28,13 @@ html, body{
 }
 
 .wrap {
-    overflow: hidden;
+    overflow: auto;
     min-width: 320px;
     // display: flex;
     // flex-direction: column;
     // align-items: stretch;
     // justify-content: flex-start;
-    min-height: 100vh;
+    height: 100vh;
     background-image: url(../assets/img/bg@2x.jpg);
     background-size: cover;
     background-position: center;

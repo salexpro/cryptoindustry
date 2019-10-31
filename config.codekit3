@@ -52,13 +52,19 @@
 		"sC": 3,
 		"tS": 1
 		},
+	"/build": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "/build/build",
+		"oF": 0
+		},
 	"/build.zip": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
-		"oA": 2,
+		"oA": 1,
 		"oAP": "/build/build.zip",
-		"oF": 0
+		"oF": 1
 		},
 	"/docs": {
 		"ft": 65536,
@@ -2531,6 +2537,17 @@
 		"sC": 3,
 		"tS": 1
 		},
+	"/src/js/plugins/_ColorPropsPlugin.js": {
+		"bF": 4,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/build/js/plugins/_ColorPropsPlugin.min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 1
+		},
 	"/src/js/plugins/_DrawSVGPlugin.js": {
 		"bF": 4,
 		"ft": 64,
@@ -2885,7 +2902,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "/src/assets/favicon/android-chrome-256x256.png",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 594141384.94283402
+	"lastBuiltDate": 594187149.09539402
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,

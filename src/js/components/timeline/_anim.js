@@ -1,6 +1,7 @@
-/* global createjs */
 import TweenLite from 'gsap/TweenLite';
 import { Power0 } from 'gsap/EasePack';
+// import 'gsap/ColorPropsPlugin';
+import '../../plugins/_ColorPropsPlugin'; // quite
 import { palette, events, canvas, stage, mouse, rndInt, gEvents } from './_config';
 
 const opacity = [0.05, 0.1, 0.2];
@@ -194,14 +195,17 @@ const anim = {
         // }, 1600);
     },
     mouseOver: i => {
-        [events[i].lines.ll.cmd, events[i].lines.lr.cmd, events[i].lines.ld.cmd].forEach(cmd => {
-            createjs.Tween.get(cmd).to({ style: palette.yellow }, 300)
-        });
+
+        TweenLite.to([events[i].lines.ll.graphics._stroke, 
+            events[i].lines.lr.graphics._stroke, 
+            events[i].lines.ld.graphics._stroke
+        ], 0.3, { colorProps: {style: palette.yellow} });
+
         events[i].dots.forEach(d => {
-            createjs.Tween.get(d.cmd).to({ style: palette.yellow }, 300)
+            TweenLite.to(d.graphics._fill, 0.3, { colorProps: { style: palette.yellow }});
         })
 
-        createjs.Tween.get(events[i].corners.graphics._stroke).to({ style: palette.yellow }, 300)
+        TweenLite.to(events[i].corners.graphics._stroke, 0.3, { colorProps: { style: palette.yellow } });
 
         TweenLite.to(events[i].corners, 0.3, { x: -63, y: events[i].corners.pY - 122 });
         TweenLite.to(events[i].corners.graphics._activeInstructions[0], 0.3, { w: 126, h: 132 });
@@ -221,16 +225,19 @@ const anim = {
         canvas.style.cursor = 'pointer';
     },
     mouseOut: i => {
-        [events[i].lines.ll.cmd, events[i].lines.lr.cmd, events[i].lines.ld.cmd].forEach(cmd => {
-            createjs.Tween.get(cmd).to({
-                style: palette.blue
-            }, 300)
-        });
+
+        TweenLite.to([
+            events[i].lines.ll.graphics._stroke, 
+            events[i].lines.lr.graphics._stroke, 
+            events[i].lines.ld.graphics._stroke
+        ], 0.3, { colorProps: {style: palette.blue} });
+
         events[i].dots.forEach(d => {
-            createjs.Tween.get(d.cmd).to({ style: palette.blue }, 300)
+            TweenLite.to(d.graphics._fill, 0.3, { colorProps: { style: palette.blue }});
         })
 
-        createjs.Tween.get(events[i].corners.graphics._stroke).to({ style: palette.blue }, 300)
+        TweenLite.to(events[i].corners.graphics._stroke, 0.3, { colorProps: { style: palette.blue } });
+
         TweenLite.to(events[i].corners, 0.3, { x: -69, y: events[i].corners.pY - 125 });
         TweenLite.to(events[i].corners.graphics._activeInstructions, 0.3, { w: 138, h: 138 });
 
@@ -249,7 +256,7 @@ const anim = {
         canvas.style.cursor = 'default';
     },
     openEvent: i => {
-        console.log(i)
+
         const coords = {
             pX: events[i].shape.pX,
             pY: events[i].shape.pY,
@@ -258,8 +265,10 @@ const anim = {
 
         const centerX = Math.abs(mouse.dest) + canvas.width / 2;
         const centerY = canvas.height / 2 - 120 - 81 - stage.y;
-        const textHeight = events[i].text.getBounds().height + 22;
-        const eventHeight = (textHeight > 162) ? textHeight : 162;
+        // const textHeight = events[i].text.getBounds().height + 22;
+        // const buttonHeight = events[i].hasOwnProperty('button') ? 35 + 22 : 0;
+        // const totalHeight = textHeight + buttonHeight;
+        const eventHeight = events[i].content.eventHeight + 22;
 
         // events[i].group.x = Math.abs(mouse.dest) + canvas.width / 2;
         // events[i].shape.x = Math.abs(mouse.dest) + canvas.width / 2 - 294;
@@ -333,9 +342,20 @@ const anim = {
         TweenLite.to(events[i].image, 0.3, { x: -283, y: centerY + 11, scaleX: 0.7, scaleY: 0.7 });
         TweenLite.to(events[i].image.mask, 0.3, { x: -283, y: centerY + 11 });
 
+        TweenLite.to(events[i].content, 0.3, { alpha: 1 });
+        TweenLite.to([events[i].content, events[i].content.mask], 0.3, { x: -121, y: centerY + eventHeight / 2 });
+        TweenLite.to(events[i].content.mask, 0.3, { regY: eventHeight / 2 });
+        TweenLite.to(events[i].content.mask.graphics._activeInstructions[0], 0.3, { w: 394, h: eventHeight + 1 });
+
         // console.log(events[i].text.getBounds());
         // events[i].text.regY = events[i].text.getBounds().height / 2;
-        TweenLite.to(events[i].text, 0.3, { alpha: 1, x: -121, y: centerY + eventHeight / 2 });
+        // const posText = (eventHeight == 162 && buttonHeight) ? eventHeight - 35 : buttonHeight ? textHeight : eventHeight;
+        // TweenLite.to(events[i].text, 0.3, { alpha: 1, x: -121, y: centerY + posText / 2 });
+        // if (buttonHeight){
+        //     const buttonWidth = events[i].button.buttonLine.buttonWidth;
+        //     TweenLite.to(events[i].button.buttonLine, 0.3, { alpha: 1, x: 272 - buttonWidth, y: centerY + eventHeight - 11 });
+        //     TweenLite.to(events[i].button.buttonText, 0.3, { alpha: 1, x: 272 - buttonWidth / 2, y: centerY + eventHeight - 11 - 17});
+        // }
 
 
         const maskPath = [
@@ -431,12 +451,15 @@ const anim = {
             TweenLite.to(events[i].image.mask.graphics._activeInstructions[j], 0.3, p);
         });
 
-        TweenLite.to(events[i].text, 0.3, { alpha: 0, x: 72, y: coords.pY - 56 });
+        TweenLite.to(events[i].content, 0.3, { alpha: 0 });
+        TweenLite.to([events[i].content, events[i].content.mask], 0.3, { x: 72, y: coords.pY - 56 });
+        TweenLite.to(events[i].content.mask, 0.3, { regY: 50 });
+        TweenLite.to(events[i].content.mask.graphics._activeInstructions[0], 0.3, { w: 0, h: 100 });
 
 
         stage.movable = true;
         events[i].shape.opened = false;
-
+        
         events.forEach(({ shape, group, lines }) => {
             if (shape.revealed && shape.showed) shape.hoverable = true;
             shape.fadedOut = false;
@@ -445,6 +468,8 @@ const anim = {
                 if (shape.revealed && shape.showed) TweenLite.to(shape, 0.3, { alpha: 1 });
             }
         })
+        
+        anim.mouseOut(i);
     },
     intervalEvent: g => {
         const id = g.group[g.counter % g.group.length];
@@ -469,7 +494,16 @@ const anim = {
             }, rndInt(3000, 3000));
             g.started = true;
         }
-    }
+    },
+    buttonOver: i => {
+        TweenLite.to(events[i].button.graphics._fill, 0.25, {colorProps: {style: palette.yellow}})
+        TweenLite.to(events[i].buttonText, 0.25, { colorProps: { color: '#004577'}})
+    },
+    buttonOut: i => {
+        TweenLite.to(events[i].button.graphics._fill, 0.25, { colorProps: { style: 'transparent'}})
+        TweenLite.to(events[i].buttonText, 0.25, { colorProps: { color: palette.yellow}})
+    },
+
 }
 
 export {anim};
