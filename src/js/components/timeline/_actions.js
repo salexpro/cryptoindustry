@@ -1,16 +1,17 @@
 /* global player */
 import $ from 'jquery';
 import { TimelineLite } from 'gsap/TimelineLite';
+import Hammer from 'hammerjs';
 
-import { dx, dy, events, accRate, canvas, stage, mouse, gEvents, main, ranges, controls } from './_config';
+import { dx, dy, events, accRate, canvas, stage, mouse, gEvents, main, ranges, controls, rConfig, isTablet} from './_config';
 import { anim } from './_anim';
 import * as eventsData from '../../data/events';
 
 let prevInd = 0;
 
 const onTick = () => {
-    const w = document.body.offsetWidth;
-    const graphEnd = -7580 + (w / 2);
+
+    const graphEnd = -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen());
 
     if (mouse.dest > 0) mouse.dest = 0;
     if (mouse.dest < graphEnd) mouse.dest = graphEnd;
@@ -32,10 +33,10 @@ const onTick = () => {
     }
 
     const { x, y } = mouse.mouse;
+    const corrX = x - mouse.fin;
+    const corrY = y - rConfig.topHeight() - stage.y + document.querySelector('.wrap').scrollTop;
 
     events.forEach(({ shape, button }, i) => {
-        const corrX = x - mouse.fin;
-        const corrY = y - 58 - stage.y;
         const dotXStart = shape.pX - 10;
         const dotXEnd = shape.pX + 10;
         const dotYStart = shape.dY - 10;
@@ -97,7 +98,7 @@ const onTick = () => {
             }
         }
 
-        if (shape.x < (Math.abs(mouse.fin) + w) && !shape.revealed && !shape.revealing && ((shape.pX - 60) > w)) {
+        if (shape.x < (Math.abs(mouse.fin) + canvas.offsetWidth) && !shape.revealed && !shape.revealing && ((shape.pX - 60) > canvas.offsetWidth)) {
             const gid = gEvents.findIndex(({ group }) => group.includes(i));
             if (gid != -1) {
                 anim.changeEvent(gid)
@@ -136,32 +137,32 @@ const onTick = () => {
     let rLabel = ranges[0].label;
     let activeControls = controls[0];
     let ind = 0;
-    if (mouse.fin > ranges[1].x) {
+    if (mouse.fin > ranges[1].x()) {
         rLabel = ranges[0].label;
         activeControls = controls[0];
         ind = 0;
     }
-    if (mouse.fin <= ranges[1].x && mouse.fin > ranges[2].x) {
+    if (mouse.fin <= ranges[1].x() && mouse.fin > ranges[2].x()) {
         rLabel = ranges[1].label;
         activeControls = controls[1];
         ind = 1;
     }
-    if (mouse.fin <= ranges[2].x && mouse.fin > ranges[3].x) {
+    if (mouse.fin <= ranges[2].x() && mouse.fin > ranges[3].x()) {
         rLabel = ranges[2].label;
         activeControls = controls[1];
         ind = 2;
     }
-    if (mouse.fin <= ranges[3].x && mouse.fin > ranges[4].x) {
+    if (mouse.fin <= ranges[3].x() && mouse.fin > ranges[4].x()) {
         rLabel = ranges[3].label;
         activeControls = controls[1];
         ind = 3;
     }
-    if (mouse.fin <= ranges[4].x && mouse.fin > ranges[5].x) {
+    if (mouse.fin <= ranges[4].x() && mouse.fin > ranges[5].x()) {
         rLabel = ranges[4].label;
         activeControls = controls[1];
         ind = 4;
     }
-    if (mouse.fin == ranges[5].x) {
+    if (mouse.fin == ranges[5].x()) {
         rLabel = ranges[5].label;
         activeControls = controls[2];
         ind = 5;
@@ -202,7 +203,7 @@ canvas.addEventListener('click', () => {
 
     const { x, y } = mouse.mouse;
     const corrX = x - mouse.fin;
-    const corrY = y - 58 - stage.y;
+    const corrY = y - rConfig.topHeight() - stage.y + document.querySelector('.wrap').scrollTop;
 
     events.some(({ shape, content, button }, i) => {
         // console.log('_')
@@ -248,14 +249,18 @@ $('.reveal-overlay').click(() => {
     anim.closePopup();
 })
 
+const openedIndex = () => events.findIndex(({shape}) => shape.opened)
+
 $('#menu a').click(function (e) {
     e.preventDefault();
     if (main.dataset.visible == 'true') {
         anim.hideMain();
         main.dataset.visible = false;
     }
+    const oIdx = openedIndex();
+    if (oIdx != -1) anim.closeEvent(oIdx);
     const el = ranges[$(this).parent().index()];
-    mouse.dest = el.x;
+    mouse.dest = el.x();
     stage.movable = true;
 })
 
@@ -264,50 +269,31 @@ $('.timeline_controls_inner').on('click', 'button', function () {
         anim.hideMain();
         main.dataset.visible = false;
     }
+    const oIdx = openedIndex();
+    if (oIdx != -1) anim.closeEvent(oIdx);
     mouse.dest = $(this).data('x');
     stage.movable = true;
 })
 
-// const repositionElems = (w, h) => {
-//     blueLine.x = w / 2;
-//     blueLine.y = h - graphParams.blueHeight - 118;
-//     yellowLine.x = (w / 2) + graphParams.blueWidth - 1;
-//     yellowLine.y = h - (graphParams.blueHeight + graphParams.yellowHeight - 43) - 118;
-//     bottomLine.graphics
-//         .ss(2)
-//         .s(palette.blue)
-//         .mt(0, h - 120)
-//         .lt(canvas.offsetWidth / 2, h - 120)
-//         .es();
+if(isTablet){
+    const content = document.querySelector('.content');
+    const hammertime = new Hammer(content);
+    const deltaX = 0;
 
-//     const lineBottom = h - 120;
-//     eventsData.events.forEach(({ left, prvBottom, dotBottom }, i) => {
+    hammertime.on('pan', e => {
+        if (e.pointerType == 'touch'){
+            const delta = deltaX + e.deltaX;
+            var direction = e.offsetDirection;
+            // console.log(e)
+            if ((direction === 4 || direction === 2) && (e.deltaY < 50 && e.deltaY > -50)) {
+                if (stage.movable) {
+                    mouse.dest += delta;
+                }
+                mouse.delta = -delta;
+            }
+        }
+    });
 
-//         const coords = {
-//             pX: ((w - 1280) / 2) + left + 57,
-//             pY: lineBottom - prvBottom - 2,
-//             dY: lineBottom - dotBottom - 28
-//         }
-
-//         events[i].group.x = coords.pX;
-
-//         events[i].lines.ld.x = coords.pX;
-
-//         events[i].shape.x = coords.pX - 56;
-
-//     });
-
-// }
-
-
-// window.addEventListener('resize', () => {
-//     const w = canvas.offsetWidth;
-//     const h = canvas.offsetHeight;
-//     // canvas.width = w * window.devicePixelRatio;
-//     // canvas.height = (h > 662) ? h * window.devicePixelRatio : 662;
-//     canvas.width = w;
-//     canvas.height = (h > 662) ? h : 662;
-//     repositionElems(w, h);
-// })
+}
 
 export { onTick };

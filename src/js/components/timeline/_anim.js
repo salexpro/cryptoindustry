@@ -222,10 +222,10 @@ const anim = {
         })
 
 
-        TweenLite.to(events[i].corners, 0.3, { x: -69, y: events[i].corners.pY - 125, alpha: 1, delay: 1.6 });
+        TweenLite.to(events[i].corners, 0.3, { x: -69, y: events[i].shape.pY - 125, alpha: 1, delay: 1.6 });
         TweenLite.to(events[i].corners.graphics._activeInstructions[0], 0.3, { w: 138, h: 138, delay: 1.6 });
 
-        TweenLite.to(events[i].corners.mask, 0.3, { x: -70, y: events[i].corners.pY - 126, delay: 1.6 });
+        TweenLite.to(events[i].corners.mask, 0.3, { x: -70, y: events[i].shape.pY - 126, delay: 1.6 });
         const cMaskPath = [
             { x: 0, y: 0 },
             { x: 136, y: 0 },
@@ -322,10 +322,10 @@ const anim = {
 
         TweenLite.to(events[i].corners.graphics._stroke, 0.3, { colorProps: { style: palette.yellow } });
 
-        TweenLite.to(events[i].corners, 0.3, { x: -63, y: events[i].corners.pY - 122 });
+        TweenLite.to(events[i].corners, 0.3, { x: -63, y: events[i].shape.pY - 122 });
         TweenLite.to(events[i].corners.graphics._activeInstructions[0], 0.3, { w: 126, h: 132 });
 
-        TweenLite.to(events[i].corners.mask, 0.3, { x: -64, y: events[i].corners.pY - 123 });
+        TweenLite.to(events[i].corners.mask, 0.3, { x: -64, y: events[i].shape.pY - 123 });
         const cMaskPath = [
             { x: 0, y: 0 },
             { x: 124, y: 0 },
@@ -353,10 +353,10 @@ const anim = {
 
         TweenLite.to(events[i].corners.graphics._stroke, 0.3, { colorProps: { style: palette.blue } });
 
-        TweenLite.to(events[i].corners, 0.3, { x: -69, y: events[i].corners.pY - 125 });
+        TweenLite.to(events[i].corners, 0.3, { x: -69, y: events[i].shape.pY - 125 });
         TweenLite.to(events[i].corners.graphics._activeInstructions, 0.3, { w: 138, h: 138 });
 
-        TweenLite.to(events[i].corners.mask, 0.3, { x: -70, y: events[i].corners.pY - 126 });
+        TweenLite.to(events[i].corners.mask, 0.3, { x: -70, y: events[i].shape.pY - 126 });
         const cMaskPath = [
             { x: 0, y: 0 },
             { x: 136, y: 0 },
@@ -372,7 +372,7 @@ const anim = {
         }
     },
     openEvent: i => {
-        if (mouse.fin == ranges[5].x){
+        if (mouse.fin == ranges[5].x()){
             anim.hideEnd()
         }
 
@@ -574,7 +574,7 @@ const anim = {
         TweenLite.to(events[i].content.mask, 0.3, { regY: 50 });
         TweenLite.to(events[i].content.mask.graphics._activeInstructions[0], 0.3, { w: 0, h: 100 });
 
-        if (mouse.fin == ranges[5].x) {
+        if (mouse.fin == ranges[5].x()) {
             setTimeout(() => {
                 anim.showEnd()
             }, 300);

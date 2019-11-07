@@ -78,6 +78,17 @@
 		"oAP": "/build/node_modules",
 		"oF": 0
 		},
+	"/node_modules/hammerjs/hammer.js": {
+		"bF": 4,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/build/node_modules/hammerjs/hammer.min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 1
+		},
 	"/node_modules/jquery/dist/jquery.js": {
 		"bF": 4,
 		"ft": 64,
@@ -96,17 +107,6 @@
 		"mi": 1,
 		"oA": 1,
 		"oAP": "/build/node_modules/konva/./lib/index.min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 1
-		},
-	"/node_modules/svg4everybody/dist/svg4everybody.js": {
-		"bF": 4,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/svg4everybody/dist/svg4everybody.min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 1
@@ -2381,17 +2381,6 @@
 		"oAP": "/build/favicon.ico",
 		"oF": 0
 		},
-	"/src/js/_legacy.js": {
-		"bF": 4,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/js/_legacy.min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 1
-		},
 	"/src/js/app.js": {
 		"bF": 4,
 		"ft": 64,
@@ -2852,7 +2841,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "/src/assets/favicon/android-chrome-256x256.png",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 594742330.22974896
+	"lastBuiltDate": 594787319.27057302
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,

@@ -7,34 +7,31 @@ section.main(data-visible="true" data-revealed="false" data-animated="false")
             | Хроника криптоиндустрии: 
             span
                 | специальный проект ForkLog к&nbsp;пятилетию журнала
-        p.block.block--left
-            span.block_inner
-                | 25&nbsp;августа ForkLog отметил пятилетний юбилей. За&nbsp;эти годы произошли события, уже ставшие историей: приговор Россу Ульбрихту, крах Mt.Gox, форк Ethereum после взлома The DAO и&nbsp;105 хардфорков биткоина.
+        .main_blocks
+            p.block.block--left
+                span.block_inner
+                    | 25&nbsp;августа ForkLog отметил пятилетний юбилей. За&nbsp;эти годы произошли события, уже ставшие историей: приговор Россу Ульбрихту, крах Mt.Gox, форк Ethereum после взлома The DAO и&nbsp;105 хардфорков биткоина.
 
-        p.block.block--wide
-            span.block_inner
-                | Но&nbsp;были и&nbsp;новости, о&nbsp;которых ForkLog не&nbsp;писал, потому что тогда журнала не&nbsp;было. Мы&nbsp;не&nbsp;выпускали свежую заметку о&nbsp;продаже двух пицц или росте цены биткоина до&nbsp;$1. По&nbsp;случаю дня рождения журнала мы&nbsp;решили исправить это упущение.
+            p.block.block--wide
+                span.block_inner
+                    | Но&nbsp;были и&nbsp;новости, о&nbsp;которых ForkLog не&nbsp;писал, потому что тогда журнала не&nbsp;было. Мы&nbsp;не&nbsp;выпускали свежую заметку о&nbsp;продаже двух пицц или росте цены биткоина до&nbsp;$1. По&nbsp;случаю дня рождения журнала мы&nbsp;решили исправить это упущение.
+        .main_hints
+            p.hint.hint--graph
+                span.hint_content
+                    span.hint_movable
+                        | Мы&nbsp;взяли график цены биткоина от&nbsp;момента появления криптовалюты и&nbsp;превратили его в&nbsp;таймлайн с&nbsp;ключевыми событиями криптоиндустрии по&nbsp;версии ForkLog. 
+                span.hint_line
 
-        p.hint.hint--graph
-            span.hint_content
-                span.hint_movable
-                    | Мы&nbsp;взяли график цены биткоина от&nbsp;момента появления криптовалюты и&nbsp;превратили его в&nbsp;таймлайн с&nbsp;ключевыми событиями криптоиндустрии по&nbsp;версии ForkLog. 
-            svg.hint_line(xmlns='http://www.w3.org/2000/svg' viewbox="0 0 150 190" preserveAspectRatio="none")
-                defs
-                    mask#gHintMask
-                        path(d="M 0 190 L 0 0 L 150 0")
-                path(mask="url(#gHintMask)" d="M 0 190 L 0 0 L 150 0")
-
-        p.hint.hint--event
-            span.hint_content
-                span.hint_movable
-                    | Кликните по&nbsp;событию, чтобы раскрыть окошко с&nbsp;небольшим рассказом, ссылкой на&nbsp;новость или эксклюзивным видеокомментарием от&nbsp;ForkLog. Комментаторы событий&nbsp;&mdash; продюсер YouTube-канала ForkLog Макс Бит, редактор ForkLog Ник Штерингард и продюсер forklog.consulting Константин Голубев.
-            //-  А&nbsp;если захотите вернуться к&nbsp;прошлому, пролистайте таймлайн обратно.
-            svg.hint_line(viewBox='0 0 305 171', xmlns='http://www.w3.org/2000/svg' preserveAspectRatio="none")
-                defs
-                    mask#gEventMask
-                        path(d='M30.5 0.5L1 0.5V81.5H304.5V171')
-                path(mask="url(#gEventMask)" d='M30.5 0.5L1 0.5V81.5H304.5V171')
+            p.hint.hint--event
+                span.hint_content
+                    span.hint_movable
+                        | Кликните по&nbsp;событию, чтобы раскрыть окошко с&nbsp;небольшим рассказом, ссылкой на&nbsp;новость или эксклюзивным видеокомментарием от&nbsp;ForkLog. Комментаторы событий&nbsp;&mdash; продюсер YouTube-канала ForkLog Макс Бит, редактор ForkLog Ник Штерингард и продюсер forklog.consulting Константин Голубев.
+                //-  А&nbsp;если захотите вернуться к&nbsp;прошлому, пролистайте таймлайн обратно.
+                svg.hint_line(viewBox='0 0 305 171', xmlns='http://www.w3.org/2000/svg' preserveAspectRatio="none")
+                    defs
+                        mask#gEventMask
+                            path(d='M30.5 0.5L1 0.5V81.5H304.5V171')
+                    path(mask="url(#gEventMask)" d='M30.5 0.5L1 0.5V81.5H304.5V171')
         p.lead
             span.lead_content
                 span.lead_movable
@@ -48,8 +45,9 @@ section.main(data-visible="true" data-revealed="false" data-animated="false")
             | Cередина
             +icon('arrow_right', [16, 8])
 .timeline_years
-    .button.hollow.small.still.timeline_years_button
-        span Начало
+    .grid-container
+        .button.hollow.small.still.timeline_years_button
+            span Начало
 
 
 .block.block--regards

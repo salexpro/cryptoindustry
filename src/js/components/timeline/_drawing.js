@@ -1,6 +1,6 @@
 /* global createjs */
 import Ticker from '../../lib/ticker'; // quiet
-import { graphParams, palette, events, canvas, stage, mouse, dotParams } from './_config';
+import { graphParams, palette, events, canvas, stage, mouse, dotParams, isTablet, rConfig } from './_config';
 import { anim } from './_anim';
 import { onTick } from './_actions';
 import * as eventsData from '../../data/events';
@@ -17,23 +17,16 @@ canvas.height = h;
 // createjs.Ticker.setFPS(60);
 mouse.init();
 
-const isTablet = w < 1280;
-const rConfig = {
-    halfScreen: isTablet ? 1280 / 2 : w / 2,
-    bottomMargin: isTablet ? 92 : 120
-}
-
-
 const graph = new createjs.Container();
 const cLines = new createjs.Container();
 const blueLine = new createjs.Bitmap('/assets/img/blue_line.svg');
-blueLine.x = rConfig.halfScreen;
-blueLine.y = h - graphParams.blueHeight - rConfig.bottomMargin + 2;
+blueLine.x = rConfig.halfScreen();
+blueLine.y = h - graphParams.blueHeight - rConfig.bottomMargin() + 2;
 blueLine.shadow = new createjs.Shadow(palette.blue, 0, 0, 25);
 
 const yellowLine = new createjs.Bitmap('/assets/img/yellow_line.svg');
-yellowLine.x = rConfig.halfScreen + graphParams.blueWidth - 1;
-yellowLine.y = h - (graphParams.blueHeight + graphParams.yellowHeight - 43) - rConfig.bottomMargin + 2;
+yellowLine.x = blueLine.x + graphParams.blueWidth - 1;
+yellowLine.y = h - (graphParams.blueHeight + graphParams.yellowHeight - 43) - rConfig.bottomMargin() + 2;
 yellowLine.shadow = new createjs.Shadow(palette.yellow, 0, 0, 25);
 
 
@@ -41,8 +34,8 @@ const bottomLine = new createjs.Shape();
 bottomLine.graphics
     .ss(2)
     .s(palette.blue)
-    .mt(0, h - rConfig.bottomMargin)
-    .lt(rConfig.halfScreen, h - rConfig.bottomMargin)
+    .mt(0, h - rConfig.bottomMargin())
+    .lt(blueLine.x, h - rConfig.bottomMargin())
     .es()
 bottomLine.shadow = new createjs.Shadow(palette.blue, 0, 0, 25);
 
@@ -51,9 +44,9 @@ graph.addChild(blueLine, yellowLine, bottomLine);
 eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }, i) => {
 
     const coords = {
-        pX: (!isTablet ? ((w - 1280) / 2) : 0) + left + 57,
-        pY: h - rConfig.bottomMargin - prvBottom + 2,
-        dY: h - rConfig.bottomMargin - dotBottom - 28
+        pX: (!isTablet() ? ((w - 1280) / 2) : 0) + left + 57,
+        pY: h - rConfig.bottomMargin() - prvBottom + 2,
+        dY: h - rConfig.bottomMargin() - dotBottom - 28
     }
 
     const eventGroup = new createjs.Container();
@@ -146,7 +139,6 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
     const cCorners = new createjs.Shape();
     cCorners.x = -63;
     cCorners.y = coords.pY - 122;
-    cCorners.pY = coords.pY
     cCorners.alpha = 0;
     cCorners.graphics
         .ss(2)
@@ -289,11 +281,12 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
         },
         dots: [],
     });
+    const dContainer = new createjs.Container();
+    dContainer.x = coords.pX;
+    dContainer.y = coords.dY;
 
     dotParams.forEach((dot, j) => {
         const dotShape = new createjs.Shape();
-        dotShape.x = coords.pX;
-        dotShape.y = coords.dY;
         dotShape.graphics
             .f(palette.blue)
             .dp(dot.x, dot.y, 4, 4, 0, -90)
@@ -302,8 +295,10 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
         if (j != 4) anim.dots(dotShape)
         events[i].dots.push(dotShape);
 
-        cLines.addChild(dotShape);
+        dContainer.addChild(dotShape);
     });
+    events[i].dContainer = dContainer;
+    cLines.addChild(dContainer);
 
     if (button) {
         const buttonText = new createjs.Text();
@@ -347,7 +342,7 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
 
     eventGroup.addChild(cCorners, cornersMask, lineLeft, lineRight, image, cContainer);
     cLines.addChild(line);
-    graph.addChild(bg, eventGroup, lineRate, rBg, lineLeftRate, lineRightRate, rText);
+    graph.addChild(lineRate, bg, eventGroup, rBg, lineLeftRate, lineRightRate, rText);
 
     // if ((coords.pX - 60) < w) {
     //     setTimeout(() => {
@@ -368,3 +363,88 @@ stage.addChild(cLines, graph);
 // stage.movable = true;
 
 Ticker.addListener((event) => onTick(event));
+
+const repositionElems = (w, h) => {
+
+    blueLine.x = rConfig.halfScreen();
+    blueLine.y = h - graphParams.blueHeight - rConfig.bottomMargin() + 2;
+    yellowLine.x = blueLine.x + graphParams.blueWidth - 1;
+    yellowLine.y = h - (graphParams.blueHeight + graphParams.yellowHeight - 43) - rConfig.bottomMargin() + 2;
+
+    const lineBottom = h - rConfig.bottomMargin();
+    bottomLine.graphics._instructions[1].y = lineBottom;
+    bottomLine.graphics._instructions[2].x = blueLine.x;
+    bottomLine.graphics._instructions[2].y = lineBottom;
+
+    eventsData.events.forEach(({ left, prvBottom, dotBottom }, i) => {
+
+        const coords = {
+            pX: (!isTablet() ? ((w - 1280) / 2) : 0) + left + 57,
+            pY: lineBottom - prvBottom + 2,
+            dY: lineBottom - dotBottom - 28
+        }
+
+        events[i].group.x = coords.pX;
+        
+        events[i].shape.x = coords.pX - 56;
+        events[i].shape.y = coords.pY - 112;
+        events[i].shape.pX = coords.pX;
+        events[i].shape.pY = coords.pY;
+        events[i].shape.dY = coords.dY;
+
+        events[i].lines.lr.y = coords.pY
+        events[i].lines.ll.y = coords.pY
+        events[i].lines.ld.x = coords.pX;
+        
+        events[i].lines.ld.graphics._activeInstructions[0].y = coords.dY;
+        if (events[i].shape.revealed) events[i].lines.ld.graphics._activeInstructions[1].y = coords.dY;
+        if (events[i].shape.showed) events[i].lines.ld.graphics._activeInstructions[1].y = coords.pY;
+
+        
+        events[i].image.y = coords.pY - 106;
+        events[i].image.mask.y = coords.pY - 106;
+
+        events[i].corners.x = -69;
+        events[i].corners.y = coords.pY - 125;
+        events[i].corners.mask.x = -70;
+        events[i].corners.mask.y = coords.pY - 126;
+
+        events[i].content.y = coords.pY - 56;
+        events[i].content.mask.y = coords.pY - 56;
+        
+        events[i].dContainer.x = coords.pX;
+        events[i].dContainer.y = coords.dY;
+
+        if (events[i].shape.hovered){
+            events[i].corners.x = -63;
+            events[i].corners.y = coords.pY - 122;
+            events[i].corners.mask.x = -64;
+            events[i].corners.mask.y = coords.pY - 123;
+        }
+
+        events[i].lines.rLd.x = coords.pX;
+        events[i].lines.rLd.rdY = coords.dY - 127;
+        events[i].lines.rLd.graphics._activeInstructions[0].y = coords.dY;
+        events[i].lines.rLd.graphics._activeInstructions[1].y = coords.dY;
+        events[i].lines.rLl.x = coords.pX;
+        events[i].lines.rLr.x = coords.pX;
+        events[i].rBg.x = coords.pX;
+        events[i].rText.x = coords.pX;
+        // console.log(events[i].lines.rLd);
+        // TweenLite.to([events[i].lines.rLl, events[i].lines.rLr, events[i].rText, events[i].rBg], 0.3, { alpha: 0 });
+
+    });
+
+}
+
+
+window.addEventListener('resize', () => {
+    const w = canvas.offsetWidth;
+    const h = canvas.offsetHeight;
+    // canvas.width = w * window.devicePixelRatio;
+    // canvas.height = (h > 662) ? h * window.devicePixelRatio : 662;
+    const contentHeight = (720 - rConfig.topHeight());
+    canvas.width = w;
+    canvas.height = (h > contentHeight) ? h : contentHeight;
+    repositionElems(w, h);
+})

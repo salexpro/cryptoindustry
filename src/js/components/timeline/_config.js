@@ -1,6 +1,13 @@
-// import { anim } from './_anim';
-
 /* global createjs */
+const main = document.querySelector('.main');
+const canvas = document.getElementById('canvas');
+const isTablet = () => canvas.offsetWidth < 1280;
+const rConfig = {
+    halfScreen: () => isTablet() ? 1280 / 2 : canvas.offsetWidth / 2,
+    topHeight: () => document.querySelector('.header').offsetHeight,
+    bottomMargin: () => canvas.offsetWidth < 1024 ? 92 : 120
+}
+
 const events = [];
 
 const gEvents = [
@@ -146,8 +153,6 @@ const dotParams = [
     }
 ]
 
-const main = document.querySelector('.main');
-const canvas = document.getElementById('canvas');
 const stage = new createjs.Stage('canvas');
 stage.movable = false;
 
@@ -204,6 +209,8 @@ const rndInt = (min, range) => {
     return Math.floor((Math.random() * (range + 1)) + min)
 }
 
+const leftOffset = () => isTablet() ? 0 : (canvas.offsetWidth - 1280) / 2;
+
 const ranges = [
     {
         label: 'Начало',
@@ -211,42 +218,44 @@ const ranges = [
     },
     {
         label: '2011 – 2012',
-        x: -(((canvas.offsetWidth - 1280) / 2) + 1093 - 20)
+        x: () => -(leftOffset() + 1093 - 20)
     },
     {
         label: '2013 – 2014',
-        x: -(((canvas.offsetWidth - 1280) / 2) + 1621 - 20)
+        x: () => -(leftOffset() + 1621 - 20)
     },
     {
         label: '2015 – 2016',
-        x: -(((canvas.offsetWidth - 1280) / 2) + 3967 - 20)
+        x: () => -(leftOffset() + 3967 - 20)
     },
     {
         label: '2017 – 2018',
-        x: -(((canvas.offsetWidth - 1280) / 2) + 5430 - 20)
+        x: () => -(leftOffset() + 5430 - 20)
     },
     {
         label: 'Наши дни',
-        x: -7580 + (canvas.offsetWidth / 2)
+        x: () => -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen())
     }
 ]
+
+const endOffset = () => -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen());
 const controls = [
     [
         [],
-        [(-7580 + (canvas.offsetWidth / 2)) / 2, 'Cередина']
+        [endOffset() / 2, 'Cередина']
     ],
     [
         [0, 'Начало'],
-        [-7580 + (canvas.offsetWidth / 2), 'Наши дни']
+        [endOffset(), 'Наши дни']
     ],
     // [
-    //     [(-7580 + (canvas.offsetWidth / 2)) / 2, 'Cередина'],
-    //     [-7580 + (canvas.offsetWidth / 2), 'Наши дни']
+    //     [(endOffset()) / 2, 'Cередина'],
+    //     [endOffset(), 'Наши дни']
     // ],
     [
-        [(-7580 + (canvas.offsetWidth / 2)) / 2, 'Cередина'],
+        [endOffset() / 2, 'Cередина'],
         []
     ]
 ]
 
-export { events, palette, accRate, graphParams, canvas, stage, dx, dy, mouse, gEvents, rndInt, dotParams, ranges, controls, main};
+export { events, palette, accRate, graphParams, canvas, stage, dx, dy, mouse, gEvents, rndInt, dotParams, ranges, controls, main, isTablet, rConfig};

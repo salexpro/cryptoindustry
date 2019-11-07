@@ -1,8 +1,9 @@
 extends ../_layout
 
 block content
-    include ../sections/_main
-    canvas#canvas.timeline_canvas
+    .content
+        include ../sections/_main
+        canvas#canvas.timeline_canvas
 block js
     script(src="https://code.createjs.com/1.0.0/easeljs.min.js")
     script(src="./js/app.min.js")

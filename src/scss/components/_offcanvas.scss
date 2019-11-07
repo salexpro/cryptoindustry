@@ -2,4 +2,11 @@
     top: 58px;
     height: calc(100% - 58px);
     padding: 20px;
+    @include breakpoint(large down){
+        width: 220px;
+    }
+    @include breakpoint(768px down){
+        top: 48px;
+        height: calc(100% - 48px);
+    }
 }

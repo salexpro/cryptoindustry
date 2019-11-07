@@ -1,7 +1,7 @@
 .reveal{
     outline: none;
     margin: auto;
-    position: relative;
+    position: static;
     overflow: visible;
     width: 100%;
     max-width: 860px;
@@ -16,13 +16,10 @@
         padding: 20px 75px;
         visibility: hidden;
         opacity: 0;
-        display: block;
+        display: flex;
+        align-items: center;
         @include breakpoint(small down) {
             padding: 10px;
-        }
-        &[style*="block"]{
-            display: flex !important;
-            align-items: center;
         }
     }
 }

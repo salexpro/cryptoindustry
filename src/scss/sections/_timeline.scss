@@ -4,12 +4,17 @@
 
 .timeline{
     &_canvas{
-        width: 100vw;
-        height: calc(100vh - 58px);
+        width: 100%;
+        height: calc(100% - 58px);
         min-height: 662px;
         // opacity: 0;
         // z-index: -1;
         transition: opacity 300ms;
+        -webkit-tap-highlight-color: transparent;
+        @include breakpoint(768px down){
+            height: calc(100% - 48px);
+            min-height: 672px;
+        }
     }
     &_controls{
         position: absolute;
@@ -18,6 +23,12 @@
         width: 100%;
         padding: 10px 0;
         height: 44px;
+        z-index: 3;
+        @include breakpoint(medium down){
+            padding: 0;
+            height: auto;
+            bottom: 64px;
+        }
         &_inner{
             display: flex;
             justify-content: space-between;
@@ -49,9 +60,11 @@
     &_years{
         position: absolute;
         width: 100%;
-        padding-left: calc((100vw - 920px) / 2);
         left: 0;
         bottom: 40px;
+        @include breakpoint(medium down){
+            bottom: 27px;
+        }
         &_button.hollow{
             filter: none;
         }

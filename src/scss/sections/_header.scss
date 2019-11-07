@@ -9,13 +9,19 @@
         align-items: center;
         justify-content: space-between;
         height: 58px;
+        @include breakpoint(768px down){
+            height: 48px;
+        }
     }
     &_logo{
         margin-right: auto;
-        align-self: baseline;
+        filter: drop-shadow(0 0 8px $primary-color);
     }
     &_buttons{
         margin-left: 30px;
+        @include breakpoint(768px down){
+            display: none;
+        }
         .button + .button{
             margin-left: 12px;
         }

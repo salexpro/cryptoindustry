@@ -3,6 +3,9 @@
     align-items: center;
     list-style: none;
     margin: 0;
+    @include breakpoint(768px down){
+      display: none;
+    }
     li + li{
         margin-left: 12px;
     }
