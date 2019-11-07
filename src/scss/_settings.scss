@@ -140,7 +140,7 @@ $header-lineheight: 1.4;
 $header-margin-bottom: 32px;
 $header-styles: (
   small: (
-    'h1': ('fs': 24),
+    'h1': ('fs': 24, 'lh': 1.2),
     'h2': ('fs': 20),
     'h3': ('fs': 19),
     'h4': ('fs': 18),
@@ -855,7 +855,7 @@ $xy-grid: true;
 $grid-container: $global-width;
 $grid-columns: 12;
 $grid-margin-gutters: (
-  small: 20px,
+  small: 30px,
   medium: 48px
 );
 $grid-padding-gutters: $grid-margin-gutters;

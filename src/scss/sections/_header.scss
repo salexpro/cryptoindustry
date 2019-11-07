@@ -16,6 +16,27 @@
     &_logo{
         margin-right: auto;
         filter: drop-shadow(0 0 8px $primary-color);
+        &:hover, &:focus{
+            filter: drop-shadow(0 0 8px $secondary-color);
+            animation: flicker 1.5s linear;
+            .header_logo{
+                &-fill{
+                    opacity: 1; 
+                }
+                &-gradient{
+                    opacity: 0;
+                }
+            }
+        }
+        &-fill{
+            opacity: 0;
+            transition: opacity 300ms;
+            fill: $secondary-color;
+        }
+        &-gradient{
+            
+            transition: opacity 300ms;
+        }
     }
     &_buttons{
         margin-left: 30px;
@@ -29,35 +50,38 @@
     &_hamb{
         width: 24px;
         height: 16px;
-        margin-left: 25px;
-        overflow: hidden;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         justify-content: space-between;
-        filter: drop-shadow(0 0 10px $primary-color);
         transition: 300ms;
+        margin-left: 15px;
+        box-sizing: content-box;
+        padding: 10px;
+        margin-right: -10px;
+        &-line{
+            width: calc(100% - 3px);
+            border-bottom: 2px solid $primary-color;
+            box-shadow: 0 0 10px $primary-color;
+            transition: 300ms;
+        }
         &::before, &::after{
             content: '';
             width: 100%;
             border-top: 2px solid $primary-color;
+            box-shadow: 0 0 10px $primary-color;
             transition: 300ms;
-        }
-        &::before{
-            box-shadow: -3px 7px 0 $primary-color;
         }
         &::after{
             width: calc(100% - 6px);
         }
-        &:hover, &:focus, &[aria-expanded="true"]{
+        &:hover, &:focus {
             filter: drop-shadow(0 0 10px $secondary-color);
-            &::before, &::after{
+            &::before, &::after, .header_hamb-line{
                 border-color: $secondary-color;
+                box-shadow: 0 0 10px $secondary-color;
             }
-            &::before{
-                box-shadow: 0 7px 0 $secondary-color;
-            }
-            &::after{
+            &::after, .header_hamb-line{
                 width: 100%;
             }
         }

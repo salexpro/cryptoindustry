@@ -13,7 +13,7 @@
         -webkit-tap-highlight-color: transparent;
         @include breakpoint(768px down){
             height: calc(100% - 48px);
-            min-height: 672px;
+            min-height: 652px;
         }
     }
     &_controls{
@@ -29,9 +29,11 @@
             height: auto;
             bottom: 64px;
         }
+        @include breakpoint(small down){
+            display: none;
+        }
         &_inner{
-            display: flex;
-            justify-content: space-between;
+            overflow: hidden;
         }
     }
     &_control{
@@ -44,13 +46,17 @@
         padding: 6px 0;
         transition: 300ms color;
         &--back{
+            float: left;
             svg{
                 margin-right: 6px;
+                order: -1;
             }
         }
         &--forward{
+            float: right;
             svg{
                 margin-left: 6px;
+                order: 1;
             }
         }
         &:hover, &:focus{

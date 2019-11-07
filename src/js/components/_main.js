@@ -85,3 +85,15 @@ $(window).on('load', () => {
         $leadLine.addClass('expanded')
     }, 1600);
 })
+
+$('.header_hamb').click(() => {
+    TweenLite.to('#menu', 0.5, { x: 0})
+    TweenLite.to('.js-off-canvas-overlay', 0.5, { autoAlpha: 1 })
+})
+
+$('.js-off-canvas-overlay').click(() => {
+    TweenLite.to('#menu', 0.5, {
+        x: document.querySelector('#menu').offsetWidth
+    })
+    TweenLite.to('.js-off-canvas-overlay', 0.5, { autoAlpha: 0 })
+})

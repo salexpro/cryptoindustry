@@ -7,7 +7,7 @@ import { dx, dy, events, accRate, canvas, stage, mouse, gEvents, main, ranges, c
 import { anim } from './_anim';
 import * as eventsData from '../../data/events';
 
-let prevInd = 0;
+let prevInd = -1;
 
 const onTick = () => {
 
@@ -24,7 +24,7 @@ const onTick = () => {
             anim.showMain();
             main.dataset.visible = true;
         }
-        stage.x = mouse.fin;
+        stage.x = mouse.fin * window.devicePixelRatio;
     } else if (main.dataset.visible == 'true' && mouse.delta > 0 && main.dataset.animated == 'false') {
         anim.hideMain();
         main.dataset.visible = false;
@@ -34,7 +34,7 @@ const onTick = () => {
 
     const { x, y } = mouse.mouse;
     const corrX = x - mouse.fin;
-    const corrY = y - rConfig.topHeight() - stage.y + document.querySelector('.wrap').scrollTop;
+    const corrY = y - rConfig.topHeight() - (stage.y / window.devicePixelRatio) + document.querySelector('.wrap').scrollTop;
 
     events.forEach(({ shape, button }, i) => {
         const dotXStart = shape.pX - 10;
@@ -162,7 +162,7 @@ const onTick = () => {
         activeControls = controls[1];
         ind = 4;
     }
-    if (mouse.fin == ranges[5].x()) {
+    if (mouse.fin <= ranges[5].x()) {
         rLabel = ranges[5].label;
         activeControls = controls[2];
         ind = 5;
@@ -172,12 +172,14 @@ const onTick = () => {
         $(`#menu li:eq(${ind})`).addClass('active')
         $('.timeline_years_button span').text(rLabel);
         $('.timeline_controls_inner').html(
-            activeControls.reduce((acc, el, j) => acc + (el.length ? `<button class="timeline_control timeline_control--${(j == 0) ? 'back' : 'forward'}" data-x="${el[0]}">
-                    ${(j == 0) ? '<svg xmlns="http://www.w3.org/2000/svg" width="17" height="8" viewBox="0 0 17 8"><use fill="currentColor" xlink:href="./assets/img/icons.svg#arrow_left"></use></svg> ' : ''}
-                    ${el[1]}
-                    ${(j == 1) ? ' <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8"><use fill="currentColor" xlink:href="./assets/img/icons.svg#arrow_right"></use></svg>' : ''}
-                    </button>` : '<i></i>'), '')
-        )
+            activeControls.reduce((acc, btn) => 
+                `${acc}
+                    <button class="timeline_control timeline_control--${btn.direction}" data-x="${btn.x()}">
+                        ${btn.label}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="8" viewBox="0 0 17 8"><use fill="currentColor" xlink:href="./assets/img/icons.svg#arrow_${btn.arrow}"></use></svg>
+                    </button>
+                `, '')
+        );
 
         if (ind == 5) {
             anim.showEnd()
@@ -191,19 +193,19 @@ const onTick = () => {
     stage.update();
 }
 
-const corr = (canvas.height > 662) ? (canvas.height - 662) / 2.5 : 0;
+const corr = (canvas.offsetHeight > 662) ? (canvas.offsetHeight - 662) / 2.5 : 0;
 
-const tl = new TimelineLite({ paused: true }).to(stage, 1, { y: 250 - corr });
-const tl2 = new TimelineLite({ paused: true }).to(stage, 1, { y: 180 - corr });
-const tl3 = new TimelineLite({ paused: true }).to(stage, 1, { y: 300 - corr });
-const tl4 = new TimelineLite({ paused: true }).to(stage, 1, { y: 350 - corr });
+const tl = new TimelineLite({ paused: true }).to(stage, 1, { y:  (250 - corr) * window.devicePixelRatio });
+const tl2 = new TimelineLite({ paused: true }).to(stage, 1, { y: (180 - corr) * window.devicePixelRatio });
+const tl3 = new TimelineLite({ paused: true }).to(stage, 1, { y: (300 - corr) * window.devicePixelRatio });
+const tl4 = new TimelineLite({ paused: true }).to(stage, 1, { y: (350 - corr) * window.devicePixelRatio });
 
 
 canvas.addEventListener('click', () => {
 
     const { x, y } = mouse.mouse;
     const corrX = x - mouse.fin;
-    const corrY = y - rConfig.topHeight() - stage.y + document.querySelector('.wrap').scrollTop;
+    const corrY = y - rConfig.topHeight() - (stage.y / window.devicePixelRatio) + document.querySelector('.wrap').scrollTop;
 
     events.some(({ shape, content, button }, i) => {
         // console.log('_')
@@ -275,6 +277,21 @@ $('.timeline_controls_inner').on('click', 'button', function () {
     stage.movable = true;
 })
 
+$(document).on('keydown', e => {
+    if (e.keyCode == 37) {
+        if (stage.movable) mouse.dest += 300;
+        mouse.delta = -300;
+    }
+    if (e.keyCode == 39) {
+        if (stage.movable) mouse.dest -= 300;
+        mouse.delta = 300;
+    }
+    if (e.keyCode == 27){
+        const oIdx = openedIndex();
+        if (oIdx != -1) anim.closeEvent(oIdx);
+    }
+});
+
 if(isTablet){
     const content = document.querySelector('.content');
     const hammertime = new Hammer(content);
@@ -293,7 +310,6 @@ if(isTablet){
             }
         }
     });
-
 }
 
 export { onTick };

@@ -35,6 +35,10 @@
         @include breakpoint(large down){
             padding-bottom: 92px;
         }
+        @include breakpoint(small down){
+            padding-top: 20px;
+            padding-bottom: 70px;
+        }
         h1{
             flex: 1 1 100%;
             @include breakpoint(968px down){
@@ -45,6 +49,9 @@
     &_blocks{
         display: flex;
         justify-content: space-between;
+        @include breakpoint(small down){
+            display: block;
+        }
     }
     &_hints{
         display: flex;
@@ -81,9 +88,15 @@
         flex: 0 1 540px;
         margin-left: 36px;
         z-index: 1;
+        @include breakpoint(small down){
+            margin-left: 0;
+        }
         &::before{
             width: calc(920px - 100% - 340px + 20px);
             right: 100%;
+            @include breakpoint(small down){
+                display: none;
+            }
         }
         &::after{
             width: calc((100vw - 920px) / 2 + 20px);
@@ -102,10 +115,17 @@
         visibility: hidden;
         opacity: 0;
         @include breakpoint(large down){
-            right: auto;
-            left: 24px;
+            // right: 450px;
+            // max-width: 394px;
+        }
+        @media screen and (max-height: 880px){
+            top: 6vh;
+            right: 450px;
+            max-width: 394px;
         }
         @include breakpoint(768 down){
+            right: auto;
+            left: 24px;
             max-width: 380px;
         }
         &::after{
@@ -138,6 +158,9 @@
             padding: 10px 15px;
             font-size: 13px;   
         }
+        @include breakpoint(small down){
+            font-size: 14px;
+        }
         &::before, &::after{
             content: '';
             position: absolute;
@@ -169,7 +192,16 @@
     @include breakpoint(768px down){
         margin-bottom: 0;
     }
+    @include breakpoint(small down){
+        position: absolute;
+        font-weight: 400;
+        display: none;
+    }
     &--graph{
+        @include breakpoint(small down){
+            top: 15px;
+            left: 15px;
+        }
         .hint_line{
             min-height: auto;
             border-top: 1px dashed $white;
@@ -239,6 +271,10 @@
     border-left: 1px solid $secondary-color;
     margin: 0 auto 60px;
     opacity: 0;
+    @include breakpoint(small down){
+        position: absolute;
+        display: none;
+    }
     &_content{
         display: block;
         overflow: hidden;

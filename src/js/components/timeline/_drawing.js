@@ -6,15 +6,13 @@ import { onTick } from './_actions';
 import * as eventsData from '../../data/events';
 
 
-// stage.scaleX = window.devicePixelRatio;
-// stage.scaleY = window.devicePixelRatio;
+stage.scaleX = window.devicePixelRatio;
+stage.scaleY = window.devicePixelRatio;
 const w = canvas.offsetWidth;
 const h = canvas.offsetHeight;
-// canvas.width = w * window.devicePixelRatio;
-// canvas.height = h * window.devicePixelRatio;
-canvas.width = w;
-canvas.height = h;
-// createjs.Ticker.setFPS(60);
+canvas.width = w * window.devicePixelRatio;
+canvas.height = h * window.devicePixelRatio;
+
 mouse.init();
 
 const graph = new createjs.Container();
@@ -441,10 +439,10 @@ const repositionElems = (w, h) => {
 window.addEventListener('resize', () => {
     const w = canvas.offsetWidth;
     const h = canvas.offsetHeight;
-    // canvas.width = w * window.devicePixelRatio;
-    // canvas.height = (h > 662) ? h * window.devicePixelRatio : 662;
     const contentHeight = (720 - rConfig.topHeight());
-    canvas.width = w;
-    canvas.height = (h > contentHeight) ? h : contentHeight;
+    canvas.width = w * window.devicePixelRatio;
+    canvas.height = (h > contentHeight) ? h * window.devicePixelRatio : contentHeight * window.devicePixelRatio;
+    // canvas.width = w;
+    // canvas.height = (h > contentHeight) ? h : contentHeight;
     repositionElems(w, h);
 })

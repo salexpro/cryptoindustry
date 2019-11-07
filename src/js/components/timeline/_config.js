@@ -234,27 +234,41 @@ const ranges = [
     },
     {
         label: 'Наши дни',
-        x: () => -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen())
+        x: () => -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen()) + 50
     }
 ]
 
 const endOffset = () => -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen());
 const controls = [
     [
-        [],
-        [endOffset() / 2, 'Cередина']
+        {
+            direction: 'forward',
+            label: 'Cередина',
+            x: () => endOffset() / 2,
+            arrow: 'right'
+        }
     ],
     [
-        [0, 'Начало'],
-        [endOffset(), 'Наши дни']
+        {
+            direction: 'back',
+            label: 'Начало',
+            x: () => 0,
+            arrow: 'left'
+        },
+        {
+            direction: 'forward',
+            label: 'Наши дни',
+            x: () => endOffset(),
+            arrow: 'right'
+        }
     ],
-    // [
-    //     [(endOffset()) / 2, 'Cередина'],
-    //     [endOffset(), 'Наши дни']
-    // ],
     [
-        [endOffset() / 2, 'Cередина'],
-        []
+        {
+            direction: 'back',
+            label: 'Cередина',
+            x: () => endOffset() / 2,
+            arrow: 'left'
+        }
     ]
 ]
 

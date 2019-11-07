@@ -2,6 +2,8 @@
     top: 58px;
     height: calc(100% - 58px);
     padding: 20px;
+    backface-visibility: visible;
+    transition: none;
     @include breakpoint(large down){
         width: 220px;
     }
@@ -9,4 +11,8 @@
         top: 48px;
         height: calc(100% - 48px);
     }
+}
+
+.js-off-canvas-overlay{
+    transition: none
 }
