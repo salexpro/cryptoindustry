@@ -55,6 +55,8 @@
 // @include motion-ui-animations;
 
 // Components
+@import 'components/preloader';
+
 @import 'components/fonts';
 @import 'components/base';
 @import 'components/button';
@@ -64,7 +66,6 @@
 
 // Sections
 @import 'sections/header';
-@import 'sections/createjs';
 @import 'sections/main';
 @import 'sections/timeline';
 // @import 'sections/footer';

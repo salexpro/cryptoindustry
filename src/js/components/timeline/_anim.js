@@ -1,5 +1,4 @@
-import TweenLite from 'gsap/TweenMax';
-import { Power0 } from 'gsap/EasePack';
+import { TweenLite, Power0, Back} from 'gsap/TweenMax';
 // import 'gsap/ColorPropsPlugin';
 import '../../plugins/_ColorPropsPlugin'; // quiet
 import { palette, events, canvas, stage, mouse, rndInt, gEvents, ranges, main } from './_config';
@@ -8,6 +7,7 @@ const opacity = [0.05, 0.1, 0.2];
 
 const anim = {
     showMain: () => {
+        main.dataset.animated = true;
         TweenLite.to('.main .block_inner', 0.3, {
             css: {
                 x: 0
@@ -19,6 +19,10 @@ const anim = {
             }
         });
         stage.movable = false;
+        
+        setTimeout(() => {
+            main.dataset.animated = false;
+        }, 300);
 
         events.forEach((e) => {
             e.shape.hoverable = false;
@@ -27,6 +31,7 @@ const anim = {
         })
     },
     hideMain: () => {
+        main.dataset.animated = true;
         TweenLite.to('.main .block_inner', 0.3, {
             css: {
                 x: '-=20'
@@ -38,6 +43,7 @@ const anim = {
             }
         });
         setTimeout(() => {
+            main.dataset.animated = false;
             anim.revealEvents()
         }, 300);
     },
@@ -361,8 +367,9 @@ const anim = {
         cMaskPath.forEach((c, j) => {
             TweenLite.to(events[i].corners.mask.graphics._activeInstructions[j], 0.3, c)
         })
-
-        canvas.style.cursor = 'default';
+        if (!events.some(({ shape }) => shape.hovered)){
+            canvas.style.cursor = 'default';
+        }
     },
     openEvent: i => {
         if (mouse.fin == ranges[5].x){
@@ -421,8 +428,7 @@ const anim = {
             coords.pX < rightSide &&
             coords.pX > leftSide
         ) {
-            // default
-            console.log('center')
+            // center
             if ((centerY + eventHeight) > (rdY - rLineHeight - rateMargin)){
                 console.log('intersect')
                 rdY = centerY + eventHeight + rLineHeight + rateMargin;
@@ -434,14 +440,14 @@ const anim = {
                 y: centerY + 81,
                 delay: 0.3
             });
-            console.log('left')
+            // left
         } else if (coords.pX > rightSide) {
             TweenLite.set([events[i].lines.ld.graphics._activeInstructions[0], events[i].lines.ld.graphics._activeInstructions[1]], {
                 x: -events[i].lines.ld.x + centerX + 294,
                 y: centerY + 81,
                 delay: 0.3
             });
-            console.log('right')
+            // right
         }
         TweenLite.to(events[i].lines.ld.graphics._activeInstructions[0], 0.3, { x: 0, y: coords.dY, delay: 0.3 });
         
@@ -498,7 +504,7 @@ const anim = {
         })
 
         
-
+        events[i].shape.opening = true;
         TweenLite.set(events[i].shape, { opened: true, delay: 0.6 });
 
         canvas.style.cursor = 'default';
@@ -574,6 +580,7 @@ const anim = {
             }, 300);
         }
 
+        events[i].shape.opening = false;
         stage.movable = true;
         events[i].shape.opened = false;
         
@@ -591,9 +598,11 @@ const anim = {
     intervalEvent: g => {
         const id = g.group[g.counter % g.group.length];
         g.group.forEach(idx => {
-            if ((idx != id) && (events[idx].shape.revealed || events[idx].shape.showed) && !events[id].shape.fadedOut) anim.hideEvent(idx)
+            if (((idx != id && !events[idx].shape.hovered) || !events[idx].shape.hovered) && (events[idx].shape.revealed || events[idx].shape.showed) && !events[id].shape.fadedOut && !events[id].shape.opened && !events[id].shape.opening) {
+                anim.hideEvent(idx)
+            }
         })
-        if (!events[id].shape.revealing && !events[id].shape.fadedOut) {
+        if (!events[id].shape.revealing && !events[id].shape.fadedOut && !events[id].shape.opened && !events[id].shape.opening && !g.group.some(i => events[i].shape.hovered)) {
             if (!events[id].shape.revealed) {
                 anim.revealEvent(id)
             } else {
@@ -612,6 +621,14 @@ const anim = {
             g.started = true;
         }
     },
+    hideGroup: i => {
+        const gid = gEvents.findIndex(({ group }) => group.includes(i));
+        if(gid != -1){
+            gEvents[gid].group.forEach(idx => {
+                if (!events[idx].shape.hovered && (events[idx].shape.revealed || events[idx].shape.showed) && !events[idx].shape.fadedOut && !events[idx].shape.opened && !events[idx].shape.opening) anim.hideEvent(idx)
+            })
+        }
+    },
     buttonOver: i => {
         TweenLite.to(events[i].button.graphics._fill, 0.25, {colorProps: {style: palette.yellow}})
         TweenLite.to(events[i].buttonText, 0.25, { colorProps: { color: '#004577'}})
@@ -620,7 +637,32 @@ const anim = {
         TweenLite.to(events[i].button.graphics._fill, 0.25, { colorProps: { style: 'transparent'}})
         TweenLite.to(events[i].buttonText, 0.25, { colorProps: { color: palette.yellow}})
     },
-
+    openPopup: () => {
+        TweenLite.to('.reveal-overlay', 0.3, {
+            autoAlpha: 1
+        })
+        TweenLite.to('.reveal', 0.3, {
+            x: 0,
+            y: 0,
+            z: 0,
+            rotationX: 0,
+            ease: Back.easeOut.config(1.7),
+            delay: 0.1
+        })
+    },
+    closePopup: () => {
+        TweenLite.to('.reveal-overlay', 0.3, {
+            autoAlpha: 0,
+            delay: 0.1
+        })
+        TweenLite.to('.reveal', 0.3, {
+            x: 0,
+            y: -18,
+            z: 0,
+            rotationX: 8,
+            ease: Back.easeIn.config(1.7)
+        })
+    }
 }
 
 export {anim};

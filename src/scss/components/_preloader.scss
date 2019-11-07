@@ -1,0 +1,122 @@
+.preloader {
+    position: absolute;
+    top: 58px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #02122b;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    &::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        opacity: 0;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 300ms;
+    }
+    &.is_loaded{
+        &:after{
+            opacity: 1;
+            background-image: url(../assets/img/bg.jpg);
+        }
+    }
+}
+
+.progress {
+    position: relative;
+    height: 2px;
+    display: block;
+    width: 100%;
+    // background-color: white;
+}
+.progress .indeterminate {
+    background-color: black;
+}
+.progress .indeterminate:before {
+    content: '';
+    position: absolute;
+    background-color: $primary-color;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    will-change: left, right;
+    animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+    box-shadow: 0 0 25px $primary-color;
+}
+.progress .indeterminate:after {
+    content: '';
+    position: absolute;
+    background-color: $primary-color;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    will-change: left, right;
+    animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+    animation-delay: 1.15s;
+    box-shadow: 0 0 25px $primary-color;
+}
+
+@-webkit-keyframes indeterminate {
+    0% {
+        left: -35%;
+        right: 100%;
+    }
+    60% {
+        left: 100%;
+        right: -90%;
+    }
+    100% {
+        left: 100%;
+        right: -90%;
+    }
+}
+@keyframes indeterminate {
+    0% {
+        left: -35%;
+        right: 100%;
+    }
+    60% {
+        left: 100%;
+        right: -90%;
+    }
+    100% {
+        left: 100%;
+        right: -90%;
+    }
+}
+@-webkit-keyframes indeterminate-short {
+    0% {
+        left: -200%;
+        right: 100%;
+    }
+    60% {
+        left: 107%;
+        right: -8%;
+    }
+    100% {
+        left: 107%;
+        right: -8%;
+    }
+}
+@keyframes indeterminate-short {
+    0% {
+        left: -200%;
+        right: 100%;
+    }
+    60% {
+        left: 107%;
+        right: -8%;
+    }
+    100% {
+        left: 107%;
+        right: -8%;
+    }
+}

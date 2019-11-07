@@ -1,68 +1,28 @@
 .reveal{
     outline: none;
-    background-size: cover;
-    background-position: center;
-    overflow-y: initial;
-    padding: 30px;
+    margin: auto;
+    position: relative;
+    overflow: visible;
+    width: 100%;
+    max-width: 860px;
+    display: block;
+    transform: translate3d(0, -18px, 0) perspective(435px) rotateX(8deg);
     @include breakpoint(small down) {
+        width: 100%;
         height: auto;
         min-height: auto;
-        padding: 20px;
-        margin: 20px;
-        width: calc(100% - 40px);
-        border-radius: $global-radius;
     }
-    &.fade-in.mui-enter {
-        transform: translate3d(0, -18px, 0) perspective(435px) rotateX(8deg);
+    &-overlay{
+        padding: 20px 75px;
+        visibility: hidden;
+        opacity: 0;
+        display: block;
         @include breakpoint(small down) {
-            transform: translate3d(0, -100%, 0);
+            padding: 10px;
         }
-        &.mui-enter-active {
-            transform: translate3d(0, 0, 0) perspective(435px) rotateX(0);
-            @include breakpoint(small down) {
-                transform: translate3d(0, 0, 0);
-            }
+        &[style*="block"]{
+            display: flex !important;
+            align-items: center;
         }
     }
-
-    &.fade-out.mui-leave {
-        transform: translate3d(0, 0, 0) perspective(435px) rotateX(0);
-        @include breakpoint(small down) {
-            transform: translate3d(0, 0, 0);
-        }
-        &.mui-leave-active {
-            transform: translate3d(0, -18px, 0) perspective(435px) rotateX(8deg);
-            @include breakpoint(small down) {
-                transform: translate3d(0, -100%, 0);
-            }
-        }
-    }
-}
-
-.fade-in.mui-enter {
-    transition-duration: 200ms;
-    transition-timing-function: ease-out;
-    opacity: 0;
-    transition-property: all;
-    @include breakpoint(small down) {
-        transition-duration: 300ms;
-    }
-}
-
-.fade-in.mui-enter.mui-enter-active {
-    opacity: 1;
-}
-
-.fade-out.mui-leave {
-    transition-duration: 200ms;
-    transition-timing-function: ease-in;
-    opacity: 1;
-    transition-property: all;
-    @include breakpoint(small down) {
-        transition-duration: 300ms;
-    }
-}
-
-.fade-out.mui-leave.mui-leave-active {
-    opacity: 0;
 }

@@ -2278,14 +2278,6 @@
 		"plM": 1103252938751,
 		"prP": 0
 		},
-	"/src/assets/img/Thumbs.db": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 2,
-		"oAP": "/build/assets/img/Thumbs.db",
-		"oF": 0
-		},
 	"/src/assets/img/yellow_line.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -2389,6 +2381,17 @@
 		"oAP": "/build/favicon.ico",
 		"oF": 0
 		},
+	"/src/js/_legacy.js": {
+		"bF": 4,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/build/js/_legacy.min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 1
+		},
 	"/src/js/app.js": {
 		"bF": 4,
 		"ft": 64,
@@ -2396,17 +2399,6 @@
 		"mi": 1,
 		"oA": 0,
 		"oAP": "/build/js/app.min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 1
-		},
-	"/src/js/appp.js": {
-		"bF": 4,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/build/js/appp.min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 1
@@ -2570,28 +2562,6 @@
 		"sC": 3,
 		"tS": 1
 		},
-	"/src/js/plugins/_KonvaPlugin.js": {
-		"bF": 4,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/js/plugins/_KonvaPlugin.min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 1
-		},
-	"/src/js/plugins/ColorPlugin.js": {
-		"bF": 4,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/build/js/plugins/ColorPlugin.min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 1
-		},
 	"/src/pug/_layout.pug": {
 		"cB": 1,
 		"cOD": 0,
@@ -2662,16 +2632,6 @@
 		"oF": 0,
 		"oS": 0
 		},
-	"/src/pug/pages/createjs.pug": {
-		"cB": 1,
-		"cOD": 0,
-		"ft": 512,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/build/createjs.html",
-		"oF": 0,
-		"oS": 0
-		},
 	"/src/pug/pages/index.pug": {
 		"cB": 1,
 		"cOD": 0,
@@ -2709,16 +2669,6 @@
 		"hM": 0,
 		"oA": 1,
 		"oAP": "/build/_main.html",
-		"oF": 0,
-		"oS": 0
-		},
-	"/src/pug/sections/_timeline.pug": {
-		"cB": 1,
-		"cOD": 0,
-		"ft": 512,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/build/_timeline.html",
 		"oF": 0,
 		"oS": 0
 		},
@@ -2813,6 +2763,19 @@
 		"oS": 3,
 		"uL": 1
 		},
+	"/src/scss/components/_preloader.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "/build/scss/css/_preloader.css",
+		"oF": 0,
+		"oS": 3,
+		"uL": 1
+		},
 	"/src/scss/components/_social.scss": {
 		"aP": 1,
 		"bl": 0,
@@ -2822,19 +2785,6 @@
 		"ma": 1,
 		"oA": 1,
 		"oAP": "/build/scss/css/_social.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
-	"/src/scss/sections/_createjs.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 1,
-		"oAP": "/build/scss/css/_createjs.css",
 		"oF": 0,
 		"oS": 3,
 		"uL": 1
@@ -2902,7 +2852,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "/src/assets/favicon/android-chrome-256x256.png",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 594225396.61710596
+	"lastBuiltDate": 594742330.22974896
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,

@@ -1,6 +1,9 @@
 .header{
     background: #002a48;
     overflow: hidden;
+    // transform: translateY(-100%);
+    position: relative;
+    z-index: 6;
     &_inner{
         display: flex;
         align-items: center;

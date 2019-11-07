@@ -35,9 +35,25 @@ html, body{
     // align-items: stretch;
     // justify-content: flex-start;
     height: 100vh;
-    background-image: url(../assets/img/bg@2x.jpg);
-    background-size: cover;
-    background-position: center;
+    &::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        // opacity: 0;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 300ms;
+        background-image: url(../assets/img/bg.jpg);
+    }
+    &.is_loaded{
+        &::after{
+            // opacity: 1;
+        }
+    }
 }
 
 a{

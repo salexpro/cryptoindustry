@@ -2,9 +2,9 @@ import $ from 'jquery';
 
 import { Foundation } from 'foundation-sites/js/foundation.core';
 // import * as CoreUtils from 'foundation-sites/js/foundation.core.utils';
-// import { Box } from 'foundation-sites/js/foundation.util.box'
+import { Box } from 'foundation-sites/js/foundation.util.box'
 // import { onImagesLoaded } from 'foundation-sites/js/foundation.util.imageLoader';
-// import { Keyboard } from 'foundation-sites/js/foundation.util.keyboard';
+import { Keyboard } from 'foundation-sites/js/foundation.util.keyboard';
 import { MediaQuery } from 'foundation-sites/js/foundation.util.mediaQuery';
 // import { Motion, Move } from 'foundation-sites/js/foundation.util.motion';
 // import { Nest } from 'foundation-sites/js/foundation.util.nest';
@@ -24,7 +24,7 @@ import { OffCanvas } from 'foundation-sites/js/foundation.offcanvas';
 // import { Orbit } from 'foundation-sites/js/foundation.orbit';
 // import { ResponsiveMenu } from 'foundation-sites/js/foundation.responsiveMenu';
 // import { ResponsiveToggle } from 'foundation-sites/js/foundation.responsiveToggle';
-import { Reveal } from 'foundation-sites/js/foundation.reveal';
+// import { Reveal } from 'foundation-sites/js/foundation.reveal';
 // import { Slider } from 'foundation-sites/js/foundation.slider';
 // import { SmoothScroll } from 'foundation-sites/js/foundation.smoothScroll';
 // import { Sticky } from 'foundation-sites/js/foundation.sticky';
@@ -43,10 +43,10 @@ Foundation.addToJquery($);
 // Foundation.RegExpEscape = CoreUtils.RegExpEscape;
 // Foundation.onLoad = CoreUtils.onLoad;
 
-// Foundation.Box = Box;
+Foundation.Box = Box;
 // Foundation.onImagesLoaded = onImagesLoaded;
-// Foundation.Keyboard = Keyboard;
-// Foundation.MediaQuery = MediaQuery;
+Foundation.Keyboard = Keyboard;
+Foundation.MediaQuery = MediaQuery;
 // Foundation.Motion = Motion;
 // Foundation.Move = Move;
 // Foundation.Nest = Nest;
@@ -71,7 +71,7 @@ Foundation.plugin(OffCanvas, 'OffCanvas');
 // Foundation.plugin(Orbit, 'Orbit');
 // Foundation.plugin(ResponsiveMenu, 'ResponsiveMenu');
 // Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
-Foundation.plugin(Reveal, 'Reveal');
+// Foundation.plugin(Reveal, 'Reveal');
 // Foundation.plugin(Slider, 'Slider');
 // Foundation.plugin(SmoothScroll, 'SmoothScroll');
 // Foundation.plugin(Sticky, 'Sticky');

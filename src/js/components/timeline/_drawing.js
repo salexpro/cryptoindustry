@@ -1,6 +1,6 @@
 /* global createjs */
 import Ticker from '../../lib/ticker'; // quiet
-import { graphParams, palette, events, canvas, stage, mouse, gEvents, dotParams } from './_config';
+import { graphParams, palette, events, canvas, stage, mouse, dotParams } from './_config';
 import { anim } from './_anim';
 import { onTick } from './_actions';
 import * as eventsData from '../../data/events';
@@ -17,18 +17,23 @@ canvas.height = h;
 // createjs.Ticker.setFPS(60);
 mouse.init();
 
+const isTablet = w < 1280;
+const rConfig = {
+    halfScreen: isTablet ? 1280 / 2 : w / 2,
+    bottomMargin: isTablet ? 92 : 120
+}
+
 
 const graph = new createjs.Container();
 const cLines = new createjs.Container();
-
 const blueLine = new createjs.Bitmap('/assets/img/blue_line.svg');
-blueLine.x = w / 2;
-blueLine.y = h - graphParams.blueHeight - 118;
+blueLine.x = rConfig.halfScreen;
+blueLine.y = h - graphParams.blueHeight - rConfig.bottomMargin + 2;
 blueLine.shadow = new createjs.Shadow(palette.blue, 0, 0, 25);
 
 const yellowLine = new createjs.Bitmap('/assets/img/yellow_line.svg');
-yellowLine.x = (w / 2) + graphParams.blueWidth - 1;
-yellowLine.y = h - (graphParams.blueHeight + graphParams.yellowHeight - 43) - 118;
+yellowLine.x = rConfig.halfScreen + graphParams.blueWidth - 1;
+yellowLine.y = h - (graphParams.blueHeight + graphParams.yellowHeight - 43) - rConfig.bottomMargin + 2;
 yellowLine.shadow = new createjs.Shadow(palette.yellow, 0, 0, 25);
 
 
@@ -36,8 +41,8 @@ const bottomLine = new createjs.Shape();
 bottomLine.graphics
     .ss(2)
     .s(palette.blue)
-    .mt(0, h - 120)
-    .lt(canvas.offsetWidth / 2, h - 120)
+    .mt(0, h - rConfig.bottomMargin)
+    .lt(rConfig.halfScreen, h - rConfig.bottomMargin)
     .es()
 bottomLine.shadow = new createjs.Shadow(palette.blue, 0, 0, 25);
 
@@ -46,9 +51,9 @@ graph.addChild(blueLine, yellowLine, bottomLine);
 eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }, i) => {
 
     const coords = {
-        pX: ((w - 1280) / 2) + left + 57,
-        pY: h - 120 - prvBottom - 2,
-        dY: h - 120 - dotBottom - 28
+        pX: (!isTablet ? ((w - 1280) / 2) : 0) + left + 57,
+        pY: h - rConfig.bottomMargin - prvBottom + 2,
+        dY: h - rConfig.bottomMargin - dotBottom - 28
     }
 
     const eventGroup = new createjs.Container();
@@ -69,6 +74,7 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
         .s(palette.blue)
         .ss(2)
         .mt(0, 0)
+    // lineLeft.shadow = new createjs.Shadow(palette.blue, 0, 0, 25);
 
 
     const lineRight = new createjs.Shape();
@@ -77,6 +83,8 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
         .s(palette.blue)
         .ss(2)
         .mt(0, 0)
+
+    // lineRight.shadow = new createjs.Shadow(palette.blue, 0, 0, 25);
 
 
     const bg = new createjs.Shape();

@@ -1,4 +1,4 @@
-import { anim } from './_anim';
+// import { anim } from './_anim';
 
 /* global createjs */
 const events = [];
@@ -176,16 +176,17 @@ const mouse = {
                 this.dest -= deltaX * 1.5;
             }
         }
-        if ((deltaY > 0 || deltaX > 0) && main.dataset.visible == 'true') {
-            // console.log('hide main')
-            anim.hideMain();
-            main.dataset.visible = false;
-        }
-        if (stage.movable && main.dataset.visible == 'false' && mouse.fin == 0 && (deltaY < 0 || deltaX < 0)) {
-            // console.log('show main')
-            anim.showMain();
-            main.dataset.visible = true;
-        }
+        this.delta = deltaX || deltaY;
+        // if ((deltaY > 0 || deltaX > 0) && main.dataset.visible == 'true') {
+        //     // console.log('hide main')
+        //     anim.hideMain();
+        //     main.dataset.visible = false;
+        // }
+        // if (stage.movable && main.dataset.visible == 'false' && mouse.fin == 0 && (deltaY < 0 || deltaX < 0)) {
+        //     // console.log('show main')
+        //     anim.showMain();
+        //     main.dataset.visible = true;
+        // }
     },
     moveFunction: function ({ clientX, clientY }) {
         this.mouse = {
@@ -195,6 +196,7 @@ const mouse = {
     },
     dest: 0,
     fin: 0,
+    delta: 0,
     mouse: { x: 0, y: 0 },
 };
 
