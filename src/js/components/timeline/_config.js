@@ -2,10 +2,15 @@
 const main = document.querySelector('.main');
 const canvas = document.getElementById('canvas');
 const isTablet = () => canvas.offsetWidth < 1280;
+const isMobile = () => canvas.offsetWidth < 640;
 const rConfig = {
     halfScreen: () => isTablet() ? 1280 / 2 : canvas.offsetWidth / 2,
     topHeight: () => document.querySelector('.header').offsetHeight,
-    bottomMargin: () => canvas.offsetWidth < 1024 ? 92 : 120
+    bottomMargin: () => isMobile() ? 72 : canvas.offsetWidth < 1024 ? 92 : 120,
+    shapeSize: () => isMobile() ? 92 : 112,
+    shapeHalf: () => (isMobile() ? 92 : 112) / 2,
+    imageSize: () => isMobile() ? 80 : 100,
+    currBreakpoint: () => isMobile() ? 'mobile' : isTablet() ? 'tablet' : 'desktop'
 }
 
 const events = [];
@@ -94,8 +99,6 @@ const palette = {
     yellow: '#fbff33'
 }
 
-const dx = 112;
-const dy = 112;
 const accRate = 10;
 
 const graphParams = {
@@ -214,7 +217,7 @@ const leftOffset = () => isTablet() ? 0 : (canvas.offsetWidth - 1280) / 2;
 const ranges = [
     {
         label: 'Начало',
-        x: 0
+        x: () => 0
     },
     {
         label: '2011 – 2012',
@@ -234,7 +237,7 @@ const ranges = [
     },
     {
         label: 'Наши дни',
-        x: () => -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen()) + 50
+        x: () => -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen()) + (isMobile() ? 20 : 50)
     }
 ]
 
@@ -272,4 +275,4 @@ const controls = [
     ]
 ]
 
-export { events, palette, accRate, graphParams, canvas, stage, dx, dy, mouse, gEvents, rndInt, dotParams, ranges, controls, main, isTablet, rConfig};
+export { events, palette, accRate, graphParams, canvas, stage, mouse, gEvents, rndInt, dotParams, ranges, controls, main, isTablet, isMobile, rConfig};

@@ -1,6 +1,6 @@
 /* global createjs */
 import Ticker from '../../lib/ticker'; // quiet
-import { graphParams, palette, events, canvas, stage, mouse, dotParams, isTablet, rConfig } from './_config';
+import { graphParams, palette, events, canvas, stage, mouse, dotParams, isTablet, isMobile, rConfig } from './_config';
 import { anim } from './_anim';
 import { onTick } from './_actions';
 import * as eventsData from '../../data/events';
@@ -39,11 +39,12 @@ bottomLine.shadow = new createjs.Shadow(palette.blue, 0, 0, 25);
 
 graph.addChild(blueLine, yellowLine, bottomLine);
 
-eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }, i) => {
+
+eventsData.events.forEach(({ left, prvBottom, prvBottomMob, dotBottom, content, rate, button }, i) => {
 
     const coords = {
         pX: (!isTablet() ? ((w - 1280) / 2) : 0) + left + 57,
-        pY: h - rConfig.bottomMargin() - prvBottom + 2,
+        pY: h - rConfig.bottomMargin() - (isMobile() ? prvBottomMob : prvBottom) + 2,
         dY: h - rConfig.bottomMargin() - dotBottom - 28
     }
 
@@ -79,8 +80,8 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
 
 
     const bg = new createjs.Shape();
-    bg.x = coords.pX - 56;
-    bg.y = coords.pY - 112;
+    bg.x = coords.pX - rConfig.shapeHalf();
+    bg.y = coords.pY - rConfig.shapeSize();
     bg.pX = coords.pX;
     bg.pY = coords.pY;
     bg.dY = coords.dY;
@@ -91,16 +92,16 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
     bg.opened = false;
     bg.fadedOut = false;
     bg.graphics.f('#02122a')
-        .mt(8, 112)
-        .lt(0, 104)
+        .mt(8, rConfig.shapeSize())
+        .lt(0, rConfig.shapeSize() - 8)
         .lt(0, 0)
-        .lt(104, 0)
-        .lt(112, 8)
-        .lt(112, 112)
+        .lt(rConfig.shapeSize() - 8, 0)
+        .lt(rConfig.shapeSize(), 8)
+        .lt(rConfig.shapeSize(), rConfig.shapeSize())
         .cp();
 
-    const imageX = -50;
-    const imageY = coords.pY - 106;
+    const imageX = -rConfig.imageSize() / 2;
+    const imageY = coords.pY - rConfig.shapeSize() + 6;
 
     const imageMask = new createjs.Shape();
     imageMask.x = imageX;
@@ -108,49 +109,49 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
 
     imageMask.graphics
         .mt(0, 0)
-        .lt(93, 0)
-        .lt(100, 7)
-        .lt(100, 100)
-        .lt(7, 100)
-        .lt(0, 93)
+        .lt(rConfig.imageSize() - 7, 0)
+        .lt(rConfig.imageSize(), 7)
+        .lt(rConfig.imageSize(), rConfig.imageSize())
+        .lt(7, rConfig.imageSize())
+        .lt(0, rConfig.imageSize() - 7)
         .cp();
 
 
     const image = new createjs.Bitmap(`/assets/img/events/preview/${i + 1}@2x.jpg`);
     image.x = imageX;
     image.y = imageY;
-    image.scaleX = 0.5;
-    image.scaleY = 0.5;
+    image.scaleX = isMobile() ? 0.4 : 0.5;
+    image.scaleY = isMobile() ? 0.4 : 0.5;
     image.mask = imageMask;
     image.alpha = 0;
 
 
     const cornersMask = new createjs.Shape();
-    cornersMask.x = -64;
-    cornersMask.y = coords.pY - 123;
+    cornersMask.x = -rConfig.shapeHalf() - 8;
+    cornersMask.y = coords.pY - rConfig.shapeSize() - 11;
     cornersMask.graphics
         .dr(0, 0, 4, 4)
-        .dr(124, 0, 4, 4)
-        .dr(0, 130, 4, 4)
-        .dr(124, 130, 4, 4)
+        .dr(rConfig.shapeSize() + 12, 0, 4, 4)
+        .dr(0, rConfig.shapeSize() + 18, 4, 4)
+        .dr(rConfig.shapeSize() + 12, rConfig.shapeSize() + 18, 4, 4)
 
     const cCorners = new createjs.Shape();
-    cCorners.x = -63;
-    cCorners.y = coords.pY - 122;
+    cCorners.x = -rConfig.shapeHalf() - 7;
+    cCorners.y = coords.pY - rConfig.shapeSize() - 10;
     cCorners.alpha = 0;
     cCorners.graphics
         .ss(2)
         .s(palette.blue)
-        .dr(0, 0, 126, 132)
+        .dr(0, 0, rConfig.shapeSize() + 14, rConfig.shapeSize() + 20)
     cCorners.mask = cornersMask;
 
     const text = new createjs.Text();
     text.set({
         x: 0,
-        font: '300 16px Ubuntu',
-        letterSpacing: 0.56,
-        lineHeight: 19.2,
-        lineWidth: 393,
+        font: isMobile() ? '400 14px Ubuntu' : '300 16px Ubuntu',
+        letterSpacing: isMobile() ? 0.49 : 0.56,
+        lineHeight: isMobile() ? 16.8 : 19.2,
+        lineWidth: isMobile() ? 256 : 393,
         text: content,
         color: 'white',
         // alpha: 0,
@@ -159,23 +160,24 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
     const textHeight = text.getBounds().height;
     text.regY = textHeight / 2;
     
-    const buttonHeight = button ? 35 + 22 : 0;
+    const buttonHeight = button ? 35 + (isMobile() ? 16 : 22) : 0;
     const totalHeight = textHeight + buttonHeight;
-    const eventHeight = (totalHeight > 140) ? totalHeight : 140;
+    const eventMinHeight = isMobile() ? 100 : 140;
+    const eventHeight = (totalHeight > eventMinHeight) ? totalHeight : eventMinHeight;
     
-    const posText = (eventHeight == 140 && buttonHeight) ? eventHeight - 35 : buttonHeight ? textHeight : eventHeight;
+    const posText = (eventHeight == eventMinHeight && buttonHeight) ? eventHeight - 35 : buttonHeight ? textHeight : eventHeight;
     text.y = posText / 2;
 
     const cContainerMask = new createjs.Shape();
-    cContainerMask.x = 72;
-    cContainerMask.y = coords.pY - 56;
-    cContainerMask.regY = 50;
+    cContainerMask.x = rConfig.shapeHalf() + 16;
+    cContainerMask.y = coords.pY - rConfig.shapeHalf();
+    cContainerMask.regY = rConfig.imageSize() / 2;
     cContainerMask.graphics
-        .dr(0, 0, 0, 100)
+        .dr(0, 0, 0, rConfig.imageSize())
     
     const cContainer = new createjs.Container();
     cContainer.x = 72;
-    cContainer.y = coords.pY - 56;
+    cContainer.y = coords.pY - rConfig.shapeHalf();
     cContainer.regY = eventHeight / 2;
     cContainer.mask = cContainerMask;
     cContainer.alpha = 0;
@@ -304,20 +306,20 @@ eventsData.events.forEach(({ left, prvBottom, dotBottom, content, rate, button }
             y: eventHeight - 17,
             font: '500 12px Ubuntu',
             letterSpacing: 0.56,
-            // lineHeight: 14,
+            lineHeight: isMobile() ? 16 : 14,
             text: button.toUpperCase(),
             color: palette.yellow,
         })
         const buttonTextWidth = buttonText.getBounds().width + 25;
-        const buttonTextHeight = buttonText.getBounds().height;
+        // const buttonTextHeight = buttonText.getBounds().height;
         const buttonWidth = (buttonTextWidth > 104) ? buttonTextWidth : 104;
 
-        buttonText.x = 393 - (buttonWidth / 2);
+        buttonText.x = text.lineWidth - (buttonWidth / 2);
         buttonText.regX = buttonText.getBounds().width / 2;
-        buttonText.regY = buttonTextHeight / 2;
+        buttonText.regY = isMobile() ? 8 : buttonText.getBounds().height / 2;
 
         const buttonShape = new createjs.Shape();
-        buttonShape.x = 393 - buttonWidth;
+        buttonShape.x = text.lineWidth - buttonWidth;
         buttonShape.y = eventHeight;
         buttonShape.buttonWidth = buttonWidth;
         buttonShape.graphics
@@ -374,21 +376,59 @@ const repositionElems = (w, h) => {
     bottomLine.graphics._instructions[2].x = blueLine.x;
     bottomLine.graphics._instructions[2].y = lineBottom;
 
-    eventsData.events.forEach(({ left, prvBottom, dotBottom }, i) => {
+    eventsData.events.forEach(({ left, prvBottom, prvBottomMob, dotBottom }, i) => {
 
         const coords = {
             pX: (!isTablet() ? ((w - 1280) / 2) : 0) + left + 57,
-            pY: lineBottom - prvBottom + 2,
+            pY: lineBottom - (isMobile() ? prvBottomMob : prvBottom) + 2,
             dY: lineBottom - dotBottom - 28
         }
 
         events[i].group.x = coords.pX;
         
-        events[i].shape.x = coords.pX - 56;
-        events[i].shape.y = coords.pY - 112;
+        events[i].shape.x = coords.pX - rConfig.shapeHalf();
+        events[i].shape.y = coords.pY - rConfig.shapeSize();
         events[i].shape.pX = coords.pX;
         events[i].shape.pY = coords.pY;
         events[i].shape.dY = coords.dY;
+
+        if (events[i].shape.revealed){
+
+            events[i].shape.graphics._activeInstructions[0].x = 8,
+            events[i].shape.graphics._activeInstructions[0].y = rConfig.shapeSize();
+            events[i].shape.graphics._activeInstructions[1].x = 0, 
+            events[i].shape.graphics._activeInstructions[1].y = rConfig.shapeSize() - 8
+            events[i].shape.graphics._activeInstructions[3].x = rConfig.shapeSize() - 8
+            events[i].shape.graphics._activeInstructions[3].y = 0
+            events[i].shape.graphics._activeInstructions[4].x = rConfig.shapeSize()
+            events[i].shape.graphics._activeInstructions[4].y = 8
+            events[i].shape.graphics._activeInstructions[5].x = rConfig.shapeSize()
+            events[i].shape.graphics._activeInstructions[5].y = rConfig.shapeSize()
+
+            const llPath = [{ x: 0, y: 0 }, { x: -(rConfig.shapeHalf() - 8), y: 0 }, { x: -(rConfig.shapeHalf()), y: -8 }, { x: -(rConfig.shapeHalf()), y: -rConfig.shapeSize() }, { x: 0, y: -rConfig.shapeSize() }]
+            const lrPath = [{ x: 0, y: 0 }, { x: rConfig.shapeHalf(), y: 0 }, { x: rConfig.shapeHalf(), y: -(rConfig.shapeSize() - 8) }, { x: rConfig.shapeHalf() - 8, y: -rConfig.shapeSize() }, { x: 0, y: -rConfig.shapeSize() }]
+
+            events[i].lines.ll.graphics._activeInstructions.forEach((l, j) => {
+                l.x = llPath[j].x;
+                l.y = llPath[j].y;
+                events[i].lines.lr.graphics._activeInstructions[j].x = lrPath[j].x;
+                events[i].lines.lr.graphics._activeInstructions[j].y = lrPath[j].y;
+            });
+
+            const maskPath = [
+                { x: 0, y: 0 },
+                { x: rConfig.imageSize() - 7, y: 0 },
+                { x: rConfig.imageSize(), y: 7 },
+                { x: rConfig.imageSize(), y: rConfig.imageSize() },
+                { x: 7, y: rConfig.imageSize() },
+                { x: 0, y: rConfig.imageSize() - 7 }
+            ]
+
+            maskPath.forEach((p, j) => {
+                events[i].image.mask.graphics._activeInstructions[j].x = p.x;
+                events[i].image.mask.graphics._activeInstructions[j].y = p.y;
+            });
+        }
 
         events[i].lines.lr.y = coords.pY
         events[i].lines.ll.y = coords.pY
@@ -398,30 +438,36 @@ const repositionElems = (w, h) => {
         if (events[i].shape.revealed) events[i].lines.ld.graphics._activeInstructions[1].y = coords.dY;
         if (events[i].shape.showed) events[i].lines.ld.graphics._activeInstructions[1].y = coords.pY;
 
+        const imageX = -rConfig.imageSize() / 2;
+        const imageY = coords.pY - rConfig.shapeSize() + 6;
         
-        events[i].image.y = coords.pY - 106;
-        events[i].image.mask.y = coords.pY - 106;
+        events[i].image.x = imageX;
+        events[i].image.y = imageY;
+        events[i].image.scaleX = isMobile() ? 0.4 : 0.5;
+        events[i].image.scaleY = isMobile() ? 0.4 : 0.5;
+        events[i].image.mask.x = imageX;
+        events[i].image.mask.y = imageY;
 
-        events[i].corners.x = -69;
-        events[i].corners.y = coords.pY - 125;
-        events[i].corners.mask.x = -70;
-        events[i].corners.mask.y = coords.pY - 126;
+        events[i].corners.x = -rConfig.shapeHalf() - 13;
+        events[i].corners.y = coords.pY - rConfig.shapeSize() - 13;
+        events[i].corners.mask.x = -rConfig.shapeHalf() - 14;
+        events[i].corners.mask.y = coords.pY - rConfig.shapeSize() - 14;
 
-        events[i].content.y = coords.pY - 56;
-        events[i].content.mask.y = coords.pY - 56;
+        events[i].content.y = coords.pY - rConfig.shapeHalf();
+        events[i].content.mask.y = coords.pY - rConfig.shapeHalf();
         
         events[i].dContainer.x = coords.pX;
         events[i].dContainer.y = coords.dY;
 
         if (events[i].shape.hovered){
-            events[i].corners.x = -63;
-            events[i].corners.y = coords.pY - 122;
-            events[i].corners.mask.x = -64;
-            events[i].corners.mask.y = coords.pY - 123;
+            events[i].corners.x = -rConfig.shapeHalf() - 7;
+            events[i].corners.y = coords.pY - rConfig.shapeSize() - 10;
+            events[i].corners.mask.x = -rConfig.shapeHalf() - 8;
+            events[i].corners.mask.y = coords.pY - rConfig.shapeSize() - 11;
         }
 
         events[i].lines.rLd.x = coords.pX;
-        events[i].lines.rLd.rdY = coords.dY - 127;
+        events[i].lines.rLd.rdY = coords.dY - rConfig.shapeSize() - 15;
         events[i].lines.rLd.graphics._activeInstructions[0].y = coords.dY;
         events[i].lines.rLd.graphics._activeInstructions[1].y = coords.dY;
         events[i].lines.rLl.x = coords.pX;
@@ -435,14 +481,18 @@ const repositionElems = (w, h) => {
 
 }
 
+let prevBreakpoint = rConfig.currBreakpoint();
 
 window.addEventListener('resize', () => {
     const w = canvas.offsetWidth;
     const h = canvas.offsetHeight;
-    const contentHeight = (720 - rConfig.topHeight());
     canvas.width = w * window.devicePixelRatio;
-    canvas.height = (h > contentHeight) ? h * window.devicePixelRatio : contentHeight * window.devicePixelRatio;
+    canvas.height = h * window.devicePixelRatio;
     // canvas.width = w;
     // canvas.height = (h > contentHeight) ? h : contentHeight;
     repositionElems(w, h);
+    if (prevBreakpoint != rConfig.currBreakpoint()) {
+        anim.showPreloader();
+        location.href = './';
+    }
 })

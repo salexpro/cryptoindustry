@@ -1,6 +1,7 @@
 .content{
     position: relative;
     // overflow: hidden;
+    // height: 100%;
 }
 
 .main{
@@ -35,14 +36,21 @@
         @include breakpoint(large down){
             padding-bottom: 92px;
         }
+        @include breakpoint(768px down){
+            min-height: calc(100vh - 48px);
+        }
         @include breakpoint(small down){
             padding-top: 20px;
-            padding-bottom: 70px;
+            padding-bottom: 20px;
+            min-height: 100%;
         }
         h1{
             flex: 1 1 100%;
             @include breakpoint(968px down){
                 margin-bottom: 20px;
+            }
+            @include breakpoint(small down){
+                margin-bottom: 15px;
             }
         }
     }
@@ -57,6 +65,33 @@
         display: flex;
         justify-content: space-between;
     }
+    &_down{
+        display: none;
+        margin: auto;
+        cursor: pointer;
+        @include breakpoint(small down){
+            display: block;
+        }
+    }
+    &_button.button{
+        position: absolute;
+        right: 15px;
+        bottom: 162px;
+        opacity: 0;
+        visibility: hidden;
+        filter: drop-shadow(0 0 25px currentColor);
+        &:hover, &:focus{
+            &:not(.still).secondary span{
+                background: none;
+                color: $secondary-color;
+            }
+        }
+        span{
+            padding-right: 20px;
+            padding-left: 30px;
+            background: none;   
+        }
+    }
 }
 
 .block{
@@ -68,6 +103,9 @@
     z-index: 2;
     @include breakpoint(968px down){
         margin-bottom: 20px;
+    }
+    @include breakpoint(small down){
+        margin-bottom: 13px;
     }
     &::before, &::after{
         content: '';
@@ -90,6 +128,10 @@
         z-index: 1;
         @include breakpoint(small down){
             margin-left: 0;
+            .block_inner{
+                transform: translateX(30px);
+                margin-bottom: 0;
+            }
         }
         &::before{
             width: calc(920px - 100% - 340px + 20px);
@@ -118,7 +160,7 @@
             // right: 450px;
             // max-width: 394px;
         }
-        @media screen and (max-height: 880px){
+        @media screen and (max-height: 930px){
             top: 6vh;
             right: 450px;
             max-width: 394px;
@@ -128,13 +170,27 @@
             left: 24px;
             max-width: 380px;
         }
+        @include breakpoint(small down){
+            font-weight: 400;
+            left: 20px;
+            max-width: calc(100% - 40px);
+        }
         &::after{
             width: calc(100vw - 567px);
             top: 34px;
             z-index: -1;
+            @include breakpoint(768 down){
+                width: 24px;
+            }
+            @include breakpoint(small down){
+                width: 20px;
+            }
         }
         .block_inner{
             transform: translateX(-20px);
+            @include breakpoint(small down){
+                background-color: rgba(0, 42, 72, 0.8);
+            }
         }
     }
     &_inner{
@@ -156,10 +212,11 @@
         transform: translateX(-30px);
         @include breakpoint(768px down){
             padding: 10px 15px;
-            font-size: 13px;   
+            font-size: 13px;
         }
         @include breakpoint(small down){
             font-size: 14px;
+            // transform: translateX(-20px);
         }
         &::before, &::after{
             content: '';
@@ -195,12 +252,15 @@
     @include breakpoint(small down){
         position: absolute;
         font-weight: 400;
-        display: none;
+        opacity: 0;
+        // visibility: hidden;
+        top: 15px;
+        left: 15px;
+        margin: 0;
     }
     &--graph{
         @include breakpoint(small down){
-            top: 15px;
-            left: 15px;
+            top: calc(40% - 72px);
         }
         .hint_line{
             min-height: auto;
@@ -225,6 +285,10 @@
             // margin-top: -60px;
             margin-left: 0;
         }
+        @include breakpoint(small down){
+            margin: 0;
+            flex: 0 0 auto;
+        }
         .hint_line{
             right: auto;
             left: 0;
@@ -233,6 +297,13 @@
             transform: translateX(-10.2%);
             @include breakpoint(768px down){
                 display: none;
+            }
+            &-mobile{
+                display: none;
+                transform: translateX(-11px);
+                @include breakpoint(small down){
+                    display: block;
+                }
             }
         }
     }
@@ -273,7 +344,9 @@
     opacity: 0;
     @include breakpoint(small down){
         position: absolute;
-        display: none;
+        top: 20px;
+        left: 15px;
+        visibility: hidden;
     }
     &_content{
         display: block;
@@ -327,6 +400,23 @@
                 transform: rotate(43deg);
             }
         }
+        &:not(.lead_line-mobile){
+            @include breakpoint(small down){
+                display: none;
+            }
+        }
+        &-mobile{
+            display: none;
+            right: auto;
+            left: -12px;
+            border: 0;
+            @include breakpoint(small down){
+                display: block;
+            }
+            &::before, &::after{
+                display: none;
+            }
+        }
     }
 }
 
@@ -338,4 +428,8 @@
     transform: translateX(-20px);
     opacity: 0;
     visibility: hidden;
+    @include breakpoint(small down){
+        right: 20px;
+        bottom: 80px;
+    }
 }

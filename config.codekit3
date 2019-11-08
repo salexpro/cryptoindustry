@@ -246,6 +246,16 @@
 		"oAP": "/build/assets/fonts/.gitkeep",
 		"oF": 0
 		},
+	"/src/assets/img/arrow_down.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 0,
+		"oAP": "/build/assets/img/arrow_down.svg",
+		"oF": 0,
+		"opt": 1,
+		"plM": 1103269715967,
+		"prP": 0
+		},
 	"/src/assets/img/bg.jpg": {
 		"ft": 16384,
 		"iS": 340266,
@@ -2830,7 +2840,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "/src/assets/favicon/android-chrome-256x256.png",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 594838387.87726903
+	"lastBuiltDate": 594889471.43476295
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,

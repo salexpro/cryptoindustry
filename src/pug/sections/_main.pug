@@ -1,7 +1,7 @@
 .preloader
     .progress
         .indeterminate
-section.main(data-visible="true" data-revealed="false" data-animated="false")
+section.main(data-visible="true" data-revealed="false" data-animated="false" data-step="1")
     .grid-container.main_inner
         h1
             | Хроника криптоиндустрии: 
@@ -15,6 +15,8 @@ section.main(data-visible="true" data-revealed="false" data-animated="false")
             p.block.block--wide
                 span.block_inner
                     | Но&nbsp;были и&nbsp;новости, о&nbsp;которых ForkLog не&nbsp;писал, потому что тогда журнала не&nbsp;было. Мы&nbsp;не&nbsp;выпускали свежую заметку о&nbsp;продаже двух пицц или росте цены биткоина до&nbsp;$1. По&nbsp;случаю дня рождения журнала мы&nbsp;решили исправить это упущение.
+        button.main_down
+            +icon('arrow_down', [16, 31], '#fbff33')
         .main_hints
             p.hint.hint--graph
                 span.hint_content
@@ -32,11 +34,23 @@ section.main(data-visible="true" data-revealed="false" data-animated="false")
                         mask#gEventMask
                             path(d='M30.5 0.5L1 0.5V81.5H304.5V171')
                     path(mask="url(#gEventMask)" d='M30.5 0.5L1 0.5V81.5H304.5V171')
+                svg.hint_line.hint_line-mobile(width='61', height='207', viewBox='0 0 61 207', xmlns='http://www.w3.org/2000/svg' preserveAspectRatio="none")
+                    defs
+                        mask#gEventMaskM
+                            path(d='M9 1H1V163H60.5V206.5')
+                    path(mask="url(#gEventMaskM)" d='M9 1H1V163H60.5V206.5')
+        button.button.hollow.secondary.icon.main_button.main_button--second
+            span
+                | Далее
+                +icon('arrow_right', [16, 8])
         p.lead
             span.lead_content
                 span.lead_movable
                     | Наш рассказ начинается с&nbsp;тех времен, когда биткоин ничего не&nbsp;стоил.
             span.lead_line
+            svg.lead_line.lead_line-mobile.expanded(width='46', height='261', viewBox='0 0 46 261', fill='none', xmlns='http://www.w3.org/2000/svg' preserveAspectRatio="none")
+                path(d='M45.3536 256.854C45.5488 256.658 45.5488 256.342 45.3536 256.146L42.1716 252.964C41.9763 252.769 41.6597 252.769 41.4645 252.964C41.2692 253.16 41.2692 253.476 41.4645 253.672L44.2929 256.5L41.4645 259.328C41.2692 259.524 41.2692 259.84 41.4645 260.036C41.6597 260.231 41.9763 260.231 42.1716 260.036L45.3536 256.854ZM1.00002 256.5L0.500019 256.5L0.500019 257L1.00002 257L1.00002 256.5ZM1.00002 0.499998L1.00002 -1.9233e-06L0.500015 -1.94516e-06L0.500015 0.499998L1.00002 0.499998ZM16.5001 257L45 257L45 256L16.5001 256L16.5001 257ZM1.00002 257L16.5001 257L16.5001 256L1.00002 256L1.00002 257ZM8.50001 -1.59547e-06L1.00002 -1.9233e-06L1.00002 0.999998L8.50001 0.999998L8.50001 -1.59547e-06ZM0.500015 0.499998L0.500019 256.5L1.50002 256.5L1.50002 0.499998L0.500015 0.499998Z', fill='#FBFF33')
+
 
 .timeline_controls
     .grid-container.timeline_controls_inner

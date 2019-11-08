@@ -11,6 +11,8 @@
     align-items: center;
     overflow: hidden;
     // display: none;
+    // visibility: visible !important;
+    // opacity: 1 !important;
     @include breakpoint(768px down){
         padding-top: 48px;
     }

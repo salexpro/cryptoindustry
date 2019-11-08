@@ -86,4 +86,13 @@ button {
     &.still{
         cursor: default;
     }
+    &.icon{
+        span{
+            display: flex;
+            align-items: center;
+            svg{
+                margin-left: 6px;
+            }
+        }
+    }
 }

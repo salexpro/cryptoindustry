@@ -1,7 +1,8 @@
-import { TweenLite, Power0, Back} from 'gsap/TweenMax';
+import $ from 'jquery';
+import { TweenLite, Power0, Back, Power4} from 'gsap/TweenMax';
 // import 'gsap/ColorPropsPlugin';
 import '../../plugins/_ColorPropsPlugin'; // quiet
-import { palette, events, canvas, stage, mouse, rndInt, gEvents, ranges, main } from './_config';
+import { palette, events, canvas, stage, mouse, rndInt, gEvents, ranges, main, rConfig, isMobile } from './_config';
 
 const opacity = [0.05, 0.1, 0.2];
 
@@ -141,38 +142,12 @@ const anim = {
 
         events[i].shape.revealing = true;
 
-        const llPath = [[0, 0], [-48, 0], [-56, -8], [-56, -112], [0, -112]];
-        const lrPath = [[0, 0], [56, 0], [56, -104], [48, -112], [0, -112]];
+        const llPath = [[0, 0], [-(rConfig.shapeHalf() - 8), 0], [-rConfig.shapeHalf(), -8], [-rConfig.shapeHalf(), -rConfig.shapeSize()], [0, -rConfig.shapeSize()]];
+        const lrPath = [[0, 0], [rConfig.shapeHalf(), 0], [rConfig.shapeHalf(), -rConfig.shapeSize() + 8], [rConfig.shapeHalf() - 8, -rConfig.shapeSize()], [0, -rConfig.shapeSize()]];
 
         const easing = Power0.easeNone;
 
         TweenLite.to(events[i].lines.ld.graphics.lt(0, coords.dY).command, 0.5 * timeScale, { y: coords.pY, ease: easing })
-
-
-        // const llPath = [
-        //     {
-        //         x: 0,
-        //         y: 0,
-        //         delay: 0.5
-        //     },
-        //     {
-        //         x: -48,
-        //         y: 0
-        //     }, 
-        //     {
-        //         x: -56,
-        //         y: -8
-        //     }, 
-        //     {
-        //         x: -56,
-        //         y: -112
-        //     }, 
-        //     {
-        //         x: 0,
-        //         y: -112
-        //     }
-        // ];
-
         
         TweenLite.to(events[i].lines.ll.graphics.lt(...llPath[0]).command, 0.3 * timeScale, {
             x: llPath[1][0], y: llPath[1][1], ease: easing,
@@ -222,15 +197,15 @@ const anim = {
         })
 
 
-        TweenLite.to(events[i].corners, 0.3 * timeScale, { x: -69, y: events[i].shape.pY - 125, alpha: 1, delay: 1.6 * timeScale });
-        TweenLite.to(events[i].corners.graphics._activeInstructions[0], 0.3 * timeScale, { w: 138, h: 138, delay: 1.6 * timeScale });
+        TweenLite.to(events[i].corners, 0.3 * timeScale, { x: -rConfig.shapeHalf() - 13, y: events[i].shape.pY - rConfig.shapeSize() - 13, alpha: 1, delay: 1.6 * timeScale });
+        TweenLite.to(events[i].corners.graphics._activeInstructions[0], 0.3 * timeScale, { w: rConfig.shapeSize() + 26, h: rConfig.shapeSize() + 26, delay: 1.6 * timeScale });
 
-        TweenLite.to(events[i].corners.mask, 0.3 * timeScale, { x: -70, y: events[i].shape.pY - 126, delay: 1.6 * timeScale });
+        TweenLite.to(events[i].corners.mask, 0.3 * timeScale, { x: -rConfig.shapeHalf() - 14, y: events[i].shape.pY - rConfig.shapeSize() - 14, delay: 1.6 * timeScale });
         const cMaskPath = [
             { x: 0, y: 0 },
-            { x: 136, y: 0 },
-            { x: 0, y: 136 },
-            { x: 136, y: 136 }
+            { x: rConfig.shapeSize() + 24, y: 0 },
+            { x: 0, y: rConfig.shapeSize() + 24 },
+            { x: rConfig.shapeSize() + 24, y: rConfig.shapeSize() + 24 }
         ]
 
         cMaskPath.forEach((c, j) => {
@@ -321,16 +296,16 @@ const anim = {
         })
 
         TweenLite.to(events[i].corners.graphics._stroke, 0.3, { colorProps: { style: palette.yellow } });
+        
+        TweenLite.to(events[i].corners, 0.3, { x: -rConfig.shapeHalf() - 7, y: events[i].shape.pY - rConfig.shapeSize() - 10 });
+        TweenLite.to(events[i].corners.graphics._activeInstructions[0], 0.3, { w: rConfig.shapeSize() + 14, h: rConfig.shapeSize() + 20 });
 
-        TweenLite.to(events[i].corners, 0.3, { x: -63, y: events[i].shape.pY - 122 });
-        TweenLite.to(events[i].corners.graphics._activeInstructions[0], 0.3, { w: 126, h: 132 });
-
-        TweenLite.to(events[i].corners.mask, 0.3, { x: -64, y: events[i].shape.pY - 123 });
+        TweenLite.to(events[i].corners.mask, 0.3, { x: -rConfig.shapeHalf() - 8, y: events[i].shape.pY - rConfig.shapeSize() - 11 });
         const cMaskPath = [
             { x: 0, y: 0 },
-            { x: 124, y: 0 },
-            { x: 0, y: 130 },
-            { x: 124, y: 130 }
+            { x: rConfig.shapeSize() + 12, y: 0 },
+            { x: 0, y: rConfig.shapeSize() + 18 },
+            { x: rConfig.shapeSize() + 12, y: rConfig.shapeSize() + 18 }
         ]
 
         cMaskPath.forEach((c, j) => {
@@ -352,16 +327,16 @@ const anim = {
         })
 
         TweenLite.to(events[i].corners.graphics._stroke, 0.3, { colorProps: { style: palette.blue } });
+        
+        TweenLite.to(events[i].corners, 0.3, { x: -rConfig.shapeHalf() - 13, y: events[i].shape.pY - rConfig.shapeSize() - 13 });
+        TweenLite.to(events[i].corners.graphics._activeInstructions, 0.3, { w: rConfig.shapeSize() + 26, h: rConfig.shapeSize() + 26 });
 
-        TweenLite.to(events[i].corners, 0.3, { x: -69, y: events[i].shape.pY - 125 });
-        TweenLite.to(events[i].corners.graphics._activeInstructions, 0.3, { w: 138, h: 138 });
-
-        TweenLite.to(events[i].corners.mask, 0.3, { x: -70, y: events[i].shape.pY - 126 });
+        TweenLite.to(events[i].corners.mask, 0.3, { x: -rConfig.shapeHalf() - 14, y: events[i].shape.pY - rConfig.shapeSize() - 14 });
         const cMaskPath = [
             { x: 0, y: 0 },
-            { x: 136, y: 0 },
-            { x: 0, y: 136 },
-            { x: 136, y: 136 }
+            { x: rConfig.shapeSize() + 24, y: 0 },
+            { x: 0, y: rConfig.shapeSize() + 24 },
+            { x: rConfig.shapeSize() + 24, y: rConfig.shapeSize() + 24 }
         ]
 
         cMaskPath.forEach((c, j) => {
@@ -376,6 +351,8 @@ const anim = {
             anim.hideEnd()
         }
 
+        const isMob = isMobile();
+
         const coords = {
             pX: events[i].shape.pX,
             pY: events[i].shape.pY,
@@ -383,30 +360,32 @@ const anim = {
         }
 
         const centerX = Math.abs(mouse.dest) + canvas.offsetWidth / 2;
-        const centerY = canvas.offsetHeight / 2 - 120 - 81 - (stage.y / window.devicePixelRatio);
+        const centerY = canvas.offsetHeight / 2 - rConfig.bottomMargin() - 81 - (stage.y / window.devicePixelRatio);
         // const textHeight = events[i].text.getBounds().height + 22;
         // const buttonHeight = events[i].hasOwnProperty('button') ? 35 + 22 : 0;
         // const totalHeight = textHeight + buttonHeight;
+        const eventWidth = isMob ? 280 : 588;
+        const eventHalf = eventWidth / 2;
         const eventHeight = events[i].content.eventHeight + 22;
 
         // events[i].group.x = Math.abs(mouse.dest) + canvas.offsetWidth / 2;
         // events[i].shape.x = Math.abs(mouse.dest) + canvas.offsetWidth / 2 - 294;
 
         TweenLite.to(events[i].group, 0.3, { x: centerX });
-        TweenLite.to(events[i].shape, 0.3, { x: centerX - 294, y: centerY });
+        TweenLite.to(events[i].shape, 0.3, { x: centerX - eventHalf, y: centerY });
         TweenLite.to([events[i].lines.ll, events[i].lines.lr], 0.3, { y: centerY + eventHeight });
 
 
         TweenLite.to(events[i].shape.graphics._activeInstructions[0], 0.3, { x: 8, y: eventHeight });
         TweenLite.to(events[i].shape.graphics._activeInstructions[1], 0.3, { x: 0, y: eventHeight - 8 });
 
-        TweenLite.to(events[i].shape.graphics._activeInstructions[3], 0.3, { x: 580, y: 0 });
-        TweenLite.to(events[i].shape.graphics._activeInstructions[4], 0.3, { x: 588, y: 8 });
-        TweenLite.to(events[i].shape.graphics._activeInstructions[5], 0.3, { x: 588, y: eventHeight });
+        TweenLite.to(events[i].shape.graphics._activeInstructions[3], 0.3, { x: eventWidth - 8, y: 0 });
+        TweenLite.to(events[i].shape.graphics._activeInstructions[4], 0.3, { x: eventWidth, y: 8 });
+        TweenLite.to(events[i].shape.graphics._activeInstructions[5], 0.3, { x: eventWidth, y: eventHeight });
 
 
-        const llPath = [{ x: 0, y: 0 }, { x: -286, y: 0 }, { x: -294, y: -8 }, { x: -294, y: -eventHeight }, { x: 0, y: -eventHeight }]
-        const lrPath = [{ x: 0, y: 0 }, { x: 294, y: 0 }, { x: 294, y: -eventHeight + 8 }, { x: 286, y: -eventHeight }, { x: 0, y: -eventHeight }]
+        const llPath = [{ x: 0, y: 0 }, { x: -eventHalf + 8, y: 0 }, { x: -eventHalf, y: -8 }, { x: -eventHalf, y: -eventHeight }, { x: 0, y: -eventHeight }]
+        const lrPath = [{ x: 0, y: 0 }, { x: eventHalf, y: 0 }, { x: eventHalf, y: -eventHeight + 8 }, { x: eventHalf - 8, y: -eventHeight }, { x: 0, y: -eventHeight }]
 
         events[i].lines.ll.graphics._activeInstructions.forEach((l, j) => {
             TweenLite.to(l, 0.3, llPath[j]);
@@ -419,8 +398,8 @@ const anim = {
         // TweenLite.to(events[i].lines.ld.graphics._activeInstructions[1], 0.3, { x: -events[i].lines.ld.x + centerX, y: centerY + 162 });
         const rateMargin = 20;
         const rateOffset = events[i].lines.rLd.rWidth + rateMargin;
-        const leftSide = centerX - 294 - rateOffset;
-        const rightSide = centerX + 294 + rateOffset;
+        const leftSide = centerX - eventHalf - rateOffset;
+        const rightSide = centerX + eventHalf + rateOffset;
         let rdY = events[i].lines.rLd.rdY;
         const rLineHeight = events[i].lines.rLd.rLineHeight;
 
@@ -436,14 +415,14 @@ const anim = {
             
         } else if (coords.pX < leftSide) {
             TweenLite.set([events[i].lines.ld.graphics._activeInstructions[0], events[i].lines.ld.graphics._activeInstructions[1]], {
-                x: -events[i].lines.ld.x + centerX - 294,
+                x: -events[i].lines.ld.x + centerX - eventHalf,
                 y: centerY + 81,
                 delay: 0.3
             });
             // left
         } else if (coords.pX > rightSide) {
             TweenLite.set([events[i].lines.ld.graphics._activeInstructions[0], events[i].lines.ld.graphics._activeInstructions[1]], {
-                x: -events[i].lines.ld.x + centerX + 294,
+                x: -events[i].lines.ld.x + centerX + eventHalf,
                 y: centerY + 81,
                 delay: 0.3
             });
@@ -457,13 +436,13 @@ const anim = {
         TweenLite.to(events[i].lines.rLd.graphics._activeInstructions[1], 0.3, { y: rdY, delay: 0.6 });
         TweenLite.to([events[i].lines.rLl, events[i].lines.rLr, events[i].rText, events[i].rBg], 0.3, { alpha: 1, delay: 0.6 });
 
-        TweenLite.to(events[i].image, 0.3, { x: -283, y: centerY + 11, scaleX: 0.7, scaleY: 0.7 });
-        TweenLite.to(events[i].image.mask, 0.3, { x: -283, y: centerY + 11 });
+        TweenLite.to(events[i].image, 0.3, { x: -eventHalf + 11, y: centerY + 11, scaleX: 0.7, scaleY: 0.7 });
+        TweenLite.to(events[i].image.mask, 0.3, { x: -eventHalf + 11, y: centerY + 11 });
 
         TweenLite.to(events[i].content, 0.3, { alpha: 1 });
-        TweenLite.to([events[i].content, events[i].content.mask], 0.3, { x: -121, y: centerY + eventHeight / 2 });
+        TweenLite.to([events[i].content, events[i].content.mask], 0.3, { x: isMob ? -130 : -121, y: centerY + eventHeight / 2 });
         TweenLite.to(events[i].content.mask, 0.3, { regY: eventHeight / 2 });
-        TweenLite.to(events[i].content.mask.graphics._activeInstructions[0], 0.3, { w: 394, h: eventHeight + 1 });
+        TweenLite.to(events[i].content.mask.graphics._activeInstructions[0], 0.3, { w: isMob ? 257 : 394, h: eventHeight + 1 });
 
         // console.log(events[i].text.getBounds());
         // events[i].text.regY = events[i].text.getBounds().height / 2;
@@ -474,30 +453,37 @@ const anim = {
         //     TweenLite.to(events[i].button.buttonLine, 0.3, { alpha: 1, x: 272 - buttonWidth, y: centerY + eventHeight - 11 });
         //     TweenLite.to(events[i].button.buttonText, 0.3, { alpha: 1, x: 272 - buttonWidth / 2, y: centerY + eventHeight - 11 - 17});
         // }
-
-
-        const maskPath = [
-            { x: 0, y: 0 },
-            { x: 133, y: 0 },
-            { x: 140, y: 7 },
-            { x: 140, y: 140 },
-            { x: 7, y: 140 },
-            { x: 0, y: 133 }
-        ]
+        
+        const maskPath = 
+            isMob ? [
+                { x: 0, y: 0 },
+                { x: 0, y: 0 },
+                { x: 0, y: 7 },
+                { x: 0, y: eventHeight - 22 },
+                { x: 0, y: eventHeight - 22 },
+                { x: 0, y: eventHeight - 22 - 7 }
+            ] : [
+                { x: 0, y: 0 },
+                { x: 133, y: 0 },
+                { x: 140, y: 7 },
+                { x: 140, y: 140 },
+                { x: 7, y: 140 },
+                { x: 0, y: 133 }
+            ]
 
         maskPath.forEach((p, j) => {
             TweenLite.to(events[i].image.mask.graphics._activeInstructions[j], 0.3, p);
         });
 
-        TweenLite.to(events[i].corners, 0.3, { x: -305, y: centerY - 13 });
-        TweenLite.to(events[i].corners.graphics._activeInstructions[0], 0.3, { w: 611, h: eventHeight + 26 });
-        TweenLite.to(events[i].corners.mask, 0.3, { x: -306, y: centerY - 14 });
+        TweenLite.to(events[i].corners, 0.3, { x: -eventHalf - 11, y: centerY - 13 });
+        TweenLite.to(events[i].corners.graphics._activeInstructions[0], 0.3, { w: eventWidth + 23, h: eventHeight + 26 });
+        TweenLite.to(events[i].corners.mask, 0.3, { x: -eventHalf - 12, y: centerY - 14 });
 
         const cMaskPath = [
             { x: 0, y: 0 },
-            { x: 609, y: 0 },
+            { x: eventWidth + 21, y: 0 },
             { x: 0, y: eventHeight + 24 },
-            { x: 609, y: eventHeight + 24 }
+            { x: eventWidth + 21, y: eventHeight + 24 }
         ]
         cMaskPath.forEach((c, j) => {
             TweenLite.to(events[i].corners.mask.graphics._activeInstructions[j], 0.3, c)
@@ -529,19 +515,19 @@ const anim = {
         }
 
         TweenLite.to(events[i].group, 0.3, { x: coords.pX });
-        TweenLite.to(events[i].shape, 0.3, { x: coords.pX - 56, y: coords.pY - 112 });
+        TweenLite.to(events[i].shape, 0.3, { x: coords.pX - rConfig.shapeHalf(), y: coords.pY - rConfig.shapeSize() });
         TweenLite.to([events[i].lines.ll, events[i].lines.lr], 0.3, { y: coords.pY });
 
+        TweenLite.to(events[i].shape.graphics._activeInstructions[0], 0.3, { x: 8, y: rConfig.shapeSize() });
+        TweenLite.to(events[i].shape.graphics._activeInstructions[1], 0.3, { x: 0, y: rConfig.shapeSize() - 8 });
 
-        TweenLite.to(events[i].shape.graphics._activeInstructions[0], 0.3, { x: 8, y: 112 });
-        TweenLite.to(events[i].shape.graphics._activeInstructions[1], 0.3, { x: 0, y: 104 });
+        TweenLite.to(events[i].shape.graphics._activeInstructions[3], 0.3, { x: rConfig.shapeSize() - 8, y: 0 });
+        TweenLite.to(events[i].shape.graphics._activeInstructions[4], 0.3, { x: rConfig.shapeSize(), y: 8 });
+        TweenLite.to(events[i].shape.graphics._activeInstructions[5], 0.3, { x: rConfig.shapeSize(), y: rConfig.shapeSize() });
 
-        TweenLite.to(events[i].shape.graphics._activeInstructions[3], 0.3, { x: 104, y: 0 });
-        TweenLite.to(events[i].shape.graphics._activeInstructions[4], 0.3, { x: 112, y: 8 });
-        TweenLite.to(events[i].shape.graphics._activeInstructions[5], 0.3, { x: 112, y: 112 });
 
-        const llPath = [{ x: 0, y: 0 }, { x: -48, y: 0 }, { x: -56, y: -8 }, { x: -56, y: -112 }, { x: 0, y: -112 }]
-        const lrPath = [{ x: 0, y: 0 }, { x: 56, y: 0 }, { x: 56, y: -104 }, { x: 48, y: -112 }, { x: 0, y: -112 }]
+        const llPath = [{ x: 0, y: 0 }, { x: -(rConfig.shapeHalf() - 8), y: 0 }, { x: -(rConfig.shapeHalf()), y: -8 }, { x: -(rConfig.shapeHalf()), y: -rConfig.shapeSize() }, { x: 0, y: -rConfig.shapeSize() }]
+        const lrPath = [{ x: 0, y: 0 }, { x: rConfig.shapeHalf(), y: 0 }, { x: rConfig.shapeHalf(), y: -(rConfig.shapeSize() - 8) }, { x: rConfig.shapeHalf() - 8, y: -rConfig.shapeSize() }, { x: 0, y: -rConfig.shapeSize() }]
 
         events[i].lines.ll.graphics._activeInstructions.forEach((l, j) => {
             TweenLite.to(l, 0.3, llPath[j]);
@@ -553,16 +539,16 @@ const anim = {
         TweenLite.to(events[i].lines.rLd.graphics._activeInstructions[1], 0.3, { y: coords.dY });
         TweenLite.to([events[i].lines.rLl, events[i].lines.rLr, events[i].rText, events[i].rBg], 0.3, { alpha: 0 });
 
-        TweenLite.to(events[i].image, 0.3, { x: -50, y: coords.pY - 106, scaleX: 0.5, scaleY: 0.5 });
-        TweenLite.to(events[i].image.mask, 0.3, { x: -50, y: coords.pY - 106 });
+        TweenLite.to(events[i].image, 0.3, { x: -rConfig.imageSize() / 2, y: coords.pY - rConfig.shapeSize() + 6, scaleX: isMobile() ? 0.4 : 0.5, scaleY: isMobile() ? 0.4 : 0.5 });
+        TweenLite.to(events[i].image.mask, 0.3, { x: -rConfig.imageSize() / 2, y: coords.pY - rConfig.shapeSize() + 6 });
 
         const maskPath = [
             { x: 0, y: 0 },
-            { x: 93, y: 0 },
-            { x: 100, y: 7 },
-            { x: 100, y: 100 },
-            { x: 7, y: 100 },
-            { x: 0, y: 93 }
+            { x: rConfig.imageSize() - 7, y: 0 },
+            { x: rConfig.imageSize(), y: 7 },
+            { x: rConfig.imageSize(), y: rConfig.imageSize() },
+            { x: 7, y: rConfig.imageSize() },
+            { x: 0, y: rConfig.imageSize() - 7 }
         ]
 
         maskPath.forEach((p, j) => {
@@ -570,9 +556,9 @@ const anim = {
         });
 
         TweenLite.to(events[i].content, 0.3, { alpha: 0 });
-        TweenLite.to([events[i].content, events[i].content.mask], 0.3, { x: 72, y: coords.pY - 56 });
-        TweenLite.to(events[i].content.mask, 0.3, { regY: 50 });
-        TweenLite.to(events[i].content.mask.graphics._activeInstructions[0], 0.3, { w: 0, h: 100 });
+        TweenLite.to([events[i].content, events[i].content.mask], 0.3, { x: rConfig.shapeHalf() + 16, y: coords.pY - rConfig.shapeHalf() });
+        TweenLite.to(events[i].content.mask, 0.3, { regY: rConfig.imageSize() / 2 });
+        TweenLite.to(events[i].content.mask.graphics._activeInstructions[0], 0.3, { w: 0, h: rConfig.imageSize() });
 
         if (mouse.fin <= ranges[5].x()) {
             setTimeout(() => {
@@ -664,6 +650,77 @@ const anim = {
             rotationX: 8,
             ease: Back.easeIn.config(1.7)
         })
+    },
+    mobileStep: prevStep => {
+        const step = Number(prevStep) + 1;
+        main.dataset.step = step;
+        main.dataset.animated = true;
+        const $graphLine = $('.hint--graph .hint_line');
+
+        switch (step) {
+            case 1:
+                
+                break;
+            case 2:
+                TweenLite.to('.main_inner h1', 0.3, { autoAlpha: 0 });
+                TweenLite.to('.main_blocks', 0.3, {autoAlpha: 0});
+                TweenLite.to('.main .block_inner', 0.3, {css: {x: '-=20'}});
+                TweenLite.to('.main_down', 0.3, { autoAlpha: 0 });
+                
+                TweenLite.to('.hint--graph', 0.3, { autoAlpha: 1 });
+                TweenLite.to('.hint--graph .hint_movable', 0.7, { x: 0, ease: Power4.easeOut, delay: 0.3 })
+                TweenLite.to($graphLine[0], 0.2, { width: $graphLine.attr('data-width'), ease: Power0.easeNone, delay: 0.3 })
+                TweenLite.to($graphLine[0], 0.5, { height: $graphLine.attr('data-height'), ease: Power0.easeNone, delay: 0.5 })
+                TweenLite.to(canvas, 0.7, { css: { opacity: 1 }, delay: 0.3  });
+                TweenLite.to('.timeline_years', 0.7, { autoAlpha: 1, delay: 0.3  });
+                TweenLite.to('.main_button', 0.3, { autoAlpha: 1, delay: 0.3  });
+                // TweenLite.set()
+                setTimeout(() => {
+                    $graphLine.addClass('expanded');
+                    main.dataset.animated = false;
+                    mouse.delta = 0;
+                }, 1000);
+                break;
+            case 3: 
+                TweenLite.to('.hint--graph', 0.3, { autoAlpha: 0 });
+                
+                TweenLite.to('.hint--event', 0.3, { opacity: 1, delay: 0.2 })
+                TweenLite.fromTo('#gEventMaskM path', 1, { drawSVG: '50% 50%' }, { drawSVG: true, delay: 0.5 })
+                TweenLite.to('.hint--event .hint_movable', 1, { x: 0, ease: Power4.easeOut, delay: 0.5 })
+                setTimeout(() => {
+                    main.dataset.animated = false;
+                    mouse.delta = 0;
+                }, 1500);
+                break;
+            case 4:
+                TweenLite.to('.hint--event', 0.3, { autoAlpha: 0 });
+                TweenLite.to('.main_button', 0.3, { autoAlpha: 0, delay: 0.1 });
+
+
+                TweenLite.to('.lead', 0.3, { autoAlpha: 1, delay: 0.4 })
+                TweenLite.to('.lead_movable', 1, { x: 0, ease: Power4.easeOut, delay: 0.7 })
+                $('.lead_line').addClass('expanded')
+
+                anim.revealEvents();
+                stage.movable = false;
+                setTimeout(() => {
+                    main.dataset.animated = false;
+                    mouse.delta = 0;
+                }, 1600);
+                break;
+            case 5: 
+                TweenLite.to('.lead', 0.3, { autoAlpha: 0 });
+                setTimeout(() => {
+                    TweenLite.set('.main',{css: {autoAlpha: 0}});
+                    main.dataset.visible = false;
+                    main.dataset.animated = false;
+                    stage.movable = true
+                }, 300);
+                break;
+        }
+    },
+    showPreloader: () => {
+        TweenLite.set('.preloader', { autoAlpha: 1 })
     }
 }
 

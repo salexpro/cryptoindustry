@@ -1,9 +1,9 @@
 /* global player */
 import $ from 'jquery';
-import { TimelineLite } from 'gsap/TimelineLite';
+import { TweenLite, TimelineLite } from 'gsap/TweenMax';
 import Hammer from 'hammerjs';
 
-import { dx, dy, events, accRate, canvas, stage, mouse, gEvents, main, ranges, controls, rConfig, isTablet} from './_config';
+import { events, accRate, canvas, stage, mouse, gEvents, main, ranges, controls, rConfig, isTablet, isMobile} from './_config';
 import { anim } from './_anim';
 import * as eventsData from '../../data/events';
 
@@ -20,16 +20,19 @@ const onTick = () => {
     if (Math.abs(mouse.fin - mouse.dest) < 0.005) mouse.fin = mouse.dest;
 
     if (stage.movable) {
-        if (main.dataset.visible == 'false' && mouse.fin == 0 && main.dataset.animated == 'false') {
+        if (!isMobile() && main.dataset.visible == 'false' && mouse.fin == 0 && main.dataset.animated == 'false') {
             anim.showMain();
             main.dataset.visible = true;
         }
         stage.x = mouse.fin * window.devicePixelRatio;
     } else if (main.dataset.visible == 'true' && mouse.delta > 0 && main.dataset.animated == 'false') {
-        anim.hideMain();
-        main.dataset.visible = false;
-        mouse.dest = -0.0001;
-
+        if (isMobile()) {
+            anim.mobileStep(main.dataset.step)
+        } else {
+            anim.hideMain();
+            main.dataset.visible = false;
+            mouse.dest = -0.0001;
+        }
     }
 
     const { x, y } = mouse.mouse;
@@ -45,9 +48,9 @@ const onTick = () => {
         const isDotHovered = corrX > dotXStart && corrX < dotXEnd && corrY > dotYStart && corrY < dotYEnd;
 
         if ((corrX > shape.x &&
-            corrX < shape.x + dx &&
+            corrX < shape.x + rConfig.shapeSize() &&
             corrY > shape.y &&
-            corrY < shape.y + dy) ||
+            corrY < shape.y + rConfig.shapeSize()) ||
             isDotHovered) {
             shape.hovered = true;
         } else {
@@ -77,7 +80,7 @@ const onTick = () => {
         }
 
         if (shape.opened && button) {
-            const buttonX = shape.x + 173 + button.x;
+            const buttonX = shape.x + (isMobile() ? 11 : 173) + button.x;
             const buttonY = shape.y + 11 + button.y - 35;
             if (corrX > buttonX &&
                 corrX < buttonX + button.buttonWidth &&
@@ -108,29 +111,26 @@ const onTick = () => {
         }
     });
 
-
-
-
     if(stage.movable){
-
-        if (mouse.fin > -950) {
+        const corrM = mouse.fin + (isMobile() ? rConfig.halfScreen() : 0);
+        if (corrM > -950) {
             stage.y = 0;
         }
-        if (mouse.fin < -950 && mouse.fin > -2300) {
-            // stage.y = mouse.fin ;
-            tl.progress(Math.abs(mouse.fin + 950) / 1350)
+        if (corrM < -950 && corrM > -2300) {
+            // stage.y = corrM ;
+            tl.progress(Math.abs(corrM + 950) / 1350)
         }
-        if (mouse.fin < -2300 && mouse.fin > -3600) {
-            // stage.y = mouse.fin ;
-            tl2.progress(Math.abs(mouse.fin + 2300) / 1300)
-        }
-
-        if (mouse.fin < -4100 && mouse.fin > -5700) {
-            tl3.progress(Math.abs(mouse.fin + 4100) / 1600)
+        if (corrM < -2300 && corrM > -3600) {
+            // stage.y = corrM ;
+            tl2.progress(Math.abs(corrM + 2300) / 1300)
         }
 
-        if (mouse.fin < -6300 && mouse.fin > -6860) {
-            tl4.progress(Math.abs(mouse.fin + 6300) / 560)
+        if (corrM < -4100 && corrM > -5700) {
+            tl3.progress(Math.abs(corrM + 4100) / 1600)
+        }
+
+        if (corrM < -6300 && corrM > -6860) {
+            tl4.progress(Math.abs(corrM + 6300) / 560)
         }
     }
 
@@ -198,7 +198,7 @@ const corr = (canvas.offsetHeight > 662) ? (canvas.offsetHeight - 662) / 2.5 : 0
 const tl = new TimelineLite({ paused: true }).to(stage, 1, { y:  (250 - corr) * window.devicePixelRatio });
 const tl2 = new TimelineLite({ paused: true }).to(stage, 1, { y: (180 - corr) * window.devicePixelRatio });
 const tl3 = new TimelineLite({ paused: true }).to(stage, 1, { y: (300 - corr) * window.devicePixelRatio });
-const tl4 = new TimelineLite({ paused: true }).to(stage, 1, { y: (350 - corr) * window.devicePixelRatio });
+const tl4 = new TimelineLite({ paused: true }).to(stage, 1, { y: ((isMobile() ? 400 : 350) - corr) * window.devicePixelRatio });
 
 
 canvas.addEventListener('click', () => {
@@ -262,6 +262,7 @@ $('#menu a').click(function (e) {
     const oIdx = openedIndex();
     if (oIdx != -1) anim.closeEvent(oIdx);
     const el = ranges[$(this).parent().index()];
+    if (isMobile()) TweenLite.to(canvas, 0.3, { css: { opacity: 1 } });
     mouse.dest = el.x();
     stage.movable = true;
 })
@@ -292,7 +293,7 @@ $(document).on('keydown', e => {
     }
 });
 
-if(isTablet){
+if(isTablet()){
     const content = document.querySelector('.content');
     const hammertime = new Hammer(content);
     const deltaX = 0;
@@ -310,6 +311,15 @@ if(isTablet){
             }
         }
     });
+}
+
+if(isMobile()) {
+    $('.main_down').click(() => {
+        anim.mobileStep(1)
+    })
+    $('.main_button').click(() => {
+        anim.mobileStep(main.dataset.step)
+    })
 }
 
 export { onTick };
