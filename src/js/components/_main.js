@@ -100,3 +100,45 @@ $('.js-off-canvas-overlay').click(() => {
     TweenLite.to('#menu', 0.5, {x: '100%'})
     TweenLite.to('.js-off-canvas-overlay', 0.5, { autoAlpha: 0 })
 })
+
+$('#subsButton').click(() => {
+    TweenLite.to('.subscribe', 0.3, { autoAlpha: 1})
+    $('.subscribe').addClass('is_open')
+})
+
+$(document).click(e => {
+    var container = $('.subscribe');
+    if (container.hasClass('is_open') && !($(e.target).parent().attr('id') == 'subsButton')){
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            TweenLite.to(container, 0.3, { autoAlpha: 0})
+            container.removeClass('is_open');
+        }
+    }
+});
+
+
+function sendDataToForm(form_data, form) {
+    $.ajax({
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLScpCEKrQJ7MoSryZO0KLVDmasqLDSGYEnMNYyu8B7jr9K_8cQ/formResponse',
+        data: form_data,
+        type: 'POST',
+        dataType: 'xml',
+        statusCode: {
+            0: function () {
+                alert('Спасибо за подписку!');
+                form.find('input[type="email"]').val('');
+            },
+            200: function () {
+                alert('Спасибо за подписку!');
+                form.find('input[type="email"]').val('');
+            }
+        }
+    });
+}
+
+$('.subscribe_form').submit(function(e) {
+    e.preventDefault();
+    var form_data = $(this).serialize();
+    sendDataToForm(form_data, $(this));
+})

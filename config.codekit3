@@ -2620,6 +2620,16 @@
 		"oF": 0,
 		"oS": 0
 		},
+	"/src/pug/components/_subscribe.pug": {
+		"cB": 1,
+		"cOD": 0,
+		"ft": 512,
+		"hM": 0,
+		"oA": 1,
+		"oAP": "/build/_subscribe.html",
+		"oF": 0,
+		"oS": 0
+		},
 	"/src/pug/pages/index.pug": {
 		"cB": 1,
 		"cOD": 0,
@@ -2777,6 +2787,19 @@
 		"oS": 3,
 		"uL": 1
 		},
+	"/src/scss/components/_subscribe.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "/build/scss/css/_subscribe.css",
+		"oF": 0,
+		"oS": 3,
+		"uL": 1
+		},
 	"/src/scss/sections/_footer.scss": {
 		"aP": 1,
 		"bl": 0,
@@ -2840,7 +2863,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "/src/assets/favicon/android-chrome-256x256.png",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 594889471.43476295
+	"lastBuiltDate": 594912008.17841399
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,

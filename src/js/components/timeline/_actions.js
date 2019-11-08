@@ -303,6 +303,9 @@ if(isTablet()){
             const delta = deltaX + e.deltaX;
             var direction = e.offsetDirection;
             // console.log(e)
+            if (main.dataset.step == '1' && isMobile() && direction === 8){
+                mouse.delta = 10;
+            }
             if ((direction === 4 || direction === 2) && (e.deltaY < 50 && e.deltaY > -50)) {
                 if (stage.movable) {
                     mouse.dest += delta;
