@@ -68,7 +68,7 @@ $contrast-warnings: false;
 // ---------
 
 $global-font-size: 14px;
-$global-width: rem-calc(968);
+$global-width: rem-calc(980);
 $global-lineheight: 1.4;
 $foundation-palette: (
   primary: #69d6ff,
@@ -506,7 +506,7 @@ $offcanvas-reveal-zindex: 12;
 $offcanvas-transition-length: 0.5s;
 $offcanvas-transition-timing: ease;
 $offcanvas-fixed-reveal: true;
-$offcanvas-exit-background: rgba(0, 22, 48, 0.78);
+$offcanvas-exit-background: none;
 $maincontent-class: 'off-canvas-content';
 
 // 26. Orbit
@@ -856,7 +856,7 @@ $grid-container: $global-width;
 $grid-columns: 12;
 $grid-margin-gutters: (
   small: 30px,
-  medium: 48px
+  medium: 60px
 );
 $grid-padding-gutters: $grid-margin-gutters;
 $block-grid-max: 8;

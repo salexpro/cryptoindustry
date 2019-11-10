@@ -19,7 +19,7 @@ const anim = {
                 autoAlpha: 1,
             }
         });
-        stage.movable = false;
+        // stage.movable = false;
         
         setTimeout(() => {
             main.dataset.animated = false;
@@ -371,6 +371,15 @@ const anim = {
         // events[i].group.x = Math.abs(mouse.dest) + canvas.offsetWidth / 2;
         // events[i].shape.x = Math.abs(mouse.dest) + canvas.offsetWidth / 2 - 294;
 
+        TweenLite.to([
+            events[i].lines.ll.graphics._stroke,
+            events[i].lines.lr.graphics._stroke,
+            events[i].lines.ld.graphics._stroke
+        ], 0.3, { colorProps: { style: palette.yellow } });
+
+        events[i].dots.forEach(d => {TweenLite.to(d.graphics._fill, 0.3, { colorProps: { style: palette.yellow } }) })
+        TweenLite.to(events[i].corners.graphics._stroke, 0.3, { colorProps: { style: palette.yellow } });
+
         TweenLite.to(events[i].group, 0.3, { x: centerX });
         TweenLite.to(events[i].shape, 0.3, { x: centerX - eventHalf, y: centerY });
         TweenLite.to([events[i].lines.ll, events[i].lines.lr], 0.3, { y: centerY + eventHeight });
@@ -637,6 +646,7 @@ const anim = {
             ease: Back.easeOut.config(1.7),
             delay: 0.1
         })
+        $('.reveal').addClass('is_open')
     },
     closePopup: () => {
         TweenLite.to('.reveal-overlay', 0.3, {
@@ -650,31 +660,50 @@ const anim = {
             rotationX: 8,
             ease: Back.easeIn.config(1.7)
         })
+        $('.reveal').removeClass('is_open')
     },
-    mobileStep: prevStep => {
-        const step = Number(prevStep) + 1;
+    mobileStep: (prevStep, direction) => {
+        const step = Number(prevStep) + ((direction == 'prev') ? -1 : 1);
         main.dataset.step = step;
         main.dataset.animated = true;
         const $graphLine = $('.hint--graph .hint_line');
 
         switch (step) {
             case 1:
-                
+                TweenLite.to('.hint--graph', 0.3, { autoAlpha: 0 });
+                TweenLite.to(canvas, 0.3, { css: { opacity: 0 },  });
+                TweenLite.to('.timeline_years', 0.3, { autoAlpha: 0 });
+                TweenLite.to('.main_button', 0.3, { autoAlpha: 0 });
+
+                TweenLite.to('.main_inner h1', 0.3, { autoAlpha: 1, delay: 0.3 });
+                TweenLite.to('.main_blocks', 0.3, { autoAlpha: 1, delay: 0.3 });
+                TweenLite.to('.main .block_inner', 0.3, { css: { x: 0 }, delay: 0.3 });
+                TweenLite.to('.main_down', 0.3, { autoAlpha: 1, delay: 0.3 });
+
+                setTimeout(() => {
+                    main.dataset.animated = false;
+                    mouse.delta = 0;
+                }, 600);
                 break;
             case 2:
                 TweenLite.to('.main_inner h1', 0.3, { autoAlpha: 0 });
                 TweenLite.to('.main_blocks', 0.3, {autoAlpha: 0});
                 TweenLite.to('.main .block_inner', 0.3, {css: {x: '-=20'}});
                 TweenLite.to('.main_down', 0.3, { autoAlpha: 0 });
-                
-                TweenLite.to('.hint--graph', 0.3, { autoAlpha: 1 });
-                TweenLite.to('.hint--graph .hint_movable', 0.7, { x: 0, ease: Power4.easeOut, delay: 0.3 })
-                TweenLite.to($graphLine[0], 0.2, { width: $graphLine.attr('data-width'), ease: Power0.easeNone, delay: 0.3 })
-                TweenLite.to($graphLine[0], 0.5, { height: $graphLine.attr('data-height'), ease: Power0.easeNone, delay: 0.5 })
-                TweenLite.to(canvas, 0.7, { css: { opacity: 1 }, delay: 0.3  });
-                TweenLite.to('.timeline_years', 0.7, { autoAlpha: 1, delay: 0.3  });
+
+                if (!$graphLine.hasClass('expanded')){
+                    TweenLite.to('.hint--graph', 0.3, { autoAlpha: 1 });
+                    TweenLite.to('.hint--graph .hint_movable', 0.7, { x: 0, ease: Power4.easeOut, delay: 0.3 })
+                    TweenLite.to($graphLine[0], 0.2, { width: $graphLine.attr('data-width'), ease: Power0.easeNone, delay: 0.3 })
+                    TweenLite.to($graphLine[0], 0.5, { height: $graphLine.attr('data-height'), ease: Power0.easeNone, delay: 0.5 })
+                    TweenLite.to(canvas, 0.7, { css: { opacity: 1 }, delay: 0.3  });
+                    TweenLite.to('.timeline_years', 0.7, { autoAlpha: 1, delay: 0.3  });
+                } else {
+                    TweenLite.to('.hint--graph', 0.3, { autoAlpha: 1, delay: 0.3 });
+                    TweenLite.to(canvas, 0.3, { css: { opacity: 1 }, delay: 0.3  });
+                    TweenLite.to('.timeline_years', 0.3, { autoAlpha: 1, delay: 0.3  });
+                }
                 TweenLite.to('.main_button', 0.3, { autoAlpha: 1, delay: 0.3  });
-                // TweenLite.set()
                 setTimeout(() => {
                     $graphLine.addClass('expanded');
                     main.dataset.animated = false;
@@ -705,13 +734,16 @@ const anim = {
                 stage.movable = false;
                 setTimeout(() => {
                     main.dataset.animated = false;
+                    // main.dataset.visible = false;
                     mouse.delta = 0;
+                    $('.main').addClass('backoff')
+                    stage.movable = true
                 }, 1600);
                 break;
             case 5: 
                 TweenLite.to('.lead', 0.3, { autoAlpha: 0 });
                 setTimeout(() => {
-                    TweenLite.set('.main',{css: {autoAlpha: 0}});
+                    TweenLite.set('.main', {css: {autoAlpha: 0}});
                     main.dataset.visible = false;
                     main.dataset.animated = false;
                     stage.movable = true

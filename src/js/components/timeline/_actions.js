@@ -2,30 +2,38 @@
 import $ from 'jquery';
 import { TweenLite, TimelineLite } from 'gsap/TweenMax';
 import Hammer from 'hammerjs';
+import Drag from '../../lib/_drag'; // quiet
 
-import { events, accRate, canvas, stage, mouse, gEvents, main, ranges, controls, rConfig, isTablet, isMobile} from './_config';
+import { events, accRate, canvas, stage, mouse, gEvents, main, scrollbar, ranges, controls, rConfig, isTablet, isMobile} from './_config';
 import { anim } from './_anim';
 import * as eventsData from '../../data/events';
 
+let isDragging = false;
 let prevInd = -1;
 
 const onTick = () => {
 
-    const graphEnd = -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen());
-
     if (mouse.dest > 0) mouse.dest = 0;
-    if (mouse.dest < graphEnd) mouse.dest = graphEnd;
+    if (mouse.dest < rConfig.graphEnd()) mouse.dest = rConfig.graphEnd();
 
     mouse.fin += (mouse.dest - mouse.fin) / accRate;
     if (Math.abs(mouse.fin - mouse.dest) < 0.005) mouse.fin = mouse.dest;
 
     if (stage.movable) {
-        if (!isMobile() && main.dataset.visible == 'false' && mouse.fin == 0 && main.dataset.animated == 'false') {
+        if (!isMobile() && main.dataset.visible == 'false' && mouse.fin > -10 && mouse.delta < 0 && main.dataset.animated == 'false' && scrollbar.offsetLeft == 30) {
             anim.showMain();
             main.dataset.visible = true;
         }
+        if (mouse.fin == 0 && !isMobile()) stage.movable = false;
         stage.x = mouse.fin * window.devicePixelRatio;
-    } else if (main.dataset.visible == 'true' && mouse.delta > 0 && main.dataset.animated == 'false') {
+        // if (!isDragging){
+            const precentPos = stage.x * 100 / rConfig.graphEnd() / window.devicePixelRatio;
+            const endScrollbarPos = document.querySelector('.timeline_years').offsetWidth - rConfig.paddings() - scrollbar.offsetWidth;
+            scrollbar.style.left = `${endScrollbarPos * precentPos / 100}px`;
+            // console.log(Math.round(precentPos))
+        // }
+    }
+    if (main.dataset.visible == 'true' && mouse.delta > 0 && main.dataset.animated == 'false') {
         if (isMobile()) {
             anim.mobileStep(main.dataset.step)
         } else {
@@ -208,10 +216,20 @@ canvas.addEventListener('click', () => {
     const corrY = y - rConfig.topHeight() - (stage.y / window.devicePixelRatio) + document.querySelector('.wrap').scrollTop;
 
     events.some(({ shape, content, button }, i) => {
-        // console.log('_')
+
         const eventHeight = content.eventHeight + 22;
 
-        if ((shape.hovered || shape.dotHovered) && shape.hoverable && shape.visible) {
+        const dotXStart = shape.pX - 10;
+        const dotXEnd = shape.pX + 10;
+        const dotYStart = shape.dY - 10;
+        const dotYEnd = shape.dY + 10;
+
+        const isDotClicked = corrX > dotXStart && corrX < dotXEnd && corrY > dotYStart && corrY < dotYEnd;
+
+        if (((corrX > shape.x &&
+            corrX < shape.x + rConfig.shapeSize() &&
+            corrY > shape.y &&
+            corrY < shape.y + rConfig.shapeSize()) || (shape.dotHovered && isDotClicked)) && shape.hoverable && shape.visible) {
             // console.log(shape.hoverable, shape.visible, i);
             anim.openEvent(i)
             console.log('opened')
@@ -288,34 +306,122 @@ $(document).on('keydown', e => {
         mouse.delta = 300;
     }
     if (e.keyCode == 27){
-        const oIdx = openedIndex();
-        if (oIdx != -1) anim.closeEvent(oIdx);
+        if($('.reveal').hasClass('is_open')){
+            player.stopVideo();
+            anim.closePopup();
+        } else {
+            const oIdx = openedIndex();
+            if (oIdx != -1) anim.closeEvent(oIdx);
+        }
     }
 });
 
+var mc = new Hammer(scrollbar);
+mc.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 0 }));
+mc.on('pan', handleDrag);
+let lastPosX = 0;
+
+function handleDrag(ev) {
+    if (openedIndex() == -1){
+        const scrollContainerWidth = document.querySelector('.timeline_years').offsetWidth - rConfig.paddings();
+
+        // DRAG STARTED
+        // here, let's snag the current position
+        // and keep track of the fact that we're dragging
+        if (!isDragging) {
+            isDragging = true;
+            lastPosX = scrollbar.offsetLeft;
+        }
+
+        // we simply need to determine where the x,y of this
+        // object is relative to where it's "last" known position is
+        // NOTE: 
+        //    deltaX and deltaY are cumulative
+        // Thus we need to always calculate 'real x and y' relative
+        // to the "lastPosX/Y"
+        let posX = ev.deltaX + lastPosX;
+        const endPos = scrollContainerWidth - scrollbar.offsetWidth;
+        if (posX < 0 && lastPosX >= 0) posX = 0;
+        if (posX > endPos && lastPosX <= endPos) posX = endPos;
+        mouse.delta = ev.deltaX;
+
+        if (posX >= 0 && posX <= endPos) {
+            // scrollbar.style.left = `${posX}px`;
+            const percentPos = posX * 100 / endPos;
+            mouse.dest = rConfig.graphEnd() * percentPos / 100;
+            if (main.dataset.visible == 'true') {
+                if(isMobile()){
+                    anim.hideMain();
+                    main.dataset.visible = false;
+                }
+                stage.movable = true;
+            }
+        }
+        // move our element to that position
+        // elem.style.left = posX + "px";
+
+        // DRAG ENDED
+        // this is where we simply forget we are dragging
+        if (ev.isFinal) isDragging = false;
+    }
+}
+
+
+// Graph scrolling 
 if(isTablet()){
     const content = document.querySelector('.content');
     const hammertime = new Hammer(content);
-    const deltaX = 0;
+    // const deltaX = 0;
 
     hammertime.on('pan', e => {
-        if (e.pointerType == 'touch'){
-            const delta = deltaX + e.deltaX;
+        if (e.pointerType == 'touch' && main.dataset.visible == 'true'){
+            // const delta = deltaX + e.deltaX;
             var direction = e.offsetDirection;
             // console.log(e)
             if (main.dataset.step == '1' && isMobile() && direction === 8){
                 mouse.delta = 10;
             }
-            if ((direction === 4 || direction === 2) && (e.deltaY < 50 && e.deltaY > -50)) {
-                if (stage.movable) {
-                    mouse.dest += delta;
-                }
-                mouse.delta = -delta;
+            if (main.dataset.step == '2' && isMobile() && (direction === 16 || direction === 4)) {
+                anim.mobileStep(main.dataset.step, 'prev')
+                console.log(mouse.delta, direction)
             }
+            // console.log(mouse.delta + delta)
+            if ((direction === 2) && (e.deltaY < 50 && e.deltaY > -50)) {
+                // if (stage.movable) {
+                //     mouse.dest += !mouse.isFinal ? mouse.delta + delta : 0;
+                //     mouse.isFinal = e.isFinal;
+                // }
+                mouse.delta = -e.deltaX;
+            }
+            // console.log(e)
         }
     });
+
+    const offcanv = document.querySelector('.js-off-canvas-overlay');
+    const hammeroffc = new Hammer(offcanv);
+    hammeroffc.on('panright', e => {
+        $('.header_hamb').removeClass('active');
+        TweenLite.to('#menu', 0.5, { x: '100%' })
+        TweenLite.to('.js-off-canvas-overlay', 0.5, { autoAlpha: 0 })
+    })
+
+    const options = {
+        listener: canvas,
+        multiplier: 2,
+        cursorDown: true
+    };
+    const drag = new Drag(options);
+
+    drag.on(event => {
+        if (stage.movable) {
+            mouse.dest += event.X;
+        }
+        mouse.delta = -event.X;
+    });
+    
 }
 
+// Switch steps mobile
 if(isMobile()) {
     $('.main_down').click(() => {
         anim.mobileStep(1)

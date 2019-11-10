@@ -2495,6 +2495,28 @@
 		"oO": 0,
 		"oS": 0
 		},
+	"/src/js/lib/_drag.js": {
+		"bF": 4,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/build/js/lib/_drag.min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 1
+		},
+	"/src/js/lib/_ticker.js": {
+		"bF": 4,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/build/js/lib/ticker.min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 1
+		},
 	"/src/js/lib/foundation-explicit-pieces.js": {
 		"bF": 4,
 		"ft": 64,
@@ -2502,17 +2524,6 @@
 		"mi": 1,
 		"oA": 0,
 		"oAP": "/build/js/lib/foundation-explicit-pieces.min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 1
-		},
-	"/src/js/lib/ticker.js": {
-		"bF": 4,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/js/lib/ticker.min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 1
@@ -2863,7 +2874,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "/src/assets/favicon/android-chrome-256x256.png",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 594912008.17841399
+	"lastBuiltDate": 595101468.18179202
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,

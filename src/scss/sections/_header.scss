@@ -75,7 +75,7 @@
         &::after{
             width: calc(100% - 6px);
         }
-        &:hover, &:focus {
+        &:hover, &:focus, &.active {
             filter: drop-shadow(0 0 10px $secondary-color);
             &::before, &::after, .header_hamb-line{
                 border-color: $secondary-color;

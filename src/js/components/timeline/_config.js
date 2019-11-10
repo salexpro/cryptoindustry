@@ -1,6 +1,7 @@
 /* global createjs */
 const main = document.querySelector('.main');
 const canvas = document.getElementById('canvas');
+const scrollbar = document.querySelector('.timeline_years_button')
 const isTablet = () => canvas.offsetWidth < 1280;
 const isMobile = () => canvas.offsetWidth < 640;
 const rConfig = {
@@ -10,7 +11,9 @@ const rConfig = {
     shapeSize: () => isMobile() ? 92 : 112,
     shapeHalf: () => (isMobile() ? 92 : 112) / 2,
     imageSize: () => isMobile() ? 80 : 100,
-    currBreakpoint: () => isMobile() ? 'mobile' : isTablet() ? 'tablet' : 'desktop'
+    currBreakpoint: () => isMobile() ? 'mobile' : isTablet() ? 'tablet' : 'desktop',
+    graphEnd: () => -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen()),
+    paddings: () => isMobile() ? 30 : 60
 }
 
 const events = [];
@@ -237,17 +240,16 @@ const ranges = [
     },
     {
         label: 'Наши дни',
-        x: () => -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen()) + (isMobile() ? 20 : 50)
+        x: () => rConfig.graphEnd() + (isMobile() ? 20 : 50)
     }
 ]
 
-const endOffset = () => -7580 + (isTablet() ? canvas.offsetWidth - rConfig.halfScreen() : rConfig.halfScreen());
 const controls = [
     [
         {
             direction: 'forward',
             label: 'Cередина',
-            x: () => endOffset() / 2,
+            x: () => rConfig.graphEnd() / 2,
             arrow: 'right'
         }
     ],
@@ -261,7 +263,7 @@ const controls = [
         {
             direction: 'forward',
             label: 'Наши дни',
-            x: () => endOffset(),
+            x: () => rConfig.graphEnd(),
             arrow: 'right'
         }
     ],
@@ -269,10 +271,10 @@ const controls = [
         {
             direction: 'back',
             label: 'Cередина',
-            x: () => endOffset() / 2,
+            x: () => rConfig.graphEnd() / 2,
             arrow: 'left'
         }
     ]
 ]
 
-export { events, palette, accRate, graphParams, canvas, stage, mouse, gEvents, rndInt, dotParams, ranges, controls, main, isTablet, isMobile, rConfig};
+export { events, palette, accRate, graphParams, canvas, stage, mouse, gEvents, rndInt, dotParams, ranges, controls, main, scrollbar, isTablet, isMobile, rConfig};

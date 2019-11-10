@@ -1,5 +1,6 @@
 .content{
     position: relative;
+    z-index: 1;
     // overflow: hidden;
     // height: 100%;
 }
@@ -24,6 +25,9 @@
     //     background: red;
     //     z-index: -1;
     // }
+    &.backoff{
+        z-index: -1;
+    }
     &_inner{
         padding-top: 28px;
         display: flex;

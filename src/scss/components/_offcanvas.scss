@@ -14,5 +14,17 @@
 }
 
 .js-off-canvas-overlay{
-    transition: none
+    transition: none;
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 58px);
+        background: rgba(0,22,48,0.78);
+        @include breakpoint(small down){
+            height: calc(100% - 48px);
+        }
+    }
 }

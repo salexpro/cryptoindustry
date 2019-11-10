@@ -72,6 +72,7 @@
         width: 100%;
         left: 0;
         bottom: 40px;
+        z-index: 3;
         @include breakpoint(medium down){
             bottom: 27px;
         }
@@ -79,6 +80,9 @@
             opacity: 0;
             visibility: hidden;
             bottom: 20px;
+        }
+        .grid-container {
+            max-width: none;
         }
         &_button.hollow{
             filter: none;

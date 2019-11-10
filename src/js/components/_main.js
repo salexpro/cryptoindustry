@@ -92,11 +92,13 @@ $(window).on('load', () => {
 })
 
 $('.header_hamb').click(() => {
+    $('.header_hamb').addClass('active');
     TweenLite.to('#menu', 0.5, { x: '0%'})
     TweenLite.to('.js-off-canvas-overlay', 0.5, { autoAlpha: 1 })
 })
 
 $('.js-off-canvas-overlay').click(() => {
+    $('.header_hamb').removeClass('active');
     TweenLite.to('#menu', 0.5, {x: '100%'})
     TweenLite.to('.js-off-canvas-overlay', 0.5, { autoAlpha: 0 })
 })
