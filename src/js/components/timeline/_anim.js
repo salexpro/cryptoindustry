@@ -503,6 +503,7 @@ const anim = {
         TweenLite.set(events[i].shape, { opened: true, delay: 0.6 });
 
         canvas.style.cursor = 'default';
+        
         stage.movable = false;
 
         events.forEach((e, j) => {
@@ -671,7 +672,7 @@ const anim = {
         switch (step) {
             case 1:
                 TweenLite.to('.hint--graph', 0.3, { autoAlpha: 0 });
-                TweenLite.to(canvas, 0.3, { css: { opacity: 0 },  });
+                TweenLite.to(canvas, 0.3, { css: { opacity: 0 } });
                 TweenLite.to('.timeline_years', 0.3, { autoAlpha: 0 });
                 TweenLite.to('.main_button', 0.3, { autoAlpha: 0 });
 

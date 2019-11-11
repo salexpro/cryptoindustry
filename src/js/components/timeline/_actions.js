@@ -13,14 +13,16 @@ let prevInd = -1;
 
 const onTick = () => {
 
-    if (mouse.dest > 0) mouse.dest = 0;
-    if (mouse.dest < rConfig.graphEnd()) mouse.dest = rConfig.graphEnd();
-
-    mouse.fin += (mouse.dest - mouse.fin) / accRate;
-    if (Math.abs(mouse.fin - mouse.dest) < 0.005) mouse.fin = mouse.dest;
+   
 
     if (stage.movable) {
-        if (!isMobile() && main.dataset.visible == 'false' && mouse.fin > -10 && mouse.delta < 0 && main.dataset.animated == 'false' && scrollbar.offsetLeft == 30) {
+        if (mouse.dest > 0) mouse.dest = 0;
+        if (mouse.dest < rConfig.graphEnd()) mouse.dest = rConfig.graphEnd();
+
+        mouse.fin += (mouse.dest - mouse.fin) / accRate;
+        if (Math.abs(mouse.fin - mouse.dest) < 0.005) mouse.fin = mouse.dest;
+        
+        if (!isMobile() && main.dataset.visible == 'false' && mouse.fin > -5 && mouse.delta < 0 && main.dataset.animated == 'false' && scrollbar.offsetLeft == 30) {
             anim.showMain();
             main.dataset.visible = true;
         }
@@ -33,7 +35,8 @@ const onTick = () => {
             // console.log(Math.round(precentPos))
         // }
     }
-    if (main.dataset.visible == 'true' && mouse.delta > 0 && main.dataset.animated == 'false') {
+    if (main.dataset.visible == 'true' && mouse.delta >= 5 && main.dataset.animated == 'false') {
+        console.log(mouse.delta, main.dataset.visible, main.dataset.animated, mouse.fin, mouse.dest)
         if (isMobile()) {
             anim.mobileStep(main.dataset.step)
         } else {
@@ -235,6 +238,7 @@ canvas.addEventListener('click', () => {
             console.log('opened')
             return true;
         }
+        
         if (!(corrX > shape.x &&
             corrX < shape.x + 588 &&
             corrY > shape.y &&
@@ -248,8 +252,12 @@ canvas.addEventListener('click', () => {
         if (shape.opened && button) {
             // const buttonX = shape.x + 173 + button.x;
             // const buttonY = shape.y + 11 + button.y - 35;
-
-            if (button.hovered) {
+            const buttonX = shape.x + (isMobile() ? 11 : 173) + button.x;
+            const buttonY = shape.y + 11 + button.y - 35;
+            if (corrX > buttonX &&
+                corrX < buttonX + button.buttonWidth &&
+                corrY > buttonY &&
+                corrY < buttonY + 35) {
                 if (eventsData.events[i].link) {
                     window.open(eventsData.events[i].link, '_blank');
                 } else {
