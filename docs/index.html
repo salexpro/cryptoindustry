@@ -1,64 +1,66 @@
 
-<svg class="social_gradients" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <lineargradient id="gradient" x1="10" y1="0" x2="10" y2="16" gradientunits="userSpaceOnUse">
-      <stop stop-color="#69D6FF"></stop>
-      <stop offset="1" stop-color="#0B9ED5"></stop>
-    </lineargradient>
-    <clippath id="square">
-      <polygon points="0,0 4,0 4,4 0,4"></polygon>
-      <polygon points="26,0 30,0 30,4 26,4"></polygon>
-      <polygon points="0,26 4,26 4,30 0,30"></polygon>
-      <polygon points="26,30 30,30 30,26 26,26"></polygon>
-    </clippath>
-    <mask id="socialFacebook" maskUnits="userSpaceOnUse" x="0" y="0" width="10" height="20">
-      <path d="M10 6.47609H6.59435V4.40033C6.59435 3.62078 7.1503 3.43904 7.54187 3.43904C7.93255 3.43904 9.94521 3.43904 9.94521 3.43904V0.0120057L6.63533 0C2.96107 0 2.12491 2.55599 2.12491 4.19168V6.47609H0V10.0075H2.12491C2.12491 14.5394 2.12491 20 2.12491 20H6.59435C6.59435 20 6.59435 14.4856 6.59435 10.0075H9.61021L10 6.47609Z" fill="white"></path>
-    </mask>
-    <mask id="socialTwitter" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="16">
-      <path d="M20 2.37312C19.2633 2.68736 18.1627 3.10464 17.3333 3.2C18.182 2.71232 19.026 1.56096 19.3333 0.64C18.686 1.00928 17.942 1.5072 17.182 1.77472L16.6667 1.28C15.9193 0.51392 15.18 0 14 0C11.7347 0 10 1.66528 10 3.84C10 4.09536 10.0313 4.288 10.0733 4.45184L10 4.48C6 4.48 3.356 3.66336 1.33333 1.28C0.979333 1.86112 0.666667 2.47808 0.666667 3.2C0.666667 4.56704 1.56533 5.69216 2.66667 6.4C1.994 6.37888 1.21933 6.05312 0.666667 5.76C0.666667 7.6672 3.45733 9.87648 5.33333 10.24C4.66667 10.88 2.25133 10.2874 2 10.24C2.52267 11.8061 4.206 12.7674 6 12.8C4.59667 13.8547 2.902 14.4064 0.979333 14.4064C0.647333 14.4064 0.321333 14.3878 0 14.3526C1.81533 15.4688 4.34867 16 6.66667 16C14.2147 16 18 10.3251 18 5.12C18 4.94848 18.0053 4.64896 18 4.48C18.8007 3.92448 19.448 3.16288 20 2.37312Z" fill="white"></path>
-    </mask>
-    <mask id="socialVk" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="15">
-      <path d="M25.4074 1.01716C25.586 0.431234 25.4074 0 24.5483 0H21.7054C20.9814 0 20.6483 0.370304 20.4698 0.78282C20.4698 0.78282 19.0219 4.20931 16.9753 6.43119C16.3141 7.07338 16.01 7.27966 15.6481 7.27966C15.4696 7.27966 15.1944 7.07338 15.1944 6.48745V1.01716C15.1944 0.314039 14.9916 0 14.3931 0H9.92366C9.46996 0 9.19967 0.328147 9.19967 0.632799C9.19967 1.29837 10.2229 1.45306 10.3291 3.32807V7.39686C10.3291 8.28749 10.165 8.45145 9.80304 8.45145C8.8377 8.45145 6.49193 5.0109 5.10189 1.07342C4.82199 0.309373 4.54679 0 3.818 0H0.975002C0.16414 0 0 0.370304 0 0.78282C0 1.51399 0.965337 5.14687 4.4936 9.94683C6.84418 13.2233 10.1552 15 13.1671 15C14.977 15 15.1991 14.6063 15.1991 13.9266C15.1991 10.7952 15.035 10.4999 15.9424 10.4999C16.3623 10.4999 17.0863 10.7062 18.7757 12.2858C20.7062 14.1608 21.0248 14.9999 22.106 14.9999H24.9489C25.7598 14.9999 26.1701 14.6062 25.9335 13.8279C25.393 12.1921 21.7392 8.82647 21.5751 8.60147C21.1552 8.07648 21.2758 7.84203 21.5751 7.37325C21.58 7.3687 25.0502 2.62495 25.4074 1.01716Z" fill="white"></path>
-    </mask>
-    <mask id="socialTelegram" maskUnits="userSpaceOnUse" x="0" y="0" width="21" height="20">
-      <path d="M20.7242 0.127215C20.8153 0.0835582 20.9069 0.0408403 21 0C19.6079 6.00634 18.2044 12.0108 16.8025 18.0153C14.5993 16.9727 12.403 15.9178 10.2008 14.8729C9.3573 15.9822 8.51769 17.0942 7.67563 18.204C7.21618 18.8011 6.77496 19.4113 6.30468 20C6.29286 17.673 6.29877 15.3451 6.30172 13.0177C4.20591 12.0056 2.09828 11.0151 0 10.0073C6.90644 6.71095 13.8168 3.42166 20.7242 0.127215ZM17.4717 3.65121C14.4949 6.05375 11.5349 8.47553 8.5566 10.8767C8.47288 10.9414 8.38523 11.018 8.40296 11.132C8.40985 12.0779 8.3867 13.0248 8.41527 13.9702C8.48027 13.9106 8.54428 13.85 8.60436 13.7857C10.8198 11.3132 13.0338 8.83887 15.2528 6.36874C16.2081 5.29093 17.1885 4.23284 18.1271 3.14142C17.8932 3.29257 17.6884 3.4794 17.4717 3.65121Z" fill="white"></path>
-    </mask>
-  </defs>
-</svg><!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Хроника криптоиндустрии</title>
-    <meta name="description" content="Хроника криптоиндустрии: специальный проект ForkLog к пятилетию журнала">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="format-detection" content="telephone=no">
-    <meta property="og:title" content="Хроника криптоиндустрии">
-    <meta property="og:description" content="Хроника криптоиндустрии: специальный проект ForkLog к пятилетию журнала">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://chronicle.salex.pro/assets/favicon/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png?ckcachebust=d2742543730a1de40b178479d2375abc">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png?ckcachebust=595179007">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png?ckcachebust=595179007">
-    <link rel="manifest" href="/assets/favicon/site.webmanifest?ckcachebust=c999e66e7817652e8bb5fde3b2410ce4">
-    <link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg?ckcachebust=595179007" color="#002a48">
-    <meta name="msapplication-TileColor" content="#002a48">
-    <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
-    <meta name="theme-color" content="#002a48">
-    <link rel="apple-touch-startup-image" href="/assets/splash/launch-640x1136.jpg?ckcachebust=dd052bc20aac215aeffce9cdd9370cc7" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
-    <link rel="apple-touch-startup-image" href="/assets/splash/launch-750x1294.jpg?ckcachebust=e823db91e27cd63de0c34febadd34b8e" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
-    <link rel="apple-touch-startup-image" href="/assets/splash/launch-1242x2148.jpg?ckcachebust=595179007" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
-    <link rel="apple-touch-startup-image" href="/assets/splash/launch-1125x2436.jpg?ckcachebust=595179007" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
-    <link rel="apple-touch-startup-image" href="/assets/splash/launch-1536x2048.jpg?ckcachebust=1b7dc7ada95f7174437be6775670bcd1" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
-    <link rel="apple-touch-startup-image" href="/assets/splash/launch-1668x2224.jpg?ckcachebust=595179007" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
-    <link rel="apple-touch-startup-image" href="/assets/splash/launch-2048x2732.jpg?ckcachebust=f0da23ddaa96f6551c4fe6d724b46174" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,600&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/app.css?ckcachebust=b4d318014685be9889f9051a5d689fdd">
+    <meta name="description" content="Хроника криптоиндустрии: специальный проект ForkLog к пятилетию журнала"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta property="og:title" content="Хроника криптоиндустрии"/>
+    <meta property="og:description" content="Хроника криптоиндустрии: специальный проект ForkLog к пятилетию журнала"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://forklog.com/sp/chronicles/assets/og-image.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png?ckcachebust=81776f068d20b96b05985b0456b43954"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png?ckcachebust=595349317"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png?ckcachebust=595349317"/>
+    <link rel="manifest" href="./assets/favicon/site.webmanifest?ckcachebust=27bab983d6eb21946a71946f84671a24"/>
+    <link rel="mask-icon" href="./assets/favicon/safari-pinned-tab.svg?ckcachebust=595349317" color="#002a48"/>
+    <meta name="msapplication-TileColor" content="#002a48"/>
+    <meta name="msapplication-config" content="./assets/favicon/browserconfig.xml"/>
+    <meta name="theme-color" content="#002a48"/>
+    <link rel="apple-touch-startup-image" href="./assets/splash/launch-640x1136.jpg?ckcachebust=38475d2ae722bde947c241cc45af6be8" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/>
+    <link rel="apple-touch-startup-image" href="./assets/splash/launch-750x1294.jpg?ckcachebust=a9bdbcfe98137fbbb7fdffefb9159ad8" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/>
+    <link rel="apple-touch-startup-image" href="./assets/splash/launch-1242x2148.jpg?ckcachebust=595349317" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/>
+    <link rel="apple-touch-startup-image" href="./assets/splash/launch-1125x2436.jpg?ckcachebust=595349317" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/>
+    <link rel="apple-touch-startup-image" href="./assets/splash/launch-1536x2048.jpg?ckcachebust=973fb1a3493c22573e3c5cb8c27b6573" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"/>
+    <link rel="apple-touch-startup-image" href="./assets/splash/launch-1668x2224.jpg?ckcachebust=595349317" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"/>
+    <link rel="apple-touch-startup-image" href="./assets/splash/launch-2048x2732.jpg?ckcachebust=8f19e0700f8cd80e67da1f25eea739f3" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,600&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="./css/app.css?ckcachebust=4c4dd218f2af76d6535af48d354b694a"/>
   </head>
   <body>
-    <main class="off-canvas-content wrap" data-off-canvas-content>
+    <main class="off-canvas-content wrap" data-off-canvas-content="data-off-canvas-content">
+      <svg class="social_gradients" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <lineargradient id="gradient" x1="10" y1="0" x2="10" y2="16" gradientunits="userSpaceOnUse">
+            <stop stop-color="#69D6FF"></stop>
+            <stop offset="1" stop-color="#0B9ED5"></stop>
+          </lineargradient>
+          <clippath id="square">
+            <polygon points="0,0 4,0 4,4 0,4"></polygon>
+            <polygon points="26,0 30,0 30,4 26,4"></polygon>
+            <polygon points="0,26 4,26 4,30 0,30"></polygon>
+            <polygon points="26,30 30,30 30,26 26,26"></polygon>
+          </clippath>
+          <mask id="socialFacebook" maskUnits="userSpaceOnUse" x="0" y="0" width="10" height="20">
+            <path d="M10 6.47609H6.59435V4.40033C6.59435 3.62078 7.1503 3.43904 7.54187 3.43904C7.93255 3.43904 9.94521 3.43904 9.94521 3.43904V0.0120057L6.63533 0C2.96107 0 2.12491 2.55599 2.12491 4.19168V6.47609H0V10.0075H2.12491C2.12491 14.5394 2.12491 20 2.12491 20H6.59435C6.59435 20 6.59435 14.4856 6.59435 10.0075H9.61021L10 6.47609Z" fill="white"></path>
+          </mask>
+          <mask id="socialTwitter" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="16">
+            <path d="M20 2.37312C19.2633 2.68736 18.1627 3.10464 17.3333 3.2C18.182 2.71232 19.026 1.56096 19.3333 0.64C18.686 1.00928 17.942 1.5072 17.182 1.77472L16.6667 1.28C15.9193 0.51392 15.18 0 14 0C11.7347 0 10 1.66528 10 3.84C10 4.09536 10.0313 4.288 10.0733 4.45184L10 4.48C6 4.48 3.356 3.66336 1.33333 1.28C0.979333 1.86112 0.666667 2.47808 0.666667 3.2C0.666667 4.56704 1.56533 5.69216 2.66667 6.4C1.994 6.37888 1.21933 6.05312 0.666667 5.76C0.666667 7.6672 3.45733 9.87648 5.33333 10.24C4.66667 10.88 2.25133 10.2874 2 10.24C2.52267 11.8061 4.206 12.7674 6 12.8C4.59667 13.8547 2.902 14.4064 0.979333 14.4064C0.647333 14.4064 0.321333 14.3878 0 14.3526C1.81533 15.4688 4.34867 16 6.66667 16C14.2147 16 18 10.3251 18 5.12C18 4.94848 18.0053 4.64896 18 4.48C18.8007 3.92448 19.448 3.16288 20 2.37312Z" fill="white"></path>
+          </mask>
+          <mask id="socialVk" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="15">
+            <path d="M25.4074 1.01716C25.586 0.431234 25.4074 0 24.5483 0H21.7054C20.9814 0 20.6483 0.370304 20.4698 0.78282C20.4698 0.78282 19.0219 4.20931 16.9753 6.43119C16.3141 7.07338 16.01 7.27966 15.6481 7.27966C15.4696 7.27966 15.1944 7.07338 15.1944 6.48745V1.01716C15.1944 0.314039 14.9916 0 14.3931 0H9.92366C9.46996 0 9.19967 0.328147 9.19967 0.632799C9.19967 1.29837 10.2229 1.45306 10.3291 3.32807V7.39686C10.3291 8.28749 10.165 8.45145 9.80304 8.45145C8.8377 8.45145 6.49193 5.0109 5.10189 1.07342C4.82199 0.309373 4.54679 0 3.818 0H0.975002C0.16414 0 0 0.370304 0 0.78282C0 1.51399 0.965337 5.14687 4.4936 9.94683C6.84418 13.2233 10.1552 15 13.1671 15C14.977 15 15.1991 14.6063 15.1991 13.9266C15.1991 10.7952 15.035 10.4999 15.9424 10.4999C16.3623 10.4999 17.0863 10.7062 18.7757 12.2858C20.7062 14.1608 21.0248 14.9999 22.106 14.9999H24.9489C25.7598 14.9999 26.1701 14.6062 25.9335 13.8279C25.393 12.1921 21.7392 8.82647 21.5751 8.60147C21.1552 8.07648 21.2758 7.84203 21.5751 7.37325C21.58 7.3687 25.0502 2.62495 25.4074 1.01716Z" fill="white"></path>
+          </mask>
+          <mask id="socialTelegram" maskUnits="userSpaceOnUse" x="0" y="0" width="21" height="20">
+            <path d="M20.7242 0.127215C20.8153 0.0835582 20.9069 0.0408403 21 0C19.6079 6.00634 18.2044 12.0108 16.8025 18.0153C14.5993 16.9727 12.403 15.9178 10.2008 14.8729C9.3573 15.9822 8.51769 17.0942 7.67563 18.204C7.21618 18.8011 6.77496 19.4113 6.30468 20C6.29286 17.673 6.29877 15.3451 6.30172 13.0177C4.20591 12.0056 2.09828 11.0151 0 10.0073C6.90644 6.71095 13.8168 3.42166 20.7242 0.127215ZM17.4717 3.65121C14.4949 6.05375 11.5349 8.47553 8.5566 10.8767C8.47288 10.9414 8.38523 11.018 8.40296 11.132C8.40985 12.0779 8.3867 13.0248 8.41527 13.9702C8.48027 13.9106 8.54428 13.85 8.60436 13.7857C10.8198 11.3132 13.0338 8.83887 15.2528 6.36874C16.2081 5.29093 17.1885 4.23284 18.1271 3.14142C17.8932 3.29257 17.6884 3.4794 17.4717 3.65121Z" fill="white"></path>
+          </mask>
+        </defs>
+      </svg>
       <header class="header">
         <div class="grid-container header_inner"><a class="header_logo" href="https://forklog.com" target="_blank">
             <svg width="110" height="27" viewBox="0 0 110 27" fill="none" stroke-width="0" xmlns="http://www.w3.org/2000/svg">
@@ -97,36 +99,36 @@
                 </lineargradient>
               </defs>
             </svg></a>
-          <ul class="social">
-            <li><a href="http://www.facebook.com/sharer.php?u=https://forklog.com/sp/chronicles" target="_blank">
-                <svg width="10" height="20" viewbox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g mask="url(#socialFacebook)">
-                    <rect x="0" y="0" width="100%" height="100%" fill="currentColor">             </rect>
-                    <rect class="social_gradient" x="0" y="0" width="100%" height="100%" fill="url(#gradient)"></rect>
-                  </g>
-                </svg></a></li>
-            <li><a href="https://twitter.com/share?url=https://forklog.com/sp/chronicles" target="_blank">
-                <svg width="20" height="16" viewbox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g mask="url(#socialTwitter)">
-                    <rect x="0" y="0" width="100%" height="100%" fill="currentColor">             </rect>
-                    <rect class="social_gradient" x="0" y="0" width="100%" height="100%" fill="url(#gradient)"></rect>
-                  </g>
-                </svg></a></li>
-            <li><a href="https://vk.com/share.php?url=https://forklog.com/sp/chronicles" target="_blank">
-                <svg width="26" height="15" viewbox="0 0 26 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g mask="url(#socialVk)">
-                    <rect x="0" y="0" width="100%" height="100%" fill="currentColor">             </rect>
-                    <rect class="social_gradient" x="0" y="0" width="100%" height="100%" fill="url(#gradient)"></rect>
-                  </g>
-                </svg></a></li>
-            <li><a href="https://telegram.me/share/url?url=https://forklog.com/sp/chronicles" target="_blank">
-                <svg width="21" height="20" viewbox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g mask="url(#socialTelegram)">
-                    <rect x="0" y="0" width="100%" height="100%" fill="currentColor">             </rect>
-                    <rect class="social_gradient" x="0" y="0" width="100%" height="100%" fill="url(#gradient)"></rect>
-                  </g>
-                </svg></a></li>
-          </ul>
+                <ul class="social">
+                  <li><a href="http://www.facebook.com/sharer.php?u=https://forklog.com/sp/chronicles" target="_blank">
+                      <svg width="10" height="20" viewbox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g mask="url(#socialFacebook)">
+                          <rect x="0" y="0" width="100%" height="100%" fill="currentColor">             </rect>
+                          <rect class="social_gradient" x="0" y="0" width="100%" height="100%" fill="url(#gradient)"></rect>
+                        </g>
+                      </svg></a></li>
+                  <li><a href="https://twitter.com/share?url=https://forklog.com/sp/chronicles" target="_blank">
+                      <svg width="20" height="16" viewbox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g mask="url(#socialTwitter)">
+                          <rect x="0" y="0" width="100%" height="100%" fill="currentColor">             </rect>
+                          <rect class="social_gradient" x="0" y="0" width="100%" height="100%" fill="url(#gradient)"></rect>
+                        </g>
+                      </svg></a></li>
+                  <li><a href="https://vk.com/share.php?url=https://forklog.com/sp/chronicles" target="_blank">
+                      <svg width="26" height="15" viewbox="0 0 26 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g mask="url(#socialVk)">
+                          <rect x="0" y="0" width="100%" height="100%" fill="currentColor">             </rect>
+                          <rect class="social_gradient" x="0" y="0" width="100%" height="100%" fill="url(#gradient)"></rect>
+                        </g>
+                      </svg></a></li>
+                  <li><a href="https://telegram.me/share/url?url=https://forklog.com/sp/chronicles" target="_blank">
+                      <svg width="21" height="20" viewbox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g mask="url(#socialTelegram)">
+                          <rect x="0" y="0" width="100%" height="100%" fill="currentColor">             </rect>
+                          <rect class="social_gradient" x="0" y="0" width="100%" height="100%" fill="url(#gradient)"></rect>
+                        </g>
+                      </svg></a></li>
+                </ul>
           <div class="header_buttons">
             <button class="button hollow secondary" id="subsButton"><span>Подписка</span></button><a class="button hollow" href="https://forklog.com/sp/" target="_blank"><span>Все спецпроекты</span></a>
           </div>
@@ -191,15 +193,15 @@
             <div class="button hollow small timeline_years_button"><span>Начало</span></div>
           </div>
         </div>
-        <div class="block block--regards"><span class="block_inner">Мы&nbsp;не&nbsp;знаем, какие события произойдут в&nbsp;будущем, но&nbsp;знаем, что обязательно о&nbsp;них напишем. Спасибо, что были с&nbsp;нами все эти годы.<br><br>Искренне&nbsp;ваши, <br>вся команда ForkLog</span></div>
-        <div class="hardworkers">Над проектом работали:<br>Руководитель — Влад Лихута<br>Продюсер — Дженни Айсгарт<br>Текст — Андрей Асмаков, Дженни Айсгарт<br>Режиссер видео — Евгений Муратов<br>Дизайнер — Дмитрий Бойко<br>Разработчик — Александр Пупко</div>
+        <div class="block block--regards"><span class="block_inner">Мы&nbsp;не&nbsp;знаем, какие события произойдут в&nbsp;будущем, но&nbsp;знаем, что обязательно о&nbsp;них напишем. Спасибо, что были с&nbsp;нами все эти годы.<br/><br/>Искренне&nbsp;ваши, <br/>вся команда ForkLog</span></div>
+        <div class="hardworkers">Над проектом работали:<br/>Руководитель — Влад Лихута<br/>Продюсер — Дженни Айсгарт<br/>Текст — Андрей Асмаков, Дженни Айсгарт<br/>Режиссер видео — Евгений Муратов<br/>Дизайнер — Дмитрий Бойко<br/>Разработчик — Александр Пупко</div>
         <canvas class="timeline_canvas" id="canvas"></canvas>
         <div class="subscribe">
           <div class="subscribe_inner">
             <p class="subscribe_header">Подпишитесь на рассылку</p><span class="subscribe_descr">и не пропускайте новые спецпроекты</span>
             <form class="subscribe_form">
               <div class="input">
-                <input type="email" placeholder="Введите E-mail" name="entry.1411777992" required>
+                <input type="email" placeholder="Введите E-mail" name="entry.1411777992" required="required"/>
               </div>
               <button class="button hollow secondary"><span>Подписаться</span></button>
             </form>
@@ -219,14 +221,14 @@
     </div>
     <div class="js-off-canvas-overlay is-overlay-fixed is-closable"></div>
     <div class="reveal-overlay">
-      <div class="reveal" id="video" data-reveal role="dialog" aria-hidden="true">
+      <div class="reveal" id="video" data-reveal="data-reveal" role="dialog" aria-hidden="true">
         <div class="responsive-embed reveal_video">
           <div id="player"></div>
         </div>
       </div>
     </div>
-    <script src="https://code.createjs.com/1.0.0/easeljs.min.js?ckcachebust=595179007"></script>
-    <script src="./js/app.min.js?ckcachebust=a20c7e7bb0ed043b5cb86aebb7e672e7"></script>
+    <script src="https://code.createjs.com/1.0.0/easeljs.min.js?ckcachebust=595349317"></script>
+    <script src="./js/app.min.js?ckcachebust=7473eb07851764a909d17ae4df450803"></script>
     <script>
       var player;
       var tag = document.createElement('script');

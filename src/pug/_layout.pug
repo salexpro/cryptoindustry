@@ -6,18 +6,18 @@ block const
 
 //- Components
 include components/_icons
-include components/_social
 include components/_menu
 
-doctype html
 html(lang="ru")
     include components/_head
     body
         main.off-canvas-content.wrap(data-off-canvas-content)
+            include components/_social
             include sections/_header
             block content
                 include sections/_footer
         include components/_offcanvas
         include components/_popup
+        
         block js
             script(src="./js/app.min.js")

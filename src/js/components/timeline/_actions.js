@@ -36,7 +36,6 @@ const onTick = () => {
         // }
     }
     if (main.dataset.visible == 'true' && mouse.delta >= 5 && main.dataset.animated == 'false') {
-        console.log(mouse.delta, main.dataset.visible, main.dataset.animated, mouse.fin, mouse.dest)
         if (isMobile()) {
             anim.mobileStep(main.dataset.step)
         } else {
@@ -233,9 +232,8 @@ canvas.addEventListener('click', () => {
             corrX < shape.x + rConfig.shapeSize() &&
             corrY > shape.y &&
             corrY < shape.y + rConfig.shapeSize()) || (shape.dotHovered && isDotClicked)) && shape.hoverable && shape.visible) {
-            // console.log(shape.hoverable, shape.visible, i);
             anim.openEvent(i)
-            console.log('opened')
+            // console.log('opened')
             return true;
         }
         
@@ -261,7 +259,6 @@ canvas.addEventListener('click', () => {
                 if (eventsData.events[i].link) {
                     window.open(eventsData.events[i].link, '_blank');
                 } else {
-                    console.log(`open video ${eventsData.events[i].comment}`)
                     player.loadVideoById(eventsData.events[i].comment);
                     anim.openPopup();
                 }
@@ -391,7 +388,6 @@ if(isTablet()){
             }
             if (main.dataset.step == '2' && isMobile() && (direction === 16 || direction === 4)) {
                 anim.mobileStep(main.dataset.step, 'prev')
-                console.log(mouse.delta, direction)
             }
             // console.log(mouse.delta + delta)
             if ((direction === 2) && (e.deltaY < 50 && e.deltaY > -50)) {
@@ -407,7 +403,7 @@ if(isTablet()){
 
     const offcanv = document.querySelector('.js-off-canvas-overlay');
     const hammeroffc = new Hammer(offcanv);
-    hammeroffc.on('panright', e => {
+    hammeroffc.on('panright', () => {
         $('.header_hamb').removeClass('active');
         TweenLite.to('#menu', 0.5, { x: '100%' })
         TweenLite.to('.js-off-canvas-overlay', 0.5, { autoAlpha: 0 })

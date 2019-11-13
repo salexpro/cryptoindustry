@@ -418,7 +418,6 @@ const anim = {
         ) {
             // center
             if ((centerY + eventHeight) > (rdY - rLineHeight - rateMargin)){
-                console.log('intersect')
                 rdY = centerY + eventHeight + rLineHeight + rateMargin;
             }
             

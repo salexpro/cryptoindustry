@@ -41,7 +41,7 @@ const linesHeigth = () => {
     const leadBreakpoint = isMobile ? 52 : isLandscape ? isPortrait ? 82 : 72 : 100;
     $leadLine.attr('data-width', isMobile ? 65 : isTablet ? $('.lead').offset().left - 78 : 280);
     $leadLine.attr('data-height', main.offsetHeight - lead.offsetTop - (lead.offsetHeight / 2) - header.offsetHeight - leadBreakpoint);
-    if ($leadLine.hasClass('expanded')) {
+    if ($leadLine[0].classList.contains('expanded')) {
         $leadLine.width($leadLine.attr('data-width'))
         $leadLine.height($leadLine.attr('data-height'))
     }
@@ -63,7 +63,6 @@ bg.src = 'assets/img/bg.jpg';
 
 $(window).on('load', () => {
     const isMobile = main.offsetWidth < 640;
-    console.log('loaded')
     TweenLite.to('.preloader', 0.3, {autoAlpha: 0})
 
     TweenLite.to('.block--left .block_inner', 0.4, { x: 0, opacity: 1, delay: 0.1})

@@ -2288,6 +2288,17 @@
 		"plM": 1103252938751,
 		"prP": 0
 		},
+	"/src/assets/img/og-image.png": {
+		"ft": 32768,
+		"iS": 980079,
+		"oA": 0,
+		"oAP": "/build/assets/img/og-image.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/src/assets/img/yellow_line.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -2483,14 +2494,6 @@
 		"ft": 524288,
 		"oA": 1,
 		"oAP": "/build/js/data/events.json",
-		"oF": 1,
-		"oO": 0,
-		"oS": 0
-		},
-	"/src/js/data/graph.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "/build/js/data/graph.json",
 		"oF": 1,
 		"oO": 0,
 		"oS": 0
@@ -2874,7 +2877,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "/src/assets/favicon/android-chrome-256x256.png",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 595179011.52487898
+	"lastBuiltDate": 595349320.90042698
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,
