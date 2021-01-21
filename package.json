@@ -19,7 +19,7 @@
   "dependencies": {
     "createjs": "github:ryosuzuki/createjs",
     "foundation-sites": "^6.5.3",
-    "gsap": "^2.1.3",
+    "gsap": "^3.6.0",
     "hammerjs": "^2.0.8",
     "jquery": "^3.5.0",
     "konva": "^4.0.14",
